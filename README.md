@@ -1,4 +1,6 @@
-JBrat
-=====
-
+## JBrat
 A MVC Framework for Java
+
+## NOTICE
+STILL DEVELOPING
+NOT FINISH YET
