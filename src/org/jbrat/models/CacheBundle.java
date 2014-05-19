@@ -7,7 +7,7 @@ import org.jbrat.models.abstracts.JModel;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MapBundle implements JBundle{
+public class CacheBundle implements JBundle{
 
     private Map<String,JModel>  modelModel = new TreeMap<String, JModel>();
     private Map<String,Boolean> statusModel= new TreeMap<String, Boolean>();
@@ -23,7 +23,7 @@ public class MapBundle implements JBundle{
     }
 
     @Override
-    public void setStatus(String name, boolean trimStatus) {
+    public void setTrimable(String name, boolean trimStatus) {
         statusModel.put(name, trimStatus);
     }
 

@@ -1,8 +1,8 @@
-package org.jbrat.controllers;
+package org.jbrat.combiners;
 
 
 import org.jbrat.models.abstracts.JBundle;
 
-public interface JController {
+public interface JCombiner {
     public void onPreparing(JBundle bundle);
 }

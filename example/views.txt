@@ -1,5 +1,5 @@
 MainView:View.HW4View{
-	hw4Controller:Controller.HW4Controller{
+	hw4Controller:Combiner.HW4Combiner{
 		- ajax : Model.AJAXModel
 		+ text : Model.TextModel
 		+ event: Model.EventModel

@@ -5,15 +5,15 @@ import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.abstracts.JModel;
 import org.jbrat.router.FileSystem;
 import org.jbrat.router.abstracts.JRouteFile;
+import org.jbrat.views.abstracts.JBratManager;
 import org.jbrat.views.abstracts.JView;
-import org.jbrat.views.abstracts.ViewChanger;
 
-public class SimpleViewChanger extends ViewChanger<String>{
+public class SimpleJBratManager extends JBratManager<String> {
 
     private JRouteFile router;
-    private JModel<ViewChanger> viewChangerModel ;
+    private JModel<JBratManager> managerModel;
 
-    public SimpleViewChanger(String defaultRoutePath){
+    public SimpleJBratManager(String defaultRoutePath){
 
         router = FileSystem.readRouteFile(defaultRoutePath);
 
@@ -22,8 +22,8 @@ public class SimpleViewChanger extends ViewChanger<String>{
         initDefaultViewOfNameMainView();
     }
     private void initSingletonViewChangerModel(){
-        viewChangerModel = new CacheModel<ViewChanger>();
-        viewChangerModel.set("Main", this);
+        managerModel = new CacheModel<JBratManager>();
+        managerModel.set("Main", this);
     }
     private void initDefaultViewOfNameMainView(){
         this.initView("MainView");
@@ -32,8 +32,8 @@ public class SimpleViewChanger extends ViewChanger<String>{
     @Override
     protected JBundle getBundle(String viewName) {
         JBundle bundle = router.getBundle(viewName);
-        if(bundle.getModel("ViewChanger")==null){
-            bundle.setModel("ViewChanger",viewChangerModel);
+        if(bundle.getModel("JBratManager")==null){
+            bundle.setModel("JBratManager", managerModel);
         }
         return bundle;
     }

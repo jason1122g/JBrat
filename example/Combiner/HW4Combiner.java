@@ -1,12 +1,12 @@
-package Controller;
+package Combiner;
 
 import Model.AJAXModel;
 import Model.EventModel;
 import Model.TextModel;
-import org.jbrat.controllers.JController;
+import org.jbrat.combiners.JCombiner;
 import org.jbrat.models.abstracts.JBundle;
 
-public class HW4Controller implements JController {
+public class HW4Combiner implements JCombiner {
     @Override
     public void onPreparing(JBundle bundle) {
         final AJAXModel ajaxModel = (AJAXModel) bundle.getModel("ajax");

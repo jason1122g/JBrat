@@ -3,7 +3,7 @@ package org.jbrat.views.abstracts;
 
 import org.jbrat.models.abstracts.JBundle;
 
-public abstract class ViewChanger<Type> {
+public abstract class JBratManager<Type> {
 
     public void initView(Type element){
         initViewByElement(element);
