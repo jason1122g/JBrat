@@ -1,7 +1,7 @@
-package org.jbrat.router.data;
+package org.jbrat.files.data;
 
 
-import org.jbrat.router.data.abstracts.JModelAttribute;
+import org.jbrat.files.data.abstracts.JModelAttribute;
 
 public class ModelAttribute implements JModelAttribute{
     private String modelName;

@@ -1,8 +1,8 @@
-package org.jbrat.router.data;
+package org.jbrat.files.data;
 
 
-import org.jbrat.router.data.abstracts.JControllerAttribute;
-import org.jbrat.router.data.abstracts.JViewAttribute;
+import org.jbrat.files.data.abstracts.JControllerAttribute;
+import org.jbrat.files.data.abstracts.JViewAttribute;
 
 public class ViewAttribute implements JViewAttribute {
     private String viewName;

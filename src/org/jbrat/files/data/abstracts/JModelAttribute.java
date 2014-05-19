@@ -1,4 +1,4 @@
-package org.jbrat.router.data.abstracts;
+package org.jbrat.files.data.abstracts;
 
 
 public interface JModelAttribute {

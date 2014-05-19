@@ -1,10 +1,10 @@
-package org.jbrat.router.data;
+package org.jbrat.files.data;
 
 
-import org.jbrat.router.data.abstracts.JControllerAttribute;
-import org.jbrat.router.data.abstracts.JModelAttribute;
+import org.jbrat.files.data.abstracts.JControllerAttribute;
+import org.jbrat.files.data.abstracts.JModelAttribute;
 
-public class ControllerAttribute implements JControllerAttribute {
+public class CombinerAttribute implements JControllerAttribute {
 
     private String controllerName;
     private String controllerPackage;

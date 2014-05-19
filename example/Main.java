@@ -1,7 +1,7 @@
-import org.jbrat.views.SimpleJBratManager;
+import org.jbrat.managers.JBratManager;
 
 public class Main {
     public static void main(String[] args){
-        new SimpleJBratManager("views"); //will init main view by default
+        new JBratManager("views"); //will init main view by default
     }
 }

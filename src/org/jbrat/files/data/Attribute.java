@@ -1,8 +1,8 @@
-package org.jbrat.router.data;
+package org.jbrat.files.data;
 
 
-import org.jbrat.router.data.abstracts.JAttribute;
-import org.jbrat.router.data.abstracts.JViewAttribute;
+import org.jbrat.files.data.abstracts.JAttribute;
+import org.jbrat.files.data.abstracts.JViewAttribute;
 
 import java.util.HashMap;
 import java.util.Map;
