@@ -9,10 +9,10 @@ import org.jbrat.models.abstracts.JBundle;
 public class HW4Controller implements JController {
     @Override
     public void onPreparing(JBundle bundle) {
-        final AJAXModel ajaxModel = (AJAXModel) bundle.get("ajax");
-        final TextModel textModel = (TextModel) bundle.get("text");
+        final AJAXModel ajaxModel = (AJAXModel) bundle.getModel("ajax");
+        final TextModel textModel = (TextModel) bundle.getModel("text");
 
-        final EventModel eventModel = (EventModel) bundle.get("event");
+        final EventModel eventModel = (EventModel) bundle.getModel("event");
 
         eventModel.set("ok",new Runnable() {
             @Override

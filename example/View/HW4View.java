@@ -14,8 +14,8 @@ public class HW4View implements JView {
     @Override
     @SuppressWarnings("unchecked")
     public void onCreating(JBundle bundle) {
-        final JModel<String>   textModel  = (JModel<String>)  bundle.get("text");
-        final JModel<Runnable> eventModel = (JModel<Runnable>)bundle.get("event");
+        final JModel<String>   textModel  = (JModel<String>)  bundle.getModel("text");
+        final JModel<Runnable> eventModel = (JModel<Runnable>)bundle.getModel("event");
 
         final JTextArea textArea = new JTextArea();
         textModel.bind("result",new DataHandler<String>(){

@@ -13,7 +13,7 @@ public class MapBundle implements JBundle{
     private Map<String,Boolean> statusModel= new TreeMap<String, Boolean>();
 
     @Override
-    public JModel get(String name) {
+    public JModel getModel(String name) {
         return modelModel.get(name);
     }
 
