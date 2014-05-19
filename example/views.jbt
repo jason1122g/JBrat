@@ -1,7 +1,0 @@
-HW4View:View.HW4View{
-	hw4Controller:Controller.HW4Controller{
-		- ajax:  Model.AJAXModel
-		+ text:  Model.TextModel
-		+ event: Model.EventModel
-	}
-}

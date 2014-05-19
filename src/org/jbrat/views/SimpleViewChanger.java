@@ -1,27 +1,29 @@
 package org.jbrat.views;
 
 import org.jbrat.models.abstracts.JBundle;
+import org.jbrat.router.FileSystem;
+import org.jbrat.router.abstracts.JRouteFile;
 import org.jbrat.views.abstracts.JView;
 import org.jbrat.views.abstracts.ViewChanger;
 
 public class SimpleViewChanger extends ViewChanger<String>{
 
-    private static SimpleViewChanger thisPointer;
+    private String defaultRoutePath;
+    private JRouteFile router = FileSystem.readRouteFile(defaultRoutePath);
 
-    @Override
-    protected JBundle getBundle(String element) {
-        return null;
+    public SimpleViewChanger(String defaultRoutePath){
+        this.defaultRoutePath = defaultRoutePath;
+        //TODO init main view after inject this ViewChanger into model
     }
 
     @Override
-    protected JView getView(String element) {
-        return null;
+    protected JBundle getBundle(String viewName) {
+        return router.getBundle(viewName);
     }
 
-    public static SimpleViewChanger getInstance(){
-        if(thisPointer == null){
-            thisPointer = new SimpleViewChanger();
-        }
-        return thisPointer;
+    @Override
+    protected JView getView(String viewName) {
+        return router.getView(viewName);
     }
+
 }

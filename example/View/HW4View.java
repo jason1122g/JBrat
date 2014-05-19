@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 
 public class HW4View implements JView {
     @Override
+    @SuppressWarnings("unchecked")
     public void onCreating(JBundle bundle) {
         final JModel<String>   textModel  = (JModel<String>)  bundle.get("text");
         final JModel<Runnable> eventModel = (JModel<Runnable>)bundle.get("event");
