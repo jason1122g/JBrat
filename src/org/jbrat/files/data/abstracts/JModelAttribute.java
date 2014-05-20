@@ -1,14 +1,10 @@
 package org.jbrat.files.data.abstracts;
 
 
-public interface JModelAttribute {
-    public String getModelName();
-    public String getModelPackage();
-    public boolean needTrim();
-    public boolean needDuplicate();
+public interface JModelAttribute extends NamePackager{
+    public boolean isTrimable();
+    public boolean isDuplicatable();
 
-    public void setModelName(String modelName);
-    public void setModelPackage(String modelPackage);
-    public void setTrim(boolean needTrim);
-    public void setDuplicate(boolean needDuplicate);
+    public void setTrimable(boolean needTrim);
+    public void setDuplicatable(boolean needDuplicate);
 }

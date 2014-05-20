@@ -10,42 +10,42 @@ public class ModelAttribute implements JModelAttribute{
     private boolean needDuplicate;
 
     @Override
-    public String getModelName() {
+    public String getName() {
         return modelName;
     }
 
     @Override
-    public String getModelPackage() {
+    public String getPackage() {
         return modelPackage;
     }
 
     @Override
-    public boolean needTrim() {
+    public boolean isTrimable() {
         return needTrim;
     }
 
     @Override
-    public boolean needDuplicate() {
+    public boolean isDuplicatable() {
         return needDuplicate;
     }
 
     @Override
-    public void setModelName(String modelName) {
+    public void setName(String modelName) {
         this.modelName = modelName;
     }
 
     @Override
-    public void setModelPackage(String modelPackage) {
+    public void setPackage(String modelPackage) {
         this.modelPackage = modelPackage;
     }
 
     @Override
-    public void setTrim(boolean needTrim) {
+    public void setTrimable(boolean needTrim) {
         this.needTrim = needTrim;
     }
 
     @Override
-    public void setDuplicate(boolean needDuplicate) {
+    public void setDuplicatable(boolean needDuplicate) {
         this.needDuplicate = needDuplicate;
     }
 }

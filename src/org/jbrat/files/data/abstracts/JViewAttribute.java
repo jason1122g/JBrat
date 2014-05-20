@@ -1,12 +1,8 @@
 package org.jbrat.files.data.abstracts;
 
 
-public interface JViewAttribute {
-    public String getViewName();
-    public String getViewPackage();
-    public JControllerAttribute getControllerAttribute();
+public interface JViewAttribute extends NamePackager{
+    public JCombinerAttribute getControllerAttribute();
 
-    public void setViewName(String viewName);
-    public void setViewPackage(String viewPackage);
-    public void setControllerAttribute(JControllerAttribute controllerAttribute);
+    public void setControllerAttribute(JCombinerAttribute controllerAttribute);
 }

@@ -1,41 +1,41 @@
 package org.jbrat.files.data;
 
 
-import org.jbrat.files.data.abstracts.JControllerAttribute;
+import org.jbrat.files.data.abstracts.JCombinerAttribute;
 import org.jbrat.files.data.abstracts.JViewAttribute;
 
 public class ViewAttribute implements JViewAttribute {
     private String viewName;
     private String viewPackage;
-    private JControllerAttribute controllerAttribute;
+    private JCombinerAttribute controllerAttribute;
 
     @Override
-    public String getViewName() {
+    public String getName() {
         return viewName;
     }
 
     @Override
-    public String getViewPackage() {
+    public String getPackage() {
         return viewPackage;
     }
 
     @Override
-    public JControllerAttribute getControllerAttribute() {
+    public JCombinerAttribute getControllerAttribute() {
         return controllerAttribute;
     }
 
     @Override
-    public void setViewName(String viewName) {
+    public void setName(String viewName) {
         this.viewName = viewName;
     }
 
     @Override
-    public void setViewPackage(String viewPackage) {
+    public void setPackage(String viewPackage) {
         this.viewPackage = viewPackage;
     }
 
     @Override
-    public void setControllerAttribute(JControllerAttribute controllerAttribute) {
+    public void setControllerAttribute(JCombinerAttribute controllerAttribute) {
         this.controllerAttribute = controllerAttribute;
     }
 }

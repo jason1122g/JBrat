@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class CacheModel<Type> extends JModel<Type> {
 
-    private Map<String,Type> dataMap = new HashMap<String, Type>();
+    private final Map<String,Type> dataMap = new HashMap<String, Type>();
 
     @Override
     protected Type getter(String name) {

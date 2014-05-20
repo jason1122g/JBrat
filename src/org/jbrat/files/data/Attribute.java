@@ -7,8 +7,8 @@ import org.jbrat.files.data.abstracts.JViewAttribute;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Attribute implements JAttribute {
-    private Map<String, JViewAttribute> viewMap = new HashMap<String, JViewAttribute>();
+public final class Attribute implements JAttribute {
+    private final Map<String, JViewAttribute> viewMap = new HashMap<String, JViewAttribute>();
 
     @Override
     public void setViewAttribute(String name,JViewAttribute viewAttribute){

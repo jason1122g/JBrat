@@ -11,11 +11,15 @@ import java.awt.event.ActionListener;
 
 
 public class HW4View implements JView {
+
+    private JModel<String>  textModel;
+    private JModel<Integer> eventModel;
+
     @Override
     @SuppressWarnings("unchecked")
     public void onCreating(JBundle bundle) {
-        final JModel<String>   textModel  = (JModel<String>)  bundle.getModel("text");
-        final JModel<Runnable> eventModel = (JModel<Runnable>)bundle.getModel("event");
+        textModel  = bundle.getStringModel("text");
+        eventModel = bundle.getModel("event",Integer.class);
 
         final JTextArea textArea = new JTextArea();
         textModel.bind("result",new DataHandler<String>(){
@@ -27,7 +31,7 @@ public class HW4View implements JView {
         final JButton okButton = new JButton();
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                eventModel.get("ok").run();
+                eventModel.set("ok", 1);
             }
         });
 

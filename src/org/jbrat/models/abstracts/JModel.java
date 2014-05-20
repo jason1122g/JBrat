@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class JModel<Type> {
-    private Map<String,LinkedList<DataHandler<Type>>> bindHandlerMap = new TreeMap<String, LinkedList<DataHandler<Type>>>();
+    private final Map<String,LinkedList<DataHandler<Type>>> bindHandlerMap = new TreeMap<String, LinkedList<DataHandler<Type>>>();
 
     public Type get(String name){
         return getter(name);

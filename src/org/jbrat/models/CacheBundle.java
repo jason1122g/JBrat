@@ -9,12 +9,19 @@ import java.util.TreeMap;
 
 public class CacheBundle implements JBundle{
 
-    private Map<String,JModel>  modelModel = new TreeMap<String, JModel>();
-    private Map<String,Boolean> statusModel= new TreeMap<String, Boolean>();
+    private final Map<String,JModel>  modelModel = new TreeMap<String, JModel>();
+    private final Map<String,Boolean> statusModel= new TreeMap<String, Boolean>();
 
     @Override
-    public JModel getModel(String name) {
-        return modelModel.get(name);
+    @SuppressWarnings("unchecked")
+    public JModel<String> getStringModel(String name) {
+        return (JModel<String>) modelModel.get(name) ;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public<T> JModel<T> getModel(String name,Class<T> type){
+        return (JModel<T>)type.cast(modelModel.get(name)) ;
     }
 
     @Override

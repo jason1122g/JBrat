@@ -1,22 +1,22 @@
 package org.jbrat.files.data;
 
 
-import org.jbrat.files.data.abstracts.JControllerAttribute;
+import org.jbrat.files.data.abstracts.JCombinerAttribute;
 import org.jbrat.files.data.abstracts.JModelAttribute;
 
-public class CombinerAttribute implements JControllerAttribute {
+public class CombinerAttribute implements JCombinerAttribute {
 
     private String controllerName;
     private String controllerPackage;
     private JModelAttribute[] models;
 
     @Override
-    public String getControllerName() {
+    public String getName() {
         return controllerName;
     }
 
     @Override
-    public String getControllerPackage() {
+    public String getPackage() {
         return controllerPackage;
     }
 
@@ -26,12 +26,12 @@ public class CombinerAttribute implements JControllerAttribute {
     }
 
     @Override
-    public void setControllerName(String name) {
+    public void setName(String name) {
         this.controllerName = name;
     }
 
     @Override
-    public void setControllerPackage(String controllerPackage) {
+    public void setPackage(String controllerPackage) {
         this.controllerPackage = controllerPackage;
     }
 

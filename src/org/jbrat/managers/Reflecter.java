@@ -4,8 +4,8 @@ import org.jbrat.combiners.JCombiner;
 import org.jbrat.models.abstracts.JModel;
 import org.jbrat.views.abstracts.JView;
 
-public class JReflecter {
-    public static Object reflectByPackageName(String packageName){
+class Reflecter {
+    private static Object reflectByPackageName(String packageName){
         Object object = null;
         try {
             object = Class.forName(packageName).newInstance();
