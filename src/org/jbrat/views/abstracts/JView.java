@@ -1,8 +1,8 @@
 package org.jbrat.views.abstracts;
 
 
-import org.jbrat.models.abstracts.JBundle;
+import org.jbrat.models.abstracts.JLimitBundle;
 
 public interface JView {
-    public void onCreating(JBundle bundle);
+    public void onCreating(JLimitBundle bundle);
 }

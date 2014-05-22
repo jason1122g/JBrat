@@ -1,7 +1,7 @@
 package org.jbrat.managers;
 
-import org.jbrat.models.CacheModel;
 import org.jbrat.models.abstracts.JModel;
+import org.jbrat.models.unlimited.CacheModel;
 
 public class ModelSingletonFetcher extends JModel<JModel> {
 

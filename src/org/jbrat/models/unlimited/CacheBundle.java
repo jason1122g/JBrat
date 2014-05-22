@@ -1,4 +1,4 @@
-package org.jbrat.models;
+package org.jbrat.models.unlimited;
 
 
 import org.jbrat.models.abstracts.JBundle;

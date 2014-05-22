@@ -1,11 +1,12 @@
-package org.jbrat.models;
+package org.jbrat.models.unlimited;
 
 import org.jbrat.models.abstracts.JModel;
+import org.jbrat.models.limited.LCacheModel;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CacheModel<Type> extends JModel<Type> {
+public class CacheModel<Type> extends JModel<Type> implements LCacheModel<Type>{
 
     private final Map<String,Type> dataMap = new HashMap<String, Type>();
 

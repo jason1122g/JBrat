@@ -1,6 +1,6 @@
 package Model;
 
-import org.jbrat.models.StringModel;
+import org.jbrat.models.unlimited.StringModel;
 
 class AJAXModel extends StringModel {
 

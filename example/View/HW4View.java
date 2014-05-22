@@ -1,9 +1,9 @@
 package View;
 
-import org.jbrat.models.EventModel;
-import org.jbrat.models.StringModel;
 import org.jbrat.models.abstracts.DataHandler;
-import org.jbrat.models.abstracts.JBundle;
+import org.jbrat.models.abstracts.JLimitBundle;
+import org.jbrat.models.limited.LEventModel;
+import org.jbrat.models.limited.LStringModel;
 import org.jbrat.views.abstracts.JView;
 
 import javax.swing.*;
@@ -13,13 +13,10 @@ import java.awt.event.ActionListener;
 
 public class HW4View implements JView {
 
-    private StringModel textModel;
-    private EventModel eventModel;
-
     @Override
-    public void onCreating(JBundle bundle) {
-        textModel  = bundle.getStringModel("text");
-        eventModel = bundle.getEventModel("event");
+    public void onCreating(JLimitBundle bundle) {
+        final LStringModel textModel = bundle.getStringModel("text");
+        final LEventModel eventModel = bundle.getEventModel("event");
 
         final JTextArea textArea = new JTextArea();
         textModel.bind("result",new DataHandler<String>(){
@@ -43,4 +40,5 @@ public class HW4View implements JView {
         mainFrame.add(textArea);
         mainFrame.add(okButton);
     }
+
 }

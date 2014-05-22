@@ -1,13 +1,14 @@
 package Combiner;
 
 import org.jbrat.combiners.JCombiner;
-import org.jbrat.models.EventModel;
-import org.jbrat.models.StringModel;
+import org.jbrat.managers.abstracts.JBratManager;
 import org.jbrat.models.abstracts.JBundle;
+import org.jbrat.models.unlimited.EventModel;
+import org.jbrat.models.unlimited.StringModel;
 
 public class HW4Combiner implements JCombiner {
     @Override
-    public void onPreparing(JBundle bundle) {
+    public void onPreparing(JBundle bundle, JBratManager jbrat) {
         final StringModel ajaxModel   = bundle.getStringModel("ajax");
         final StringModel textModel   = bundle.getStringModel("text");
         final EventModel eventModel   = bundle.getEventModel("event");

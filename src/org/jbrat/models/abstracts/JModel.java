@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.TreeMap;
 
-public abstract class JModel<Type> {
+public abstract class JModel<Type> implements JLimitModel<Type>{
     private final Map<String,LinkedList<DataHandler<Type>>> bindHandlerMap = new TreeMap<String, LinkedList<DataHandler<Type>>>();
 
     public Type get(String name){
