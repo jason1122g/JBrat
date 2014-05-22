@@ -11,17 +11,18 @@ public abstract class JModel<Type> {
         return getter(name);
     }
 
-    public void set(String name, Type data){
-        processRealSetterWithNameData(name, data);
-        processBindEventsWithNameData(name,data);
+    public void set(String name, Type dataNext){
+        Type dataPrev  = getter(name);
+        processBindEventsWithNameData(name, dataNext, dataPrev);
+        processRealSetterWithNameData(name, dataNext, dataPrev);
     }
-    private void processRealSetterWithNameData(String name,Type data){
-        setter(name,data);
+    private void processRealSetterWithNameData(String name, Type dataNext, Type dataPrev){
+        setter(name,dataNext);
     }
-    private void processBindEventsWithNameData(String name, Type data){
+    private void processBindEventsWithNameData(String name, Type dataNext, Type dataPrev){
         LinkedList<DataHandler<Type>> list = bindHandlerMap.get(name);
         for(DataHandler<Type> handler:list){
-            handler.handle(data);
+            handler.handle(dataNext,dataPrev);
         }
     }
 

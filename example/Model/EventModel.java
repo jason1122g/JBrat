@@ -1,8 +1,8 @@
 package Model;
 
-import org.jbrat.models.CacheModel;
+import org.jbrat.models.IntegerModel;
 
-class EventModel extends CacheModel<Integer> {
+class EventModel extends IntegerModel {
     public EventModel(){
         //store some event here
     }

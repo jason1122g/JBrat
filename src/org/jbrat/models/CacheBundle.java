@@ -14,8 +14,28 @@ public class CacheBundle implements JBundle{
 
     @Override
     @SuppressWarnings("unchecked")
-    public JModel<String> getStringModel(String name) {
-        return (JModel<String>) modelModel.get(name) ;
+    public StringModel getStringModel(String name) {
+        return (StringModel) modelModel.get(name) ;
+    }
+
+    @Override
+    public EventModel getEventModel(String name) {
+        return (EventModel) modelModel.get(name) ;
+    }
+
+    @Override
+    public IntegerModel getIntegerModel(String name) {
+        return (IntegerModel) modelModel.get(name) ;
+    }
+
+    @Override
+    public DoubleModel getDoubleModel(String name) {
+        return (DoubleModel) modelModel.get(name) ;
+    }
+
+    @Override
+    public LongModel getLongModel(String name) {
+        return (LongModel) modelModel.get(name) ;
     }
 
     @Override

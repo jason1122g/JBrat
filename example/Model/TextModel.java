@@ -1,9 +1,9 @@
 package Model;
 
-import org.jbrat.models.CacheModel;
+import org.jbrat.models.StringModel;
 
 
-class TextModel extends CacheModel<String>{
+class TextModel extends StringModel{
     public TextModel(){
         this.set("name","");
         this.set("type","");

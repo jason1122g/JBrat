@@ -1,9 +1,8 @@
 package Model;
 
-import org.jbrat.models.abstracts.JModel;
+import org.jbrat.models.StringModel;
 
-
-class AJAXModel extends JModel<String> {
+class AJAXModel extends StringModel {
 
     @Override
     protected String getter(String name) {

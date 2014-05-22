@@ -1,7 +1,16 @@
 package org.jbrat.models.abstracts;
 
+import org.jbrat.models.*;
+
 public interface JBundle {
-    public JModel<String> getStringModel(String name) ;
+    public EventModel   getEventModel  (String name);
+
+    public StringModel  getStringModel (String name);
+    public IntegerModel getIntegerModel(String name);
+    public DoubleModel  getDoubleModel (String name);
+    public LongModel    getLongModel   (String name);
+
+
     public<T> JModel<T> getModel(String name,Class<T> type);
 
     void setModel(String name,JModel model);
