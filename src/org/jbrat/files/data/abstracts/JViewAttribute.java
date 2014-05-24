@@ -2,7 +2,7 @@ package org.jbrat.files.data.abstracts;
 
 
 public interface JViewAttribute extends NamePackager{
-    public JCombinerAttribute getControllerAttribute();
+    public JCombinerAttribute getCombinerAttribute();
 
-    public void setControllerAttribute(JCombinerAttribute controllerAttribute);
+    public void setCombinerAttribute(JCombinerAttribute controllerAttribute);
 }

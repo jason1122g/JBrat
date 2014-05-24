@@ -10,15 +10,15 @@ public class ModelSingletonFetcher extends JModel<JModel> {
     @Override
     protected JModel getter(String name) {
         if(modelModel.contains(name)){
-            return getClassWhenExistByKey(name);
+            return getModelWhenExistByKey(name);
         }else{
-            return getClassWhenNotExistByKey(name);
+            return getModelWhenNotExistByKey(name);
         }
     }
-    private JModel getClassWhenExistByKey(String stringKey){
+    private JModel getModelWhenExistByKey(String stringKey){
         return modelModel.get(stringKey);
     }
-    private JModel getClassWhenNotExistByKey(String stringKey){
+    private JModel getModelWhenNotExistByKey(String stringKey){
         JModel model = Reflecter.reflectModel(stringKey);
         modelModel.set(stringKey, model);
         return model;

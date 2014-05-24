@@ -1,0 +1,5 @@
+TestCombiner:Combiner.HW4Combiner{
+    ajax
+    text
+    event
+}

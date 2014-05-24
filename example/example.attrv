@@ -1,0 +1,3 @@
+MainView:View.TestView{
+    TestCombiner
+}

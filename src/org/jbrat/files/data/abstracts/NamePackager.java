@@ -6,5 +6,4 @@ public interface NamePackager {
 
     public void setName(String viewName);
     public void setPackage(String viewPackage);
-
 }

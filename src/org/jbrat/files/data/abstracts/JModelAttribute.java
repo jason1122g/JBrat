@@ -2,9 +2,7 @@ package org.jbrat.files.data.abstracts;
 
 
 public interface JModelAttribute extends NamePackager{
-    public boolean isTrimable();
-    public boolean isDuplicatable();
+    public boolean isPersistant ();
 
-    public void setTrimable(boolean needTrim);
-    public void setDuplicatable(boolean needDuplicate);
+    public void    setPersistant(boolean needDuplicate);
 }

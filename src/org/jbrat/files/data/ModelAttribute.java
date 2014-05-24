@@ -6,8 +6,7 @@ import org.jbrat.files.data.abstracts.JModelAttribute;
 public class ModelAttribute implements JModelAttribute{
     private String modelName;
     private String modelPackage;
-    private boolean needTrim;
-    private boolean needDuplicate;
+    private boolean isPersistant;
 
     @Override
     public String getName() {
@@ -20,13 +19,8 @@ public class ModelAttribute implements JModelAttribute{
     }
 
     @Override
-    public boolean isTrimable() {
-        return needTrim;
-    }
-
-    @Override
-    public boolean isDuplicatable() {
-        return needDuplicate;
+    public boolean isPersistant() {
+        return isPersistant;
     }
 
     @Override
@@ -39,13 +33,9 @@ public class ModelAttribute implements JModelAttribute{
         this.modelPackage = modelPackage;
     }
 
-    @Override
-    public void setTrimable(boolean needTrim) {
-        this.needTrim = needTrim;
-    }
 
     @Override
-    public void setDuplicatable(boolean needDuplicate) {
-        this.needDuplicate = needDuplicate;
+    public void setPersistant(boolean needDuplicate) {
+        this.isPersistant = needDuplicate;
     }
 }

@@ -1,11 +1,12 @@
-
-import org.jbrat.managers.DefaultManager;
-import org.jbrat.managers.abstracts.JBratManager;
+import org.jbrat.managers.JBratManager;
 
 public class Main {
     public static void main(String[] args){
-        JBratManager<String> jBratManager = new DefaultManager<String>(); //will init main view by default
-        jBratManager.loadAttribute("Views.txt");
-        jBratManager.createViewResource("Views.MainView");
+        JBratManager mainManager = JBratManager.createInstance("main");
+        mainManager.loadAttrModel   ("example.attrm");
+        mainManager.loadAttrView    ("example.attrv");
+        mainManager.loadAttrCombiner("example.attrc");
+
+        mainManager.createViewResource("MainView");
     }
 }

@@ -11,10 +11,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class HW4View implements JView {
+public class TestView implements JView {
 
     @Override
-    public void onCreating(JLimitBundle bundle) {
+    public void onCreating(JLimitBundle bundle, JLimitBundle bundlePrev) {
         final LStringModel textModel = bundle.getStringModel("text");
         final LEventModel eventModel = bundle.getEventModel("event");
 

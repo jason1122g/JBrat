@@ -16,15 +16,18 @@ public abstract class JModel<Type> implements JLimitModel<Type>{
         processBindEventsWithNameData(name, dataNext, dataPrev);
         processRealSetterWithNameData(name, dataNext, dataPrev);
     }
+    private void processBindEventsWithNameData(String name, Type dataNext, Type dataPrev){
+        LinkedList<DataHandler<Type>> list = bindHandlerMap.get(name);
+        if(list != null){
+            for(DataHandler<Type> handler:list){
+                handler.handle(dataNext,dataPrev);
+            }
+        }
+    }
     private void processRealSetterWithNameData(String name, Type dataNext, Type dataPrev){
         setter(name,dataNext);
     }
-    private void processBindEventsWithNameData(String name, Type dataNext, Type dataPrev){
-        LinkedList<DataHandler<Type>> list = bindHandlerMap.get(name);
-        for(DataHandler<Type> handler:list){
-            handler.handle(dataNext,dataPrev);
-        }
-    }
+
 
     public void bind  (String name, DataHandler<Type> handler){
         if( bindHandlerMap.containsKey(name)){

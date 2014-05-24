@@ -20,7 +20,7 @@ public class ViewAttribute implements JViewAttribute {
     }
 
     @Override
-    public JCombinerAttribute getControllerAttribute() {
+    public JCombinerAttribute getCombinerAttribute() {
         return controllerAttribute;
     }
 
@@ -35,7 +35,7 @@ public class ViewAttribute implements JViewAttribute {
     }
 
     @Override
-    public void setControllerAttribute(JCombinerAttribute controllerAttribute) {
+    public void setCombinerAttribute(JCombinerAttribute controllerAttribute) {
         this.controllerAttribute = controllerAttribute;
     }
 }
