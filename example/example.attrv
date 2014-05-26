@@ -1,3 +1,7 @@
-MainView:View.TestView{
-    TestCombiner
+firstView:View.FirstView{
+    firstCombiner
+}
+
+secondView:View.SecondView{
+    secondCombiner
 }

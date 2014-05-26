@@ -1,3 +1,2 @@
-+ ajax : Model.AJAXModel
++ ajax : Model.AjaxModel
 - text : Model.TextModel
-- event: Model.EventModel

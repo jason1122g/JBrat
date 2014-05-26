@@ -4,7 +4,8 @@ import org.jbrat.combiners.JCombiner;
 import org.jbrat.models.abstracts.JModel;
 import org.jbrat.views.abstracts.JView;
 
-class Reflecter {
+class JBratReflecter {
+    //TODO EXCEPTION HANDLE
     private static Object reflectByPackageName(String packageName){
         Object object = null;
         try {

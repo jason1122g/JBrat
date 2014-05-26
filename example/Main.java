@@ -7,6 +7,6 @@ public class Main {
         mainManager.loadAttrView    ("example.attrv");
         mainManager.loadAttrCombiner("example.attrc");
 
-        mainManager.createViewResource("MainView");
+        mainManager.createViewResource("firstView");
     }
 }

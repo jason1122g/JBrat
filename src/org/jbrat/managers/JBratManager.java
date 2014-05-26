@@ -1,8 +1,6 @@
 package org.jbrat.managers;
 
 
-import org.jbrat.models.abstracts.JModel;
-
 public class JBratManager{
     //TODO FINISH THIS MANAGER
 
@@ -20,7 +18,7 @@ public class JBratManager{
 
     }
 
-    public void createViewResource (String viewName, JModel... models){
+    public void createViewResource (String viewName, Object...objects){
 
     }
 

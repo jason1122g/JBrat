@@ -5,12 +5,12 @@ import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.unlimited.EventModel;
 import org.jbrat.models.unlimited.StringModel;
 
-public class TestCombiner implements JCombiner {
+public class FirstCombiner implements JCombiner {
     @Override
     public void onPreparing(JBundle bundle) {
         final StringModel ajaxModel   = bundle.getStringModel("ajax");
         final StringModel textModel   = bundle.getStringModel("text");
-        final EventModel eventModel   = bundle.getEventModel("event");
+        final EventModel eventModel   = new EventModel();
 
         eventModel.set("ok",new Runnable() {
             @Override
@@ -24,5 +24,6 @@ public class TestCombiner implements JCombiner {
             }
         });
 
+        bundle.setModel("event",eventModel);
     }
 }

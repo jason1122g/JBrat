@@ -1,5 +1,8 @@
-TestCombiner:Combiner.HW4Combiner{
+firstCombiner:Combiner.FirstCombiner{
     ajax
     text
-    event
+}
+
+secondCombiner: Combiner.SecondCombiner{
+
 }

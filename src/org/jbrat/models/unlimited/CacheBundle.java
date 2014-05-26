@@ -1,19 +1,19 @@
 package org.jbrat.models.unlimited;
 
 
+import org.jbrat.managers.JBratManager;
 import org.jbrat.models.abstracts.JBundle;
+import org.jbrat.models.abstracts.JLimitBundle;
 import org.jbrat.models.abstracts.JModel;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-public class CacheBundle implements JBundle{
+public class CacheBundle implements JBundle,JLimitBundle{
 
     private final Map<String,JModel>  modelModel = new TreeMap<String, JModel>();
-    private final Map<String,Boolean> statusModel= new TreeMap<String, Boolean>();
 
     @Override
-    @SuppressWarnings("unchecked")
     public StringModel getStringModel(String name) {
         return (StringModel) modelModel.get(name) ;
     }
@@ -40,6 +40,13 @@ public class CacheBundle implements JBundle{
 
     @Override
     @SuppressWarnings("unchecked")
+    public JBratManager getJBratManager(String name) {
+        JModel<JBratManager> jBratModel = (JModel<JBratManager>) modelModel.get("jbrat"); //TODO CHECK THIS
+        return jBratModel.get(name);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public<T> JModel<T> getModel(String name,Class<T> type){
         return (JModel<T>)type.cast(modelModel.get(name)) ;
     }
@@ -47,21 +54,5 @@ public class CacheBundle implements JBundle{
     @Override
     public void setModel(String name, JModel model) {
         modelModel.put(name, model);
-    }
-
-    @Override
-    public void setTrimable(String name, boolean trimStatus) {
-        statusModel.put(name, trimStatus);
-    }
-
-    @Override
-    public void trimModels() {
-        for(Map.Entry<String,Boolean> entry:statusModel.entrySet()){
-            String  name       = entry.getKey();
-            Boolean needToTrim = entry.getValue();
-            if(needToTrim){
-                modelModel.remove(name);
-            }
-        }
     }
 }
