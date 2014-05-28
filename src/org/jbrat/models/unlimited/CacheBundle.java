@@ -11,7 +11,11 @@ import java.util.TreeMap;
 
 public class CacheBundle implements JBundle,JLimitBundle{
 
-    private final Map<String,JModel>  modelModel = new TreeMap<String, JModel>();
+    private final Map<String,JModel>  modelModel;
+
+    public CacheBundle(){
+        modelModel = new TreeMap<String, JModel>();
+    }
 
     @Override
     public StringModel getStringModel(String name) {

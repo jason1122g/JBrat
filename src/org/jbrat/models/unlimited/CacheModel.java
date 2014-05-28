@@ -8,7 +8,11 @@ import java.util.Map;
 
 public class CacheModel<Type> extends JModel<Type> implements LCacheModel<Type>{
 
-    private final Map<String,Type> dataMap = new HashMap<String, Type>();
+    private final Map<String,Type> dataMap ;
+
+    public CacheModel(){
+        dataMap = new HashMap<String, Type>();
+    }
 
     @Override
     protected Type getter(String name) {

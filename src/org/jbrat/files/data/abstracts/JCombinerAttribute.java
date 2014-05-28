@@ -1,7 +1,7 @@
 package org.jbrat.files.data.abstracts;
 
-public interface JCombinerAttribute extends NamePackager{
-    public JModelAttribute[] getModelAttributes();
+public interface JCombinerAttribute extends NamePackagGetSet {
+    public String[] getModelNames();
 
-    public void setModelAttributes(JModelAttribute[] models);
+    public void setModelNames(String[] modelNames);
 }

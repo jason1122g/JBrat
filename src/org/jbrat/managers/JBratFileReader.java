@@ -1,11 +1,11 @@
-package org.jbrat.files;
+package org.jbrat.managers;
 
 import org.jbrat.files.data.abstracts.JCombinerAttribute;
 import org.jbrat.files.data.abstracts.JModelAttribute;
 import org.jbrat.files.data.abstracts.JViewAttribute;
 
-public class JFileSystem {
-    //TODO FINISH THIS FILESYSTEM
+final class JBratFileReader {//TODO FINISH THIS FILESYSTEM
+
     public static JModelAttribute readModelAttribute(String path){
         return null;
     }

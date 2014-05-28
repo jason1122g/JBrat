@@ -1,6 +1,6 @@
 package org.jbrat.files.data.abstracts;
 
-public interface NamePackager {
+public interface NamePackagGetSet {
     public String getName();
     public String getPackage();
 
