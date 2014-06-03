@@ -2,7 +2,7 @@ package Model;
 
 import org.jbrat.models.unlimited.StringModel;
 
-class AJAXModel extends StringModel {
+public class AJAXModel extends StringModel {
 
     @Override
     protected String getter(String name) {

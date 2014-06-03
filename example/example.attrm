@@ -1,2 +1,2 @@
-+ ajax : Model.AjaxModel
++ ajax : Model.AJAXModel
 - text : Model.TextModel
