@@ -5,9 +5,9 @@ import org.jbrat.files.data.abstracts.JCombinerAttribute;
 
 public final class CombinerAttribute implements JCombinerAttribute {
 
-    private String combinerName;
-    private String combinerPackage;
-    private String[] modelNames;
+    private String combinerName = "";
+    private String combinerPackage = "";
+    private String[] modelNames ;
 
     @Override
     public String getName() {

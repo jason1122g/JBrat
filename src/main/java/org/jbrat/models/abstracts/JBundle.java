@@ -12,7 +12,7 @@ public interface JBundle {
     public LongModel    getLongModel   (String name);
     public JBratManager getJBratManager(String name);
 
-    public<T> JModel<T> getModel(String name,Class<T> type);
+    public<T> JModel<T> getModel(String name);
 
     void setModel(String name,JModel model);
 }

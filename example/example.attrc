@@ -1,6 +1,6 @@
 firstCombiner:Combiner.FirstCombiner{
-    ajax
-    text
+    +ajax
+    -text
 }
 
 secondCombiner: Combiner.SecondCombiner{

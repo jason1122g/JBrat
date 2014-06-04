@@ -46,13 +46,17 @@ public class CacheBundle implements JBundle,JLimitBundle{
     @SuppressWarnings("unchecked")
     public JBratManager getJBratManager(String name) {
         JModel<JBratManager> jBratModel = (JModel<JBratManager>) modelModel.get("jbrat"); //TODO CHECK THIS
-        return jBratModel.get(name);
+        if(jBratModel==null){
+            return null;
+        }else{
+            return jBratModel.get(name);
+        }
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public<T> JModel<T> getModel(String name,Class<T> type){
-        return (JModel<T>)type.cast(modelModel.get(name)) ;
+    public<T> JModel<T> getModel(String name){
+        return modelModel.get(name);
     }
 
     @Override

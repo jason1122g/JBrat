@@ -6,15 +6,15 @@ import org.jbrat.files.data.abstracts.JViewAttribute;
 
 final class JBratFileReader {//TODO FINISH THIS FILESYSTEM
 
-    public static JModelAttribute readModelAttribute(String path){
+    public static JModelAttribute[] readModelAttributes(String path){
         return null;
     }
 
-    public static JViewAttribute  readViewAttribute (String path){
+    public static JViewAttribute[] readViewAttributes(String path){
         return null;
     }
 
-    public static JCombinerAttribute readCombinerAttribute(String path){
+    public static JCombinerAttribute[] readCombinerAttributes(String path){
         return null;
     }
 }

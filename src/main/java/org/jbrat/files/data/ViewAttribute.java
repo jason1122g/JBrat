@@ -5,9 +5,9 @@ package org.jbrat.files.data;
 import org.jbrat.files.data.abstracts.JViewAttribute;
 
 public final class ViewAttribute implements JViewAttribute {
-    private String viewName;
-    private String viewPackage;
-    private String combinerName;
+    private String viewName="";
+    private String viewPackage="";
+    private String combinerName="";
 
     @Override
     public String getName() {

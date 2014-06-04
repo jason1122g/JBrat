@@ -4,9 +4,9 @@ package org.jbrat.files.data;
 import org.jbrat.files.data.abstracts.JModelAttribute;
 
 public final class ModelAttribute implements JModelAttribute{
-    private String modelName;
-    private String modelPackage;
-    private boolean isPersistant;
+    private String modelName = "";
+    private String modelPackage = "";
+    private boolean isPersistant = false;
 
     @Override
     public String getName() {

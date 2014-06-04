@@ -11,6 +11,6 @@ public interface JLimitBundle {
     public LLongModel    getLongModel   (String name);
     public JBratManager  getJBratManager(String name);
 
-    public<T> JLimitModel<T> getModel(String name,Class<T> type);
+    public<T> JLimitModel<T> getModel(String name);
 
 }
