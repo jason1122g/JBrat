@@ -29,7 +29,11 @@ public class FirstView implements JView {
         textModel.bind("result",new DataHandler<String>(){
             public void handle(String dataNext, String dataPrev){
                 textArea.setText(dataNext);
-                jBratManager.createViewResource("secondView",mainFrame);
+                try {
+                    jBratManager.createViewResource("secondView",mainFrame);
+                } catch (ReflectiveOperationException e) {
+                    e.printStackTrace();
+                }
             }
         });
         mainFrame.add(textArea);

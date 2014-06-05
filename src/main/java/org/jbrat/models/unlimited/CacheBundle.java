@@ -1,6 +1,7 @@
 package org.jbrat.models.unlimited;
 
 
+import org.jbrat.managers.JBratConstants;
 import org.jbrat.managers.JBratManager;
 import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.abstracts.JLimitBundle;
@@ -45,12 +46,9 @@ public class CacheBundle implements JBundle,JLimitBundle{
     @Override
     @SuppressWarnings("unchecked")
     public JBratManager getJBratManager(String name) {
-        JModel<JBratManager> jBratModel = (JModel<JBratManager>) modelModel.get("jbrat"); //TODO CHECK THIS
-        if(jBratModel==null){
-            return null;
-        }else{
-            return jBratModel.get(name);
-        }
+        String modelName = JBratConstants.managerModelName;
+        JModel<JBratManager> jBratModel = (JModel<JBratManager>) modelModel.get(modelName);
+        return jBratModel.get(name);
     }
 
     @Override

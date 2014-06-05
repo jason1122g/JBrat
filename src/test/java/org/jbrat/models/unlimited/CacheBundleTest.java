@@ -1,5 +1,6 @@
 package org.jbrat.models.unlimited;
 
+import org.jbrat.managers.JBratConstants;
 import org.jbrat.managers.JBratManager;
 import org.jbrat.models.abstracts.JModel;
 import org.junit.Assert;
@@ -11,10 +12,9 @@ public class CacheBundleTest {
     @Before
     public void setUp() throws Exception {
         bundle = new CacheBundle();
-        JBratManager manager = JBratManager.createInstance("test");
         JModel<JBratManager> managerJModel = new CacheModel<JBratManager>();
-        managerJModel.set("test",manager);
-        bundle.setModel("jbrat",managerJModel);
+        managerJModel.set("test",JBratManager.createInstance("test"));
+        bundle.setModel(JBratConstants.managerModelName,managerJModel);
     }
 
     @Test
