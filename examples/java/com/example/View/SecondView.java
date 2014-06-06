@@ -1,4 +1,4 @@
-package View;
+package com.example.View;
 
 import org.jbrat.models.abstracts.JLimitBundle;
 import org.jbrat.views.abstracts.JView;

@@ -6,21 +6,21 @@ import org.jbrat.views.abstracts.JView;
 
 import java.lang.reflect.Constructor;
 
-final class JBratReflecter {
+class JBratReflecter {
 
     private static Object reflectByPackageNameAndParams(String packageName, Object... params) throws ReflectiveOperationException{
         Object object;
-        if(params != null){
-            object = reflectObjectWithParams (packageName,params);
-        }else{
+        if(params.length == 0){
             object = reflectObjectWithNoParam(packageName);
+        }else{
+            object = reflectObjectWithParams (packageName,params);
         }
         return object;
     }
     private static Object reflectObjectWithParams (String packageName,Object...params) throws ReflectiveOperationException{
         Class[] argumentTypes = new Class[params.length];
         for(int i=0;i<argumentTypes.length;i++){
-            argumentTypes[i] = params.getClass();
+            argumentTypes[i] = params[i].getClass();
         }
 
         Constructor viewConstructor = Class.forName(packageName).getDeclaredConstructor(argumentTypes);

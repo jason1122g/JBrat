@@ -9,11 +9,13 @@ import org.junit.Test;
 
 public class CacheBundleTest {
     private CacheBundle bundle;
+    private static JBratManager jBratManager = JBratManager.createInstance("test");
     @Before
     public void setUp() throws Exception {
-        bundle = new CacheBundle();
         JModel<JBratManager> managerJModel = new CacheModel<JBratManager>();
-        managerJModel.set("test",JBratManager.createInstance("test"));
+        managerJModel.set("test",jBratManager);
+
+        bundle = new CacheBundle();
         bundle.setModel(JBratConstants.managerModelName,managerJModel);
     }
 

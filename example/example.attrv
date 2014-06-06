@@ -1,7 +1,0 @@
-firstView:View.FirstView{
-    firstCombiner
-}
-
-secondView:View.SecondView{
-    secondCombiner
-}

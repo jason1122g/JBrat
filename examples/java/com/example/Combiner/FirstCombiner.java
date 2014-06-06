@@ -1,4 +1,4 @@
-package Combiner;
+package com.example.Combiner;
 
 import org.jbrat.combiners.JCombiner;
 import org.jbrat.models.abstracts.JBundle;

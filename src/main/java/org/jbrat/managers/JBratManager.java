@@ -55,7 +55,7 @@ public final class JBratManager{
         }
     }
 
-    public void createViewResource (String viewName, Object...objects) throws ReflectiveOperationException{
+    public void createViewResource (String viewName, Object...objects) throws ReflectiveOperationException{ //TODO CAN USE EMPTY COMPONENT
         JViewAttribute     viewAttribute     = prepareViewAttrWithViewName(viewName);
         JCombinerAttribute combinerAttribute = prepareCombinerAttrWithViewAttr(viewAttribute);
         JModelAttribute[]  modelAttributes   = prepareModelAttrsWithCombinerAttr(combinerAttribute);

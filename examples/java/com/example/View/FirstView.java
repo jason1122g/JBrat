@@ -1,4 +1,4 @@
-package View;
+package com.example.View;
 
 import org.jbrat.managers.JBratManager;
 import org.jbrat.models.abstracts.DataHandler;

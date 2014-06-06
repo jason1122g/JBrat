@@ -1,8 +1,0 @@
-firstCombiner:Combiner.FirstCombiner{
-    +ajax
-    -text
-}
-
-secondCombiner: Combiner.SecondCombiner{
-
-}

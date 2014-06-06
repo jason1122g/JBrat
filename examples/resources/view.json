@@ -1,0 +1,10 @@
+{
+    "firstView":{
+        "package":"src.com.example.View.FirstView",
+        "combiner":"firstCombiner"
+    },
+    "secondView":{
+        "package":"src.com.example.View.SecondView",
+        "combiner":"secondCombiner"
+    }
+}

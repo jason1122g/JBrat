@@ -26,7 +26,7 @@ final class JBratModelFactory {
         return modelMap.get(packageName);
     }
     private JModel getModelIfNotContains(String packageName) throws ReflectiveOperationException{
-        JModel model = JBratReflecter.reflectModel(packageName);
+        JModel model = getNewModel(packageName);
         modelMap.put(packageName,model);
         return model;
     }
