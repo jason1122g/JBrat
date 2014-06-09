@@ -11,7 +11,7 @@ public class CacheModel<Type> extends JModel<Type> implements LCacheModel<Type>{
     private final Map<String,Type> dataMap ;
 
     public CacheModel(){
-        dataMap = new HashMap<String, Type>();
+        dataMap = new HashMap<>();
     }
 
     @Override

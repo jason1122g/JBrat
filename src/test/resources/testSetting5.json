@@ -1,0 +1,25 @@
+{
+    "version":"1.0.0",
+    "setting":[
+        {
+            "type":"view",
+            "data":{
+                "firstView":{
+                    "combiner":"firstCombiner"
+                }
+            }
+        },
+        {
+            "type":"view",
+            "thirdView":{
+                "package":"src.com.example.View.ThirdView",
+                "combiner":"secondCombiner"
+            },
+            "fourthView":{
+                "package":"src.com.example.View.FourthView"
+            }
+        }
+    ]
+}
+
+

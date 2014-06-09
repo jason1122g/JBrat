@@ -10,7 +10,7 @@ final class JBratModelFactory {
     private Map<String,JModel> modelMap;
 
     public JBratModelFactory(){
-        modelMap = new HashMap<String, JModel>();
+        modelMap = new HashMap<>();
     }
 
     public JModel getOldModel(String packageName) throws ReflectiveOperationException{

@@ -15,7 +15,7 @@ public class CacheBundle implements JBundle,JLimitBundle{
     private final Map<String,JModel>  modelModel;
 
     public CacheBundle(){
-        modelModel = new TreeMap<String, JModel>();
+        modelModel = new TreeMap<>();
     }
 
     @Override

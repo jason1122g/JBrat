@@ -3,11 +3,15 @@ package org.jbrat.files.data;
 
 import org.jbrat.files.data.abstracts.JCombinerAttribute;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 public final class CombinerAttribute implements JCombinerAttribute {
 
-    private String combinerName = "";
+    private String combinerName    = "";
     private String combinerPackage = "";
-    private String[] modelNames ;
+    private Collection<String> nameList    = new LinkedList<>();
+    private Collection<Boolean> persistList = new LinkedList<>();
 
     @Override
     public String getName() {
@@ -21,7 +25,26 @@ public final class CombinerAttribute implements JCombinerAttribute {
 
     @Override
     public String[] getModelNames() {
-        return modelNames;
+        if(nameList.size()!=0){
+            return nameList.toArray(new String[nameList.size()]);
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public boolean[] getModelPersists() {
+        if(persistList.size()!=0){
+            boolean[] booleans = new boolean[persistList.size()];
+            int i = 0;
+            for(Boolean bool : persistList){
+                booleans[i] = bool;
+                i++;
+            }
+            return booleans;
+        }else{
+            return null;
+        }
     }
 
     @Override
@@ -35,7 +58,8 @@ public final class CombinerAttribute implements JCombinerAttribute {
     }
 
     @Override
-    public void setModelNames(String[] modelNames) {
-        this.modelNames = modelNames;
+    public void addModelNamePersist(String modelName, boolean isPersist) {
+        nameList.add(modelName);
+        persistList.add(isPersist);
     }
 }

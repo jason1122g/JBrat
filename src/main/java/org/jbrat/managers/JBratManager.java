@@ -16,10 +16,9 @@ import org.jbrat.views.abstracts.JView;
 
 import java.io.IOException;
 
+public final class JBratManager{ //TODO TEST THIS
 
-public final class JBratManager{
-
-    private final static CacheModel<JBratManager> jBratManagerCacheModel = new CacheModel<JBratManager>();
+    private final static CacheModel<JBratManager> jBratManagerCacheModel = new CacheModel<>();
 
     private CacheModel<JModelAttribute>    modelAttributeCacheModel;
     private CacheModel<JViewAttribute>     viewAttributeCacheModel ;
@@ -28,54 +27,60 @@ public final class JBratManager{
     private JBratModelFactory modelFactory;
 
     private JBratManager(){
-        modelAttributeCacheModel    = new CacheModel<JModelAttribute>();
-        viewAttributeCacheModel     = new CacheModel<JViewAttribute>();
-        combinerAttributeCacheModel = new CacheModel<JCombinerAttribute>();
+        modelAttributeCacheModel    = new CacheModel<>();
+        viewAttributeCacheModel     = new CacheModel<>();
+        combinerAttributeCacheModel = new CacheModel<>();
 
         modelFactory = new JBratModelFactory();
     }
 
     public void readSetting(String fileName)  throws IOException,AttributeFormatException{
-        loadSetting(JBratFileReader.read(fileName));
+        loadSetting(JBratFileReader.readFullFile(fileName));
     }
 
     public void loadSetting(String settingJSON) throws AttributeFormatException{
         JSettingAttribute settingAttribute = JBratParser.parseSetting(settingJSON);
-        loadViewFromSetting(settingAttribute);
-        loadCombinerFromSetting(settingAttribute);
-        loadModelFromSetting(settingAttribute);
+        loadViewSetting(settingAttribute);
+        loadCombinerSetting(settingAttribute);
+        loadModelSetting(settingAttribute);
     }
-    private void loadModelFromSetting(JSettingAttribute settingAttribute){
+    private void loadModelSetting(JSettingAttribute settingAttribute){
         for(JModelAttribute modelAttribute : settingAttribute.getModelAttributes()){
             modelAttributeCacheModel.set(modelAttribute.getName(), modelAttribute);
         }
     }
-    private void loadViewFromSetting(JSettingAttribute settingAttribute){
+    private void loadViewSetting(JSettingAttribute settingAttribute){
         for(JViewAttribute viewAttribute : settingAttribute.getViewAttributes()){
             viewAttributeCacheModel.set(viewAttribute.getName(), viewAttribute);
         }
     }
-    private void loadCombinerFromSetting(JSettingAttribute settingAttribute){
+    private void loadCombinerSetting(JSettingAttribute settingAttribute){
         for(JCombinerAttribute combinerAttribute : settingAttribute.getCombinerAttributes()){
             combinerAttributeCacheModel.set(combinerAttribute.getName(), combinerAttribute);
         }
     }
 
 
-    public void createView(String viewName, Object... objects) throws ReflectiveOperationException{ //TODO CAN USE EMPTY COMPONENT
-        JViewAttribute     viewAttribute     = prepareViewAttrWithViewName(viewName);
-        JCombinerAttribute combinerAttribute = prepareCombinerAttrWithViewAttr(viewAttribute);
-        JModelAttribute[]  modelAttributes   = prepareModelAttrsWithCombinerAttr(combinerAttribute);
+    public void createView(String viewName, Object... objects) throws ReflectiveOperationException{
+        JViewAttribute     viewAttribute    ;
+        JCombinerAttribute combinerAttribute;
+        JModelAttribute[]  modelAttributes  ;
+        JBundle bundle = null;
 
-        JBundle bundle = prepareBundleWithModelAttrs(modelAttributes);
+        viewAttribute     = prepareViewAttrWithViewName(viewName);
+        if(!viewAttribute.getCombinerName().equals("")){
+            combinerAttribute = prepareCombinerAttrWithViewAttr(viewAttribute);
+            if(combinerAttribute.getModelNames() != null){
+                modelAttributes   = prepareModelAttrsWithCombinerAttr(combinerAttribute);
+                bundle = prepareBundleWithModelAttrs(modelAttributes);
+            }else{
+                bundle = new CacheBundle();
+            }
+            buildCombiner(combinerAttribute, bundle);
+        }
+        injectItemIntoBundle(bundle);
+        buildView(viewAttribute,bundle,objects);
 
-        JCombiner combiner = JBratReflecter.reflectCombiner(combinerAttribute.getPackage());
-        combiner.onPreparing(bundle);
-
-        injectItemIntoBundleAfterCombiner(bundle);
-
-        JView view         = JBratReflecter.reflectView(viewAttribute.getPackage(),objects);
-        view.onCreating((JLimitBundle)bundle);
     }
     private JViewAttribute     prepareViewAttrWithViewName(String viewName){
         if(viewAttributeCacheModel.contains(viewName)){
@@ -94,12 +99,15 @@ public final class JBratManager{
     }
     private JModelAttribute[]  prepareModelAttrsWithCombinerAttr (JCombinerAttribute combinerAttribute){
         String[]           modelNames       = combinerAttribute.getModelNames();
+        boolean[]          modelPersists    = combinerAttribute.getModelPersists();
         JModelAttribute[]  modelAttributes  = new JModelAttribute[modelNames.length];
 
         for(int i=0;i<modelAttributes.length;i++){
-            String modelName = modelNames[i];
+            String  modelName   = modelNames[i];
+            boolean modelPersit = modelPersists[i];
             if(modelAttributeCacheModel.contains(modelName)){
                 modelAttributes[i] = modelAttributeCacheModel.get(modelName);
+                modelAttributes[i].setPersistant(modelPersit);
             }else{
                 throw new ModelNotLoadException(modelName);
             }
@@ -130,8 +138,16 @@ public final class JBratManager{
         return models;
     }
 
-    private void injectItemIntoBundleAfterCombiner(JBundle bundle){
+    private void buildCombiner(JCombinerAttribute combinerAttribute,JBundle bundle) throws ReflectiveOperationException{
+        JCombiner combiner = JBratReflecter.reflectCombiner(combinerAttribute.getPackage());
+        combiner.onPreparing(bundle);
+    }
+    private void injectItemIntoBundle(JBundle bundle){
         bundle.setModel(JBratConstants.managerModelName,jBratManagerCacheModel);
+    }
+    private void buildView(JViewAttribute viewAttribute,JBundle bundle,Object...objects) throws ReflectiveOperationException{
+        JView view         = JBratReflecter.reflectView(viewAttribute.getPackage(),objects);
+        view.onCreating((JLimitBundle)bundle);
     }
 
 

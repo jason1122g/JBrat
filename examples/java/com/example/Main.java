@@ -10,9 +10,7 @@ public class Main {
         try {
             mainManager.readSetting("setting.json");
             mainManager.createView("firstView");
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (ReflectiveOperationException | IOException e) {
             e.printStackTrace();
         }
     }

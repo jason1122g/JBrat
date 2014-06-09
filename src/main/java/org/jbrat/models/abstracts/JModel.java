@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public abstract class JModel<Type> implements JLimitModel<Type>{
-    private final Map<String,LinkedList<DataHandler<Type>>> bindHandlerMap = new TreeMap<String, LinkedList<DataHandler<Type>>>();
+    private final Map<String,LinkedList<DataHandler<Type>>> bindHandlerMap = new TreeMap<>();
 
     @Override
     public Type get(String name){
@@ -15,7 +15,7 @@ public abstract class JModel<Type> implements JLimitModel<Type>{
     public void set(String name, Type dataNext){
         Type dataPrev  = getter(name);
         processBindEventsWithNameData(name, dataNext, dataPrev);
-        processRealSetterWithNameData(name, dataNext, dataPrev);
+        processThisSetterWithNameData(name, dataNext, dataPrev);
     }
     private void processBindEventsWithNameData(String name, Type dataNext, Type dataPrev){
         LinkedList<DataHandler<Type>> list = bindHandlerMap.get(name);
@@ -25,7 +25,8 @@ public abstract class JModel<Type> implements JLimitModel<Type>{
             }
         }
     }
-    private void processRealSetterWithNameData(String name, Type dataNext, Type dataPrev){
+    @SuppressWarnings("unused")
+    private void processThisSetterWithNameData(String name, Type dataNext, Type dataPrev){
         setter(name,dataNext);
     }
 
@@ -42,7 +43,7 @@ public abstract class JModel<Type> implements JLimitModel<Type>{
         list.add(handler);
     }
     private  void initANewListThenAddHandler(String name,DataHandler<Type> handler){
-        LinkedList<DataHandler<Type>> list = new LinkedList<DataHandler<Type>>();
+        LinkedList<DataHandler<Type>> list = new LinkedList<>();
         list.add(handler);
         bindHandlerMap.put(name,list);
     }

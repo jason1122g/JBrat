@@ -5,7 +5,7 @@ import org.jbrat.files.data.abstracts.JModelAttribute;
 import org.jbrat.files.data.abstracts.JSettingAttribute;
 import org.jbrat.files.data.abstracts.JViewAttribute;
 
-public class SettingAttribute implements JSettingAttribute{
+public final class SettingAttribute implements JSettingAttribute{
     private String version = "";
     private JViewAttribute[]     viewAttributes;
     private JCombinerAttribute[] combinerAttributes;

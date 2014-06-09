@@ -29,7 +29,13 @@ public class CombinerAttributeTest {
     @Test
     public void testGetSetModelNames() throws Exception {
         Assert.assertNull(combinerAttribute.getModelNames());
-        combinerAttribute.setModelNames(new String[]{"test1","test2"});
-        Assert.assertArrayEquals(combinerAttribute.getModelNames(),new String[]{"test1","test2"});
+
+        combinerAttribute.addModelNamePersist("test1",true);
+        combinerAttribute.addModelNamePersist("test2", false);
+        Assert.assertArrayEquals(combinerAttribute.getModelNames(), new String[]{"test1", "test2"});
+
+        boolean[] modelPersists = combinerAttribute.getModelPersists();
+        Assert.assertEquals(modelPersists[0],true);
+        Assert.assertEquals(modelPersists[1],false);
     }
 }

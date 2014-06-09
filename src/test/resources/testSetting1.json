@@ -1,0 +1,49 @@
+{
+    "version":"1.0.0",
+    "setting":[
+        {
+            "type":"view",
+            "data":{
+                "firstView":{
+                    "package":"src.com.example.View.FirstView",
+                    "combiner":"firstCombiner"
+                },
+                "secondView":{
+                    "package":"src.com.example.View.SecondView"
+                }
+            }
+        },
+        {
+            "type":"combiner",
+            "data":{
+                "firstCombiner":{
+                    "package":"src.com.example.Combiner.FirstCombiner",
+                    "models":{
+                        "ajax":{
+                            "persist":true
+                        },
+                        "text":{
+                            "persist":false
+                        }
+                    }
+                },
+                "secondCombiner":{
+                    "package":"src.com.example.Combiner.FirstCombiner"
+                }
+            }
+        },
+        {
+            "type":"model",
+            "data":{
+                "ajax":{
+                    "package":"src.com.example.Model.AJAXModel"
+                },
+                "text":{
+                    "package":"src.com.example.Model.TextModel"
+                }
+            }
+        }
+    ]
+}
+
+

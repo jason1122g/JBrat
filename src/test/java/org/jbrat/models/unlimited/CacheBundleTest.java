@@ -12,7 +12,7 @@ public class CacheBundleTest {
     private static JBratManager jBratManager = JBratManager.createInstance("test");
     @Before
     public void setUp() throws Exception {
-        JModel<JBratManager> managerJModel = new CacheModel<JBratManager>();
+        JModel<JBratManager> managerJModel = new CacheModel<>();
         managerJModel.set("test",jBratManager);
 
         bundle = new CacheBundle();
@@ -67,7 +67,7 @@ public class CacheBundleTest {
     @Test
     public void testGetModel() throws Exception {
         Assert.assertNull(bundle.getModel("test"));
-        JModel<Assert> assertJModel = new CacheModel<Assert>();
+        JModel<Assert> assertJModel = new CacheModel<>();
         bundle.setModel("test",assertJModel);
         Assert.assertNotNull(bundle.getModel("test"));
     }
