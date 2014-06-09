@@ -30,7 +30,7 @@ public class FirstView implements JView {
             public void handle(String dataNext, String dataPrev){
                 textArea.setText(dataNext);
                 try {
-                    jBratManager.createViewResource("secondView",mainFrame);
+                    jBratManager.createView("secondView", mainFrame);
                 } catch (ReflectiveOperationException e) {
                     e.printStackTrace();
                 }

@@ -1,8 +1,0 @@
-{
-    "ajax":{
-        "package":"src.com.example.Model.AJAXModel"
-    },
-    "text":{
-        "package":"src.com.example.Model.TextModel"
-    }
-}

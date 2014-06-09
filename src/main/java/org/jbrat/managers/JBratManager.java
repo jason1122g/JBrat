@@ -5,6 +5,7 @@ import org.jbrat.combiners.JCombiner;
 import org.jbrat.exceptions.*;
 import org.jbrat.files.data.abstracts.JCombinerAttribute;
 import org.jbrat.files.data.abstracts.JModelAttribute;
+import org.jbrat.files.data.abstracts.JSettingAttribute;
 import org.jbrat.files.data.abstracts.JViewAttribute;
 import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.abstracts.JLimitBundle;
@@ -34,28 +35,34 @@ public final class JBratManager{
         modelFactory = new JBratModelFactory();
     }
 
-    public void loadAttrModel    (String fileName)  throws IOException,AttributeFormatException{
-        JModelAttribute[] modelAttributes = JBratFileReader.readModelAttributes(fileName);
-        for(JModelAttribute modelAttribute:modelAttributes){
+    public void readSetting(String fileName)  throws IOException,AttributeFormatException{
+        loadSetting(JBratFileReader.read(fileName));
+    }
+
+    public void loadSetting(String settingJSON) throws AttributeFormatException{
+        JSettingAttribute settingAttribute = JBratParser.parseSetting(settingJSON);
+        loadViewFromSetting(settingAttribute);
+        loadCombinerFromSetting(settingAttribute);
+        loadModelFromSetting(settingAttribute);
+    }
+    private void loadModelFromSetting(JSettingAttribute settingAttribute){
+        for(JModelAttribute modelAttribute : settingAttribute.getModelAttributes()){
             modelAttributeCacheModel.set(modelAttribute.getName(), modelAttribute);
         }
     }
-
-    public void loadAttrView     (String fileName)  throws IOException,AttributeFormatException{
-        JViewAttribute[] viewAttributes   = JBratFileReader.readViewAttributes(fileName);
-        for(JViewAttribute viewAttribute:viewAttributes){
+    private void loadViewFromSetting(JSettingAttribute settingAttribute){
+        for(JViewAttribute viewAttribute : settingAttribute.getViewAttributes()){
             viewAttributeCacheModel.set(viewAttribute.getName(), viewAttribute);
         }
     }
-
-    public void loadAttrCombiner (String fileName)  throws IOException,AttributeFormatException{
-        JCombinerAttribute[] combinerAttributes = JBratFileReader.readCombinerAttributes(fileName);
-        for( JCombinerAttribute combinerAttribute:combinerAttributes){
+    private void loadCombinerFromSetting(JSettingAttribute settingAttribute){
+        for(JCombinerAttribute combinerAttribute : settingAttribute.getCombinerAttributes()){
             combinerAttributeCacheModel.set(combinerAttribute.getName(), combinerAttribute);
         }
     }
 
-    public void createViewResource (String viewName, Object...objects) throws ReflectiveOperationException{ //TODO CAN USE EMPTY COMPONENT
+
+    public void createView(String viewName, Object... objects) throws ReflectiveOperationException{ //TODO CAN USE EMPTY COMPONENT
         JViewAttribute     viewAttribute     = prepareViewAttrWithViewName(viewName);
         JCombinerAttribute combinerAttribute = prepareCombinerAttrWithViewAttr(viewAttribute);
         JModelAttribute[]  modelAttributes   = prepareModelAttrsWithCombinerAttr(combinerAttribute);

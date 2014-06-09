@@ -8,10 +8,8 @@ public class Main {
     public static void main(String[] args){
         JBratManager mainManager = JBratManager.createInstance("main");
         try {
-            mainManager.loadAttrModel   ("model.json");
-            mainManager.loadAttrView    ("view.json");
-            mainManager.loadAttrCombiner("combiner.json");
-            mainManager.createViewResource("firstView");
+            mainManager.readSetting("setting.json");
+            mainManager.createView("firstView");
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         } catch (IOException e) {
