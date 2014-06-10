@@ -2,6 +2,7 @@ package com.example.Model;
 
 import org.jbrat.models.unlimited.StringModel;
 
+@SuppressWarnings("unused")
 public class AJAXModel extends StringModel {
 
     @Override

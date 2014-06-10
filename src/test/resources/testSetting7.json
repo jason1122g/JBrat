@@ -1,0 +1,29 @@
+{
+    "version":"1.0.0",
+    "setting":[
+        {
+            "type":"view",
+            "data":{
+                "firstView":{
+                    "package":"src.com.example.View.FirstView",
+                    "combiner":"firstCombiner"
+                }
+            }
+        },
+        {
+            "type":"combiner",
+            "data":{
+                "firstCombiner":{
+                    "package":"src.com.example.Combiner.FirstCombiner",
+                    "models":{
+                        "nothing":{
+                            "persist":true
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
+
+

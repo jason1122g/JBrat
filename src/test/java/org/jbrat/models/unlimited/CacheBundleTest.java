@@ -36,6 +36,14 @@ public class CacheBundleTest {
     }
 
     @Test
+    public void testGetBooleanModel() throws Exception {
+        Assert.assertNull(bundle.getBooleanModel("test"));
+        BooleanModel booleanModel = new BooleanModel();
+        bundle.setModel("test", booleanModel);
+        Assert.assertNotNull(bundle.getBooleanModel("test"));
+    }
+
+    @Test
     public void testGetIntegerModel() throws Exception {
         Assert.assertNull(bundle.getIntegerModel("test"));
         IntegerModel integerModel = new IntegerModel();

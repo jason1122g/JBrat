@@ -16,7 +16,7 @@ import org.jbrat.views.abstracts.JView;
 
 import java.io.IOException;
 
-public final class JBratManager{ //TODO TEST THIS
+public final class JBratManager{
 
     private final static CacheModel<JBratManager> jBratManagerCacheModel = new CacheModel<>();
 
@@ -65,23 +65,22 @@ public final class JBratManager{ //TODO TEST THIS
         JViewAttribute     viewAttribute    ;
         JCombinerAttribute combinerAttribute;
         JModelAttribute[]  modelAttributes  ;
-        JBundle bundle = null;
+        JBundle bundle = new CacheBundle();
 
         viewAttribute     = prepareViewAttrWithViewName(viewName);
         if(!viewAttribute.getCombinerName().equals("")){
             combinerAttribute = prepareCombinerAttrWithViewAttr(viewAttribute);
             if(combinerAttribute.getModelNames() != null){
                 modelAttributes   = prepareModelAttrsWithCombinerAttr(combinerAttribute);
-                bundle = prepareBundleWithModelAttrs(modelAttributes);
-            }else{
-                bundle = new CacheBundle();
+                buildBundleWithModelAttrs(bundle, modelAttributes);
             }
-            buildCombiner(combinerAttribute, bundle);
+            buildBundleWithCombinerAttr(bundle, combinerAttribute);
         }
         injectItemIntoBundle(bundle);
         buildView(viewAttribute,bundle,objects);
 
     }
+
     private JViewAttribute     prepareViewAttrWithViewName(String viewName){
         if(viewAttributeCacheModel.contains(viewName)){
             return viewAttributeCacheModel.get(viewName);
@@ -89,6 +88,7 @@ public final class JBratManager{ //TODO TEST THIS
             throw new ViewNotLoadException(viewName);
         }
     }
+
     private JCombinerAttribute prepareCombinerAttrWithViewAttr(JViewAttribute viewAttribute){
         String combinerName = viewAttribute.getCombinerName();
         if(combinerAttributeCacheModel.contains(combinerName)){
@@ -97,6 +97,7 @@ public final class JBratManager{ //TODO TEST THIS
             throw new CombinerNotLoadException(combinerName);
         }
     }
+
     private JModelAttribute[]  prepareModelAttrsWithCombinerAttr (JCombinerAttribute combinerAttribute){
         String[]           modelNames       = combinerAttribute.getModelNames();
         boolean[]          modelPersists    = combinerAttribute.getModelPersists();
@@ -115,16 +116,15 @@ public final class JBratManager{ //TODO TEST THIS
         return modelAttributes;
     }
 
-    private JBundle prepareBundleWithModelAttrs(JModelAttribute[] modelAttributes) throws ReflectiveOperationException{
+    private void buildBundleWithModelAttrs(JBundle bundle, JModelAttribute[] modelAttributes) throws ReflectiveOperationException{
         JModel[] models = prepareModelsWithModelAttrs(modelAttributes);
-        JBundle bundle = new CacheBundle();
         for(int i=0;i<modelAttributes.length;i++){
             String modelName = modelAttributes[i].getName();
             JModel model     = models[i];
             bundle.setModel(modelName,model);
         }
-        return bundle;
     }
+
     private JModel[] prepareModelsWithModelAttrs(JModelAttribute[] modelAttributes) throws ReflectiveOperationException{
         JModel[] models = new JModel[modelAttributes.length];
         for(int i=0;i<modelAttributes.length;i++){
@@ -138,13 +138,15 @@ public final class JBratManager{ //TODO TEST THIS
         return models;
     }
 
-    private void buildCombiner(JCombinerAttribute combinerAttribute,JBundle bundle) throws ReflectiveOperationException{
+    private void buildBundleWithCombinerAttr(JBundle bundle, JCombinerAttribute combinerAttribute) throws ReflectiveOperationException{
         JCombiner combiner = JBratReflecter.reflectCombiner(combinerAttribute.getPackage());
         combiner.onPreparing(bundle);
     }
+
     private void injectItemIntoBundle(JBundle bundle){
         bundle.setModel(JBratConstants.managerModelName,jBratManagerCacheModel);
     }
+
     private void buildView(JViewAttribute viewAttribute,JBundle bundle,Object...objects) throws ReflectiveOperationException{
         JView view         = JBratReflecter.reflectView(viewAttribute.getPackage(),objects);
         view.onCreating((JLimitBundle)bundle);

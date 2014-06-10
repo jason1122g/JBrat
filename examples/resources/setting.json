@@ -5,12 +5,11 @@
             "type":"view",
             "data":{
                 "firstView":{
-                    "package":"src.com.example.View.FirstView",
+                    "package":"com.example.View.FirstView",
                     "combiner":"firstCombiner"
                 },
                 "secondView":{
-                    "package":"src.com.example.View.SecondView",
-                    "combiner":"secondCombiner"
+                    "package":"com.example.View.SecondView"
                 }
             }
         },
@@ -18,18 +17,15 @@
             "type":"combiner",
             "data":{
                 "firstCombiner":{
-                    "package":"src.com.example.Combiner.FirstCombiner",
+                    "package":"com.example.Combiner.FirstCombiner",
                     "models":{
                         "ajax":{
                             "persist":true
                         },
-                        "test":{
+                        "text":{
                             "persist":false
                         }
                     }
-                },
-                "secondCombiner":{
-                    "package":"src.com.example.Combiner.FirstCombiner"
                 }
             }
         },
@@ -37,10 +33,10 @@
             "type":"model",
             "data":{
                 "ajax":{
-                    "package":"src.com.example.Model.AJAXModel"
+                    "package":"com.example.Model.AJAXModel"
                 },
                 "text":{
-                    "package":"src.com.example.Model.TextModel"
+                    "package":"com.example.Model.TextModel"
                 }
             }
         }

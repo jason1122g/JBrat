@@ -5,6 +5,7 @@ import org.jbrat.views.abstracts.JView;
 
 import javax.swing.*;
 
+@SuppressWarnings("unused")
 public class SecondView implements JView{
     private JFrame mainFrame;
     public SecondView(JFrame mainFrame){

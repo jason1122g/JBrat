@@ -5,6 +5,7 @@ import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.unlimited.EventModel;
 import org.jbrat.models.unlimited.StringModel;
 
+@SuppressWarnings("unused")
 public class FirstCombiner implements JCombiner {
     @Override
     public void onPreparing(JBundle bundle) {

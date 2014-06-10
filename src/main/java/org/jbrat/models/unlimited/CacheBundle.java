@@ -29,6 +29,11 @@ public class CacheBundle implements JBundle,JLimitBundle{
     }
 
     @Override
+    public BooleanModel getBooleanModel(String name) {
+        return (BooleanModel) modelModel.get(name) ;
+    }
+
+    @Override
     public IntegerModel getIntegerModel(String name) {
         return (IntegerModel) modelModel.get(name) ;
     }

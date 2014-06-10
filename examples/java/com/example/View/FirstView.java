@@ -8,24 +8,40 @@ import org.jbrat.models.limited.LStringModel;
 import org.jbrat.views.abstracts.JView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+@SuppressWarnings("unused")
 public class FirstView implements JView {
+
+    private LStringModel textModel;
+    private LEventModel  eventModel;
+    private JBratManager jBratManager;
+    private JFrame mainFrame;
 
     @Override
     public void onCreating(JLimitBundle bundle) {
-        final LStringModel    textModel = bundle.getStringModel ("text");
-        final LEventModel    eventModel = bundle.getEventModel  ("event");
-        final JBratManager jBratManager = bundle.getJBratManager("main");
+        textModel    = bundle.getStringModel ("text");
+        eventModel   = bundle.getEventModel  ("event");
+        jBratManager = bundle.getJBratManager("main");
 
-        final JFrame mainFrame = new JFrame();
+        initFrame();
+        initTextArea();
+        initButton();
+        showFrame();
+    }
+
+    private void initFrame(){
+        mainFrame = new JFrame();
         mainFrame.setTitle(textModel.get("name"));
-        mainFrame.setSize(300,400);
-        mainFrame.setVisible(true);
+        mainFrame.setSize(400, 250);
+        mainFrame.setLayout(new FlowLayout());
+    }
 
+    private void initTextArea(){
         final JTextArea textArea = new JTextArea();
+        textArea.setPreferredSize(new Dimension(180,200));
         textModel.bind("result",new DataHandler<String>(){
             public void handle(String dataNext, String dataPrev){
                 textArea.setText(dataNext);
@@ -37,15 +53,21 @@ public class FirstView implements JView {
             }
         });
         mainFrame.add(textArea);
+    }
 
-        final JButton okButton = new JButton();
+    private void initButton(){
+        JButton okButton = new JButton("OK");
+        okButton.setPreferredSize(new Dimension(180,200));
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 eventModel.trigger("ok");
             }
         });
         mainFrame.add(okButton);
+    }
 
+    private void showFrame(){
+        mainFrame.setVisible(true);
     }
 
 }

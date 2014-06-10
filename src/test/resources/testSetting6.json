@@ -1,0 +1,46 @@
+{
+    "version":"1.0.0",
+    "setting":[
+        {
+            "type":"view",
+            "data":{
+                "testView1":{
+                    "package":"org.jbrat.fakeObjects.testView1",
+                    "combiner":"testCombiner1"
+                },
+                "testView2":{
+                    "package":"org.jbrat.fakeObjects.testView2"
+                }
+            }
+        },
+        {
+            "type":"combiner",
+            "data":{
+                "testCombiner1":{
+                    "package":"org.jbrat.fakeObjects.testCombiner1",
+                    "models":{
+                        "testModel1":{
+                            "persist":true
+                        },
+                        "testModel2":{
+                            "persist":false
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type":"model",
+            "data":{
+                "testModel1":{
+                    "package":"org.jbrat.fakeObjects.testModel1"
+                },
+                "testModel2":{
+                    "package":"org.jbrat.fakeObjects.testModel2"
+                }
+            }
+        }
+    ]
+}
+
+
