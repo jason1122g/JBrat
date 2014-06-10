@@ -1,10 +1,6 @@
 package org.jbrat.managers;
 
 import org.jbrat.exceptions.AttributeFormatException;
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
-import org.jbrat.files.data.abstracts.JModelAttribute;
-import org.jbrat.files.data.abstracts.JSettingAttribute;
-import org.jbrat.files.data.abstracts.JViewAttribute;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,9 +1,5 @@
-package org.jbrat.files.data;
+package org.jbrat.managers;
 
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
-import org.jbrat.files.data.abstracts.JModelAttribute;
-import org.jbrat.files.data.abstracts.JSettingAttribute;
-import org.jbrat.files.data.abstracts.JViewAttribute;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

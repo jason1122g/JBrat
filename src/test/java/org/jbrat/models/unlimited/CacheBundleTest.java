@@ -73,10 +73,14 @@ public class CacheBundleTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testGetModel() throws Exception {
         Assert.assertNull(bundle.getModel("test"));
-        JModel<Assert> assertJModel = new CacheModel<>();
-        bundle.setModel("test",assertJModel);
-        Assert.assertNotNull(bundle.getModel("test"));
+        JModel<Assert> assertJModel1 = new CacheModel<>();
+        bundle.setModel("test",assertJModel1);
+
+        JModel<Assert> assertJModel2 = (JModel<Assert>) bundle.getModel("test");
+        Assert.assertNotNull(assertJModel2);
+
     }
 }

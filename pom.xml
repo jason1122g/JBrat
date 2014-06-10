@@ -6,7 +6,7 @@
 
     <groupId>org.jbrat</groupId>
     <artifactId>JBrat</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
         <dependency>

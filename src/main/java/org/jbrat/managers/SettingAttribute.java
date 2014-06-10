@@ -1,11 +1,6 @@
-package org.jbrat.files.data;
+package org.jbrat.managers;
 
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
-import org.jbrat.files.data.abstracts.JModelAttribute;
-import org.jbrat.files.data.abstracts.JSettingAttribute;
-import org.jbrat.files.data.abstracts.JViewAttribute;
-
-public final class SettingAttribute implements JSettingAttribute{
+final class SettingAttribute implements JSettingAttribute{
     private String version = "";
     private JViewAttribute[]     viewAttributes;
     private JCombinerAttribute[] combinerAttributes;

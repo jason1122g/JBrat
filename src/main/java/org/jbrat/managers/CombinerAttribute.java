@@ -1,12 +1,10 @@
-package org.jbrat.files.data;
+package org.jbrat.managers;
 
-
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
-public final class CombinerAttribute implements JCombinerAttribute {
+final class CombinerAttribute implements JCombinerAttribute {
 
     private String combinerName    = "";
     private String combinerPackage = "";

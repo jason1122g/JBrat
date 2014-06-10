@@ -1,6 +1,12 @@
-## JBrat-1.0.0
+## JBrat
 - MVC Structure (Model-View-Combiner)
-- Model-oriented Framework for GUI programming
+- Model-oriented
+- Data Binding
+- Dependency Setting File
 
-## NOTICE
-Tutorial will be published in recent days
+## Install
+    mvn install
+
+
+## Usage
+Example in 'examples' directory

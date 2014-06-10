@@ -1,14 +1,6 @@
 package org.jbrat.managers;
 
 import org.jbrat.exceptions.AttributeFormatException;
-import org.jbrat.files.data.CombinerAttribute;
-import org.jbrat.files.data.ModelAttribute;
-import org.jbrat.files.data.SettingAttribute;
-import org.jbrat.files.data.ViewAttribute;
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
-import org.jbrat.files.data.abstracts.JModelAttribute;
-import org.jbrat.files.data.abstracts.JSettingAttribute;
-import org.jbrat.files.data.abstracts.JViewAttribute;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

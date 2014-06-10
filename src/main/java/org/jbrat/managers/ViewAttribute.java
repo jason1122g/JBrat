@@ -1,10 +1,7 @@
-package org.jbrat.files.data;
+package org.jbrat.managers;
 
 
-
-import org.jbrat.files.data.abstracts.JViewAttribute;
-
-public final class ViewAttribute implements JViewAttribute {
+final class ViewAttribute implements JViewAttribute {
     private String viewName="";
     private String viewPackage="";
     private String combinerName="";

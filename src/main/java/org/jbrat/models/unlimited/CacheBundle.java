@@ -57,8 +57,7 @@ public class CacheBundle implements JBundle,JLimitBundle{
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public<T> JModel<T> getModel(String name){
+    public JModel<?> getModel(String name){
         return modelModel.get(name);
     }
 

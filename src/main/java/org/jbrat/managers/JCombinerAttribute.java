@@ -1,6 +1,6 @@
-package org.jbrat.files.data.abstracts;
+package org.jbrat.managers;
 
-public interface JCombinerAttribute extends NamePackagGetSet {
+interface JCombinerAttribute extends NamePackagGetSet {
     public String[]  getModelNames();
     public boolean[] getModelPersists();
 

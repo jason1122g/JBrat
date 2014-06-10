@@ -3,10 +3,6 @@ package org.jbrat.managers;
 
 import org.jbrat.combiners.JCombiner;
 import org.jbrat.exceptions.*;
-import org.jbrat.files.data.abstracts.JCombinerAttribute;
-import org.jbrat.files.data.abstracts.JModelAttribute;
-import org.jbrat.files.data.abstracts.JSettingAttribute;
-import org.jbrat.files.data.abstracts.JViewAttribute;
 import org.jbrat.models.abstracts.JBundle;
 import org.jbrat.models.abstracts.JLimitBundle;
 import org.jbrat.models.abstracts.JModel;

@@ -1,6 +1,6 @@
-package org.jbrat.files.data.abstracts;
+package org.jbrat.managers;
 
-public interface JSettingAttribute {
+interface JSettingAttribute {
     public String getVersion();
     public JViewAttribute[]     getViewAttributes();
     public JCombinerAttribute[] getCombinerAttributes();

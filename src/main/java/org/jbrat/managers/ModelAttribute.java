@@ -1,9 +1,7 @@
-package org.jbrat.files.data;
+package org.jbrat.managers;
 
 
-import org.jbrat.files.data.abstracts.JModelAttribute;
-
-public final class ModelAttribute implements JModelAttribute{
+final class ModelAttribute implements JModelAttribute{
     private String modelName = "";
     private String modelPackage = "";
     private boolean isPersistant = false;
