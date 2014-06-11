@@ -36,6 +36,7 @@ public class FirstView implements JView {
         mainFrame = new JFrame();
         mainFrame.setTitle(textModel.get("name"));
         mainFrame.setSize(400, 250);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setLayout(new FlowLayout());
     }
 
