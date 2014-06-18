@@ -1,5 +1,5 @@
 package org.jbrat.managers;
 
-public class JBratConstants {
+public interface JBratConstants {
     public static String managerModelName = "jbrat";
 }

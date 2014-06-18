@@ -5,14 +5,14 @@
             "type":"view",
             "data":{
                 "firstView":{
-                    "package":"src.com.example.View.FirstView",
+                    "package":"src.com.example1.View.FirstView",
                     "combiner":"firstCombiner"
                 },
                 "secondView":{
-                    "package":"src.com.example.View.SecondView"
+                    "package":"src.com.example1.View.SecondView"
                 },
                 "fifthView":{
-                    "package":"src.com.example.View.FourthView",
+                    "package":"src.com.example1.View.FourthView",
                     "combiner":"fifthCombiner"
                 }
             }
@@ -21,11 +21,11 @@
             "type":"view",
             "data":{
                 "thirdView":{
-                    "package":"src.com.example.View.ThirdView",
+                    "package":"src.com.example1.View.ThirdView",
                     "combiner":"secondCombiner"
                 },
                 "fourthView":{
-                    "package":"src.com.example.View.FourthView"
+                    "package":"src.com.example1.View.FourthView"
                 }
             }
         }

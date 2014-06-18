@@ -26,11 +26,11 @@ public class JBratParserTest extends JBratParser{
         }
 
         JViewAttribute viewAttribute1 = attributeMap.get("firstView");
-        Assert.assertEquals("src.com.example.View.FirstView",viewAttribute1.getPackage());
+        Assert.assertEquals("src.com.example1.View.FirstView",viewAttribute1.getPackage());
         Assert.assertEquals("firstCombiner",viewAttribute1.getCombinerName());
 
         JViewAttribute viewAttribute2 = attributeMap.get("secondView");
-        Assert.assertEquals("src.com.example.View.SecondView",viewAttribute2.getPackage());
+        Assert.assertEquals("src.com.example1.View.SecondView",viewAttribute2.getPackage());
         Assert.assertEquals("",viewAttribute2.getCombinerName());
 
     }
@@ -43,7 +43,7 @@ public class JBratParserTest extends JBratParser{
         }
 
         JCombinerAttribute combinerAttribute1 = attributeMap.get("firstCombiner");
-        Assert.assertEquals("src.com.example.Combiner.FirstCombiner",combinerAttribute1.getPackage());
+        Assert.assertEquals("src.com.example1.Combiner.FirstCombiner",combinerAttribute1.getPackage());
 
         Map<String,Boolean> modelPropertyMap = new TreeMap<>();
         String[]  modelNames    = combinerAttribute1.getModelNames();
@@ -56,7 +56,7 @@ public class JBratParserTest extends JBratParser{
 
 
         JCombinerAttribute combinerAttribute2 = attributeMap.get("secondCombiner");
-        Assert.assertEquals("src.com.example.Combiner.FirstCombiner",combinerAttribute2.getPackage());
+        Assert.assertEquals("src.com.example1.Combiner.FirstCombiner",combinerAttribute2.getPackage());
         Assert.assertNull(combinerAttribute2.getModelNames());
         Assert.assertNull(combinerAttribute2.getModelPersists());
     }
@@ -69,10 +69,10 @@ public class JBratParserTest extends JBratParser{
         }
 
         JModelAttribute modelAttribute1 = attributeMap.get("ajax");
-        Assert.assertEquals("src.com.example.Model.AJAXModel",modelAttribute1.getPackage());
+        Assert.assertEquals("src.com.example1.Model.AJAXModel",modelAttribute1.getPackage());
 
         JModelAttribute modelAttribute2 = attributeMap.get("text");
-        Assert.assertEquals("src.com.example.Model.TextModel",modelAttribute2.getPackage());
+        Assert.assertEquals("src.com.example1.Model.TextModel",modelAttribute2.getPackage());
     }
 
     @Test
@@ -87,18 +87,18 @@ public class JBratParserTest extends JBratParser{
         }
 
         JViewAttribute viewAttribute1 = viewAttributeMap.get("firstView");
-        Assert.assertEquals("src.com.example.View.FirstView",viewAttribute1.getPackage());
+        Assert.assertEquals("src.com.example1.View.FirstView",viewAttribute1.getPackage());
         Assert.assertEquals("firstCombiner",viewAttribute1.getCombinerName());
 
         JViewAttribute viewAttribute2 = viewAttributeMap.get("secondView");
-        Assert.assertEquals("src.com.example.View.SecondView",viewAttribute2.getPackage());
+        Assert.assertEquals("src.com.example1.View.SecondView",viewAttribute2.getPackage());
 
         JViewAttribute viewAttribute3 = viewAttributeMap.get("thirdView");
-        Assert.assertEquals("src.com.example.View.ThirdView",viewAttribute3.getPackage());
+        Assert.assertEquals("src.com.example1.View.ThirdView",viewAttribute3.getPackage());
         Assert.assertEquals("secondCombiner",viewAttribute3.getCombinerName());
 
         JViewAttribute viewAttribute4 = viewAttributeMap.get("fourthView");
-        Assert.assertEquals("src.com.example.View.FourthView",viewAttribute4.getPackage());
+        Assert.assertEquals("src.com.example1.View.FourthView",viewAttribute4.getPackage());
     }
 
     @Test

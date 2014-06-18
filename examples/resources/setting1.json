@@ -5,11 +5,11 @@
             "type":"view",
             "data":{
                 "firstView":{
-                    "package":"com.example.View.FirstView",
+                    "package":"com.example1.View.FirstView",
                     "combiner":"firstCombiner"
                 },
                 "secondView":{
-                    "package":"com.example.View.SecondView"
+                    "package":"com.example1.View.SecondView"
                 }
             }
         },
@@ -17,7 +17,7 @@
             "type":"combiner",
             "data":{
                 "firstCombiner":{
-                    "package":"com.example.Combiner.FirstCombiner",
+                    "package":"com.example1.Combiner.FirstCombiner",
                     "models":{
                         "ajax":{
                             "persist":true
@@ -33,10 +33,10 @@
             "type":"model",
             "data":{
                 "ajax":{
-                    "package":"com.example.Model.AJAXModel"
+                    "package":"com.example1.Model.AJAXModel"
                 },
                 "text":{
-                    "package":"com.example.Model.TextModel"
+                    "package":"com.example1.Model.TextModel"
                 }
             }
         }

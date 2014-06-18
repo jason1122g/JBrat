@@ -1,4 +1,4 @@
-package com.example.Model;
+package com.example1.Model;
 
 import org.jbrat.models.unlimited.StringModel;
 

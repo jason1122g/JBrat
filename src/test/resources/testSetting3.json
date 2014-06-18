@@ -5,11 +5,11 @@
             "type":"view",
             "data":{
                 "firstView":{
-                    "package":"src.com.example.View.FirstView",
+                    "package":"src.com.example1.View.FirstView",
                     "combiner":"firstCombiner"
                 },
                 "secondView":{
-                    "package":"src.com.example.View.SecondView"
+                    "package":"src.com.example1.View.SecondView"
                 }
             }
         },
@@ -17,7 +17,7 @@
             "type":"combiner2",
             "data":{
                 "firstCombiner":{
-                    "package":"src.com.example.Combiner.FirstCombiner",
+                    "package":"src.com.example1.Combiner.FirstCombiner",
                     "models":{
                         "ajax":{
                             "persist":true
@@ -28,7 +28,7 @@
                     }
                 },
                 "secondCombiner":{
-                    "package":"src.com.example.Combiner.FirstCombiner"
+                    "package":"src.com.example1.Combiner.FirstCombiner"
                 }
             }
         }

@@ -5,7 +5,7 @@
             "type":"view",
             "data":{
                 "firstView":{
-                    "package":"src.com.example.View.FirstView",
+                    "package":"src.com.example1.View.FirstView",
                     "combiner":"firstCombiner"
                 }
             }
@@ -14,7 +14,7 @@
             "type":"combiner",
             "data":{
                 "firstCombiner":{
-                    "package":"src.com.example.Combiner.FirstCombiner",
+                    "package":"src.com.example1.Combiner.FirstCombiner",
                     "models":{
                         "nothing":{
                             "persist":true
