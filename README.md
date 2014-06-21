@@ -1,4 +1,3 @@
-JBrat
-=====
+## JBrat2
+Next Generation of JBrat in developing
 
-A MVC Framework for Java
