@@ -4,13 +4,12 @@ import org.jbrat.abilities.Actionable
 import org.jbrat.core.JBratRouter
 
 
-abstract class JBratController implements Controller,Actionable{
+abstract class JBratController implements Controller{
 
     @Override
     abstract void prepare(Object bean);
 
-    @Override
-    void invokeAction(Object path) {
+    static void invokeAction(Object path) {
         JBratRouter.getInstance().route(path);
     }
 
