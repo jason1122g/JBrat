@@ -5,7 +5,7 @@ import org.jbrat.core.initor.ControllerInitor
 import org.jbrat.core.initor.ViewInitor
 
 
-class JBrat { //TODO DELETE GRADLEW BEFORE COMMIT
+class JBrat {
 
     private static def layout  = new Layout.Builder().build()
 
