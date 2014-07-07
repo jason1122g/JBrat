@@ -3,9 +3,9 @@ package app.view
 import org.jbrat.views.JBratView
 
 
-class renderTestView extends JBratView{
+class localeTestView_enUS extends JBratView{
     @Override
-    void render(bean) {
+    void render(Object bean) {
 
     }
 }

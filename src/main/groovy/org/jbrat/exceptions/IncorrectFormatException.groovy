@@ -1,5 +1,8 @@
 package org.jbrat.exceptions
 
 
-class IncorrectFormatException extends RuntimeException{
+class IncorrectFormatException extends JBratException{
+    IncorrectFormatException(String msg){
+        super(msg)
+    }
 }

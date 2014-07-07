@@ -1,28 +1,28 @@
 package org.jbrat.views
 
 
-
-abstract class JBratView implements View{
+abstract class JBratView extends JBratViewHelper implements View{
     @Override
-    void enter() {}
+    void enter() {
+
+    }
 
     @Override
-    void beforeRender() {}
+    void beforeRender() {
+
+    }
 
     @Override
     abstract void render(Object bean);
 
     @Override
-    void afterRender() {}
+    void afterRender() {
+
+    }
 
     @Override
-    void exit() {}
-
-    static void invokeRender(Class viewClass, bean) {
-        
-    }
-
-    static void localeText(stringName){
+    void exit() {
 
     }
+
 }

@@ -2,9 +2,10 @@ package app.controller
 
 import org.jbrat.controllers.JBratController
 
-class routeTestController extends JBratController{
+
+class localeTestController extends JBratController{
     @Override
-    void prepare(bean) {
+    void prepare(Object bean) {
 
     }
 }

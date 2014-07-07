@@ -3,9 +3,9 @@ package app.controller
 import org.jbrat.controllers.JBratController
 
 
-class orderTestController extends JBratController{
+class routeTest2Controller extends JBratController{
     @Override
-    void prepare(Object bean) {
+    void prepare(bean) {
 
     }
 }
