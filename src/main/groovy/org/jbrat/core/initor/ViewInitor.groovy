@@ -7,7 +7,7 @@ class ViewInitor implements ComponentInitor{
     }
 
     @Override
-    def init(name, bean){
+    def init(name,test=null){
 
     }
 }
