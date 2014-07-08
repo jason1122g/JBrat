@@ -14,11 +14,11 @@ class LayoutBuilderTest extends Specification {
             def view       = "hello.view"
             def handler    = "custom.handler"
             def helper     = "apps.helper"
-            def routes     = "${base}.routes"
-            def locales    = "${base}.locales"
-            def lib        = "${base}.lib"
-            def vender     = "${base}.lib"
-            def log        = "${base}.log"
+            def routes     = "${base}/routes"
+            def locales    = "${base}/locales"
+            def lib        = "${base}/lib"
+            def vender     = "${base}/lib"
+            def log        = "${base}/log"
         when:
             def layout = new Layout.Builder()
                     .setControllerPosition(controller)
@@ -57,11 +57,11 @@ class LayoutBuilderTest extends Specification {
             layout.getViewPosition()       == "app.view"
             layout.getHandlerPosition()    == "app.handler"
             layout.getHelperPosition()     == "app.helper"
-            layout.getRoutesPosition()     == "${base}.jbrat.config"
-            layout.getLocalesPosition()    == "${base}.jbrat.config.locales"
-            layout.getLibPosition()        == "${base}.jbrat.lib"
-            layout.getVenderPosition()     == "${base}.jbrat.vender"
-            layout.getLogPosition()        == "${base}.jbrat.log"
+            layout.getRoutesPosition()     == "${base}/config"
+            layout.getLocalesPosition()    == "${base}/config/locales"
+            layout.getLibPosition()        == "${base}/lib"
+            layout.getVenderPosition()     == "${base}/vender"
+            layout.getLogPosition()        == "${base}/log"
     }
 
     def "application.properties position cannot be changed"(){
@@ -70,6 +70,6 @@ class LayoutBuilderTest extends Specification {
         and:
             def base = Layout.Builder.getResourceBase()
         expect:
-            layout.getApplicationSettingPosition() == "${base}.jbrat.config"
+            layout.getApplicationSettingPosition() == "${base}/config"
     }
 }

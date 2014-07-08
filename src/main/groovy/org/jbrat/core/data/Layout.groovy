@@ -7,13 +7,13 @@ class Layout {
     private def handlerPosition    = "app.handler"
     private def helperPosition     = "app.helper"
 
-    private def routesPosition     = "${Builder.getResourceBase()}.jbrat.config"
-    private def localesPosition    = "${Builder.getResourceBase()}.jbrat.config.locales"
-    private def applicationSettingPosition = "${Builder.getResourceBase()}.jbrat.config"
+    private def routesPosition     = "${Builder.getResourceBase()}/config"
+    private def localesPosition    = "${Builder.getResourceBase()}/config/locales"
+    private def applicationSettingPosition = "${Builder.getResourceBase()}/config"
 
-    private def libPosition        = "${Builder.getResourceBase()}.jbrat.lib"
-    private def venderPosition     = "${Builder.getResourceBase()}.jbrat.vender"
-    private def logPosition        = "${Builder.getResourceBase()}.jbrat.log"
+    private def libPosition        = "${Builder.getResourceBase()}/lib"
+    private def venderPosition     = "${Builder.getResourceBase()}/vender"
+    private def logPosition        = "${Builder.getResourceBase()}/log"
 
     public Layout(Builder builder){
         builder.map.each { key,value->

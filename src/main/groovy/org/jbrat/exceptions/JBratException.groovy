@@ -8,4 +8,7 @@ class JBratException extends RuntimeException{
     JBratException(String msg){
         super(msg)
     }
+    JBratException(Exception e){
+        super(e)
+    }
 }

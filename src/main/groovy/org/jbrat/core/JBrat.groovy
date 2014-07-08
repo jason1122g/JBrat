@@ -1,8 +1,10 @@
 package org.jbrat.core
 
 import org.jbrat.core.data.Layout
-import org.jbrat.core.initor.ControllerInitor
-import org.jbrat.core.initor.ViewInitor
+import org.jbrat.core.router.ControllerRouter
+import org.jbrat.core.router.ViewRouter
+import org.jbrat.core.localer.BasicLocaler
+import org.jbrat.core.router.BasicSystemRouter
 
 
 class JBrat {
@@ -11,11 +13,11 @@ class JBrat {
 
     private static def configBean = 1;
 
-    private static def viewInitor    = new ViewInitor      (configBean)
-    private static def controlInitor = new ControllerInitor(configBean)
-    private static def localer       = new BasicLocaler    (configBean)
+    private static def viewInitor    = new ViewRouter      (configBean)
+    private static def controlInitor = new ControllerRouter(configBean)
+    private static def localer       = new BasicLocaler      (configBean)
 
-    private static def router = new BasicRouter(viewInitor,controlInitor)
+    private static def router = new BasicSystemRouter(viewInitor,controlInitor)
 
     static{
         configBean.layout = layout
@@ -32,10 +34,10 @@ class JBrat {
     }
 
     static void render(name,bean){
-        viewInitor.init(name,bean)
+        viewInitor.route(name,bean)
     }
 
     static def localeText(name){
-        return localer.getLocaleText(name)
+        return localer.localeText(name)
     }
 }
