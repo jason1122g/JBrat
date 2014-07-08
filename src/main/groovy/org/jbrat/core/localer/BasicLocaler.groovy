@@ -49,7 +49,7 @@ class BasicLocaler implements Localer{
     private static def getPropertiesFromFile(File file){
         Properties properties = new Properties()
         file.withInputStream {
-            properties.load(new InputStreamReader(it))
+            properties.load(new InputStreamReader(it,"UTF-8"))
         }
         return properties
     }
