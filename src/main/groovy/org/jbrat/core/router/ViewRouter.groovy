@@ -1,7 +1,7 @@
 package org.jbrat.core.router
 
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.JBratRouter
 
 class ViewRouter extends JBratRouter{
@@ -12,7 +12,7 @@ class ViewRouter extends JBratRouter{
 
     def ViewRouter(beanContainer){
         this.beanContainer = beanContainer
-        this.componentBean = BeanFactory.create()
+        this.componentBean = BeanFactory.createEmpty()
     }
 
     protected def buildPath(uri){
@@ -35,7 +35,7 @@ class ViewRouter extends JBratRouter{
 
     protected def buildBean(bean){
         if(bean==null){
-            bean = BeanFactory.create()
+            bean = BeanFactory.createEmpty()
         }
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setComponent(componentBean)

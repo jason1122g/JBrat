@@ -12,7 +12,7 @@ class routePathParser {
 
     routePathParser(uri){
         this.uri = uri
-        this.params = BeanFactory.create()
+        this.params = BeanFactory.createEmpty()
         process();
     }
 

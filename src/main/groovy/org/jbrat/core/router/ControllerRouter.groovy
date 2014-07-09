@@ -1,7 +1,7 @@
 package org.jbrat.core.router
 
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.JBratRouter
 import org.jbrat.core.tool.routePathParser
 
@@ -15,7 +15,7 @@ class ControllerRouter extends JBratRouter{
 
     def ControllerRouter(beanContainer){
         this.beanContainer = beanContainer
-        this.componentBean = BeanFactory.create()
+        this.componentBean = BeanFactory.createEmpty()
     }
 
     @Override
@@ -29,7 +29,7 @@ class ControllerRouter extends JBratRouter{
     @Override
     protected def buildBean(bean){
         if(bean == null){
-            bean = BeanFactory.create()
+            bean = BeanFactory.createEmpty()
         }
 
         BeanContainer beanContainer = new BeanContainer(bean)

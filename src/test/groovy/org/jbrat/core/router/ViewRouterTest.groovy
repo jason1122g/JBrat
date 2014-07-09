@@ -1,11 +1,11 @@
 package org.jbrat.core.router
 
-import org.jbrat.core.data.Layout
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
 import spock.lang.Shared
 import spock.lang.Specification
+import org.jbrat.core.data.BeanBuilder
 import tools.ExpandableBean
 
 
@@ -15,13 +15,9 @@ class ViewRouterTest extends Specification {
     @Shared def viewRouter
 
     def setupSpec(){
-        def configBean = new ExpandableBean();
-        configBean.layout = new  Layout.Builder().setViewPosition("app.view").build()
-        configBean.locale = "enUS"
-
-        def bean = new ExpandableBean()
-        bean.config = configBean
-        viewRouter = new ViewRouter(new BeanContainer(bean));
+        def bean = new BeanBuilder().build()
+        def beanContainer = new BeanContainer(bean)
+        viewRouter = new ViewRouter(beanContainer);
     }
 
     def "init a view with no locale name"(){

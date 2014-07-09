@@ -2,7 +2,7 @@ package org.jbrat.core.localer
 
 import groovy.io.FileType
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 
 
@@ -14,7 +14,7 @@ class BasicLocaler implements Localer{
 
     def BasicLocaler( beanContainer){
         this.beanContainer = beanContainer
-        this.langText = BeanFactory.create()
+        this.langText = BeanFactory.createEmpty()
         readLocaleFiles()
     }
 
@@ -29,7 +29,7 @@ class BasicLocaler implements Localer{
         def properties = getPropertiesFromFile(file)
 
         if(langText."$locale" == null){
-            langText."$locale" = BeanFactory.create()
+            langText."$locale" = BeanFactory.createEmpty()
         }
 
         properties.keys().each { key->

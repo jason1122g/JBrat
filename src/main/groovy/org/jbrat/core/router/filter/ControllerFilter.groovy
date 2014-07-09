@@ -1,7 +1,7 @@
 package org.jbrat.core.router.filter
 
 import org.jbrat.core.ability.TransferAbility
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.Router
 
 

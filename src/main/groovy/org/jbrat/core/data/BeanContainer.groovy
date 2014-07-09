@@ -1,10 +1,6 @@
-package org.jbrat.core.data.container
+package org.jbrat.core.data
 
-import org.jbrat.core.data.JBratBean
-import org.jbrat.core.data.Layout
-
-
-class BeanContainer {
+class BeanContainer { //TODO TEST THIS
 
     private def bean
 
@@ -16,7 +12,7 @@ class BeanContainer {
         this.bean.config = bean
     }
 
-    JBratBean getConfig(){
+    Bean getConfig(){
         return bean.config
     }
 
@@ -24,7 +20,7 @@ class BeanContainer {
         this.bean.component = bean
     }
 
-    JBratBean getComponent(){
+    Bean getComponent(){
         return bean.component
     }
 
@@ -32,7 +28,7 @@ class BeanContainer {
         this.bean.param = bean
     }
 
-    JBratBean getParam(){
+    Bean getParam(){
         return bean.param
     }
 

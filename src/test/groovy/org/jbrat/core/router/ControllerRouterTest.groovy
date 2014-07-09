@@ -1,12 +1,12 @@
 package org.jbrat.core.router
 
-import org.jbrat.core.data.Layout
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Title
+import org.jbrat.core.data.BeanBuilder
 import tools.ExpandableBean
 
 @Title("target controller will invoke the method in bean.test")
@@ -16,13 +16,9 @@ class ControllerRouterTest extends Specification {
     @Shared def testBean = new ExpandableBean()
 
     def setupSpec(){
-        def configBean = new ExpandableBean();
-        configBean.layout = new Layout.Builder().setControllerPosition("app.controller").build()
-
-        def bean    = new ExpandableBean()
-        bean.config = configBean
-
-        controllerRouter = new ControllerRouter(new BeanContainer(bean));
+        def bean = new BeanBuilder().build()
+        def beanContainer = new BeanContainer(bean)
+        controllerRouter  = new ControllerRouter(beanContainer);
     }
 
     def "init a controller"(){

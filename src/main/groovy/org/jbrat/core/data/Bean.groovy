@@ -1,7 +1,8 @@
 package org.jbrat.core.data
 
 
-class JBratBean {
+class Bean { //TODO FINISH AND TEST THIS
+
     private def storage = [:]
 
     def getProperty(String name) {
@@ -11,4 +12,5 @@ class JBratBean {
     void setProperty(String name, value) {
         storage[name] = value
     }
+
 }

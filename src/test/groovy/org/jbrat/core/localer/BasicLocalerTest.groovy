@@ -1,31 +1,20 @@
 package org.jbrat.core.localer
 
+import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.Layout
-import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.data.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 import spock.lang.Shared
 import spock.lang.Specification
-import tools.ExpandableBean
-
 
 class BasicLocalerTest extends Specification {
 
     @Shared BeanContainer beanContainer
 
-
     def setupSpec(){
-
-        def configBean = new ExpandableBean();
-        configBean.layout = new Layout.Builder().setLocalesPosition(getPosition()).build()
-        configBean.locale = "enUS"
-
-        def bean = new ExpandableBean();
-        bean.config = configBean
+        def layout = new Layout.Builder().setLocalesPosition(getPosition()).build()
+        def bean   = new BeanBuilder().setLayout(layout).build()
         beanContainer = new BeanContainer(bean)
-    }
-
-    private static def getPosition(){
-        new File(this.getClass().getResource("/jbrat").toURI()).toString()+"/config/locales"
     }
 
     def "fetch locale text from locale setting 1"(){
@@ -69,6 +58,11 @@ class BasicLocalerTest extends Specification {
             new BasicLocaler(beanContainer);
         then:
             notThrown(Exception)
+    }
+
+
+    private static def getPosition(){
+        new File(this.getClass().getResource("/jbrat").toURI()).toString()+"/config/locales"
     }
 
 
