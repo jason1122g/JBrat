@@ -1,68 +1,48 @@
 package org.jbrat.core.router
 
-import org.jbrat.core.data.JBratBean
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.router.abstracts.JBratRouter
 import org.jbrat.core.tool.routePathParser
-import org.jbrat.exceptions.IncorrectFormatException
-import org.jbrat.exceptions.RouteFailedException
 
 
-class ControllerRouter implements Router{
+class ControllerRouter extends JBratRouter{
 
     private def configBean
     private def paramsBean
-    private def componentBean = new JBratBean()
+    private def componentBean
+    private BeanContainer beanContainer
 
-    private def targetController
-
-    def ControllerRouter(configBean){
-        this.configBean = configBean
+    def ControllerRouter(beanContainer){
+        this.beanContainer = beanContainer
+        this.componentBean = BeanFactory.create()
     }
 
     @Override
-    def route(uri,test=null){
-
-        try{
-            targetController = Class.forName( buildPath(uri) ).newInstance()
-        }catch(Exception e){
-            throw new RouteFailedException(e)
-        }
-
-        def bean = buildBean()
-        bean.test = test
-        try{
-            buildInstanceCall(bean)
-        }catch(Exception e){
-            throw new IncorrectFormatException(e)
-        }
-
-        return clearBean(bean)
-    }
-
-    private def buildPath(uri){
+    protected def buildPath(uri){
         def parser = new routePathParser(uri)
         def path   = parser.getPath()
         paramsBean = parser.getParams()
-        configBean.layout.controllerPosition + "." + path
+        beanContainer.getLayout().controllerPosition + "." + path + "Controller"
     }
 
-    private def buildBean(){
-        def bean = new JBratBean()
-        bean.config = configBean
-        bean.component = componentBean
-        bean.params = paramsBean
+    @Override
+    protected def buildBean(bean){
+        if(bean == null){
+            bean = BeanFactory.create()
+        }
+
+        BeanContainer beanContainer = new BeanContainer(bean)
+        beanContainer.setConfig(configBean)
+        beanContainer.setComponent(componentBean)
+        beanContainer.setParam(paramsBean)
+
         return bean
     }
 
-    private def buildInstanceCall(bean){
-        targetController.prepare( bean )
-    }
-
-    private static def clearBean(bean){
-        bean.config = null
-        bean.component = null
-        bean.params = null
-        bean.test = null
-        return bean
+    @Override
+    protected def buildInstanceCall(instance,bean){
+        instance.prepare( bean )
     }
 
 }

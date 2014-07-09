@@ -1,22 +1,25 @@
 package org.jbrat.core.localer
 
 import groovy.io.FileType
-import org.jbrat.core.data.JBratBean
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.container.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 
 
 class BasicLocaler implements Localer{
 
-    private def configBean
-    private def langText = new JBratBean()
+    private def langText
 
-    def BasicLocaler(configBean){
-        this.configBean = configBean
+    private BeanContainer beanContainer
+
+    def BasicLocaler( beanContainer){
+        this.beanContainer = beanContainer
+        this.langText = BeanFactory.create()
         readLocaleFiles()
     }
 
     private def readLocaleFiles(){
-        new File(configBean.layout.localesPosition+"").eachFileRecurse(FileType.FILES) { file->
+        new File(beanContainer.getLayout().localesPosition+"").eachFileRecurse(FileType.FILES) { file->
             readFileForLocale(file)
         }
     }
@@ -26,7 +29,7 @@ class BasicLocaler implements Localer{
         def properties = getPropertiesFromFile(file)
 
         if(langText."$locale" == null){
-            langText."$locale" = new JBratBean()
+            langText."$locale" = BeanFactory.create()
         }
 
         properties.keys().each { key->
@@ -56,6 +59,6 @@ class BasicLocaler implements Localer{
 
     @Override
     def localeText(name){
-        langText."$configBean.locale"."$name"
+        langText."${beanContainer.getLocale()}"."$name"
     }
 }

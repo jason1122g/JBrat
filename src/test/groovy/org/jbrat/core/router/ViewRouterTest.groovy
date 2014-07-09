@@ -1,6 +1,7 @@
-package org.jbrat.core.initor
+package org.jbrat.core.router
 
-import org.jbrat.core.router.ViewRouter
+import org.jbrat.core.data.Layout
+import org.jbrat.core.data.container.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
 import spock.lang.Shared
@@ -10,22 +11,24 @@ import tools.ExpandableBean
 
 class ViewRouterTest extends Specification {
 
-    @Shared def configBean
-    @Shared def viewInitor
+    @Shared def testBean = new ExpandableBean()
+    @Shared def viewRouter
 
     def setupSpec(){
-        configBean = new ExpandableBean();
-        configBean.layout = new ExpandableBean()
-        configBean.layout.viewPosition = "app.view"
+        def configBean = new ExpandableBean();
+        configBean.layout = new  Layout.Builder().setViewPosition("app.view").build()
         configBean.locale = "enUS"
-        viewInitor = new ViewRouter(configBean);
+
+        def bean = new ExpandableBean()
+        bean.config = configBean
+        viewRouter = new ViewRouter(new BeanContainer(bean));
     }
 
     def "init a view with no locale name"(){
         given:
             def resultBean
         when:
-            resultBean = viewInitor.route("other.runTask1View")
+            resultBean = viewRouter.route("other.runTask1")
         then:
             resultBean.className == "runTask1View"
 
@@ -35,7 +38,7 @@ class ViewRouterTest extends Specification {
         given:
             def resultBean
         when:
-            resultBean = viewInitor.route("other.runTask2View")
+            resultBean = viewRouter.route("other.runTask2")
         then:
             resultBean.className == "runTask2View_enUS"
     }
@@ -44,30 +47,30 @@ class ViewRouterTest extends Specification {
         given:
             def var1=1
             def var2=2
-        and:
-            def hookMethod1 = { bean->
+        when:
+            testBean.test = { bean->
                 bean.component.msg = var1
             }
-            def hookMethod2 = { bean->
+            viewRouter.route("other.runTask1", testBean)
+        and:
+            testBean.test = { bean->
                 var2 = bean.component.msg
             }
-        when:
-            viewInitor.route("other.runTask2View_enUS", hookMethod1)
-            viewInitor.route("other.runTask2View_zhTW", hookMethod2)
+            viewRouter.route("other.runTask2", testBean)
         then:
             var1 == var2
     }
 
     def "init a view which is not exist will throw Exception"(){
         when:
-            viewInitor.route("viewNotExist")
+            viewRouter.route("viewNotExist")
         then:
             thrown(RouteFailedException)
     }
 
     def "init a wrong implemented view will throw Exception"(){
         when:
-            viewInitor.route("incorrectView")
+            viewRouter.route("incorrect")
         then:
             thrown(IncorrectFormatException)
     }

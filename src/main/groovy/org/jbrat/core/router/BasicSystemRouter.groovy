@@ -1,9 +1,12 @@
 package org.jbrat.core.router
 
+import org.jbrat.core.ability.TransferAbility
+import org.jbrat.core.router.abstracts.Router
 
-class BasicSystemRouter implements Router{
 
-    def BasicSystemRouter(viewInitor,controllerInitor){
+class BasicSystemRouter extends TransferAbility implements Router{
+
+    def BasicSystemRouter(){
 
     }
 

@@ -1,6 +1,5 @@
-package org.jbrat.core
+package org.jbrat.core.data
 
-import org.jbrat.core.data.Layout
 import spock.lang.Specification
 
 class LayoutBuilderTest extends Specification {

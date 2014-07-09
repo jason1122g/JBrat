@@ -1,6 +1,8 @@
 package org.jbrat.core
 
 import org.jbrat.core.data.Layout
+import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.router.filter.ControllerFilter
 import org.jbrat.core.router.ControllerRouter
 import org.jbrat.core.router.ViewRouter
 import org.jbrat.core.localer.BasicLocaler
@@ -12,12 +14,13 @@ class JBrat {
     private static def layout  = new Layout.Builder().build()
 
     private static def configBean = 1;
+    private static def beanContainer = new BeanContainer(1)
 
-    private static def viewInitor    = new ViewRouter      (configBean)
-    private static def controlInitor = new ControllerRouter(configBean)
-    private static def localer       = new BasicLocaler      (configBean)
+    private static def localer       = new BasicLocaler    (beanContainer)
+    private static def viewRouter    = new ViewRouter      (beanContainer)
+    private static def controlRouter = new ControllerRouter(beanContainer)
 
-    private static def router = new BasicSystemRouter(viewInitor,controlInitor)
+    private static def router = new BasicSystemRouter() >> controlRouter >> new ControllerFilter() >> viewRouter
 
     static{
         configBean.layout = layout
@@ -34,7 +37,7 @@ class JBrat {
     }
 
     static void render(name,bean){
-        viewInitor.route(name,bean)
+        viewRouter.route(name,bean)
     }
 
     static def localeText(name){

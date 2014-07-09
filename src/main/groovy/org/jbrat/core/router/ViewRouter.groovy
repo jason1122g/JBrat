@@ -1,82 +1,57 @@
 package org.jbrat.core.router
 
-import org.jbrat.core.data.JBratBean
-import org.jbrat.core.router.Router
-import org.jbrat.exceptions.IncorrectFormatException
-import org.jbrat.exceptions.RouteFailedException
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.container.BeanContainer
+import org.jbrat.core.router.abstracts.JBratRouter
 
-
-class ViewRouter implements Router{
-
-    private def configBean
-    private def componentBean = new JBratBean()
+class ViewRouter extends JBratRouter{
 
     private def lastView
-    private def targetView
+    private def componentBean
+    private BeanContainer beanContainer
 
-    def ViewRouter(configBean){
-        this.configBean = configBean
+    def ViewRouter(beanContainer){
+        this.beanContainer = beanContainer
+        this.componentBean = BeanFactory.create()
     }
 
-    @Override
-    def route(uri,test=null){
-
-        try{
-            targetView = Class.forName(buildPath(uri)).newInstance()
-        }catch(ClassNotFoundException e){
-            throw new RouteFailedException(e)
-        }
-
-        def bean = buildBean()
-        bean.test = test
-        try{
-            buildInstanceCall(bean)
-        }catch(Exception e){
-            throw new IncorrectFormatException(e)
-        }
-
-        return clearBean(bean)
-    }
-
-    private def buildPath(uri){
-        def path =  configBean.layout.viewPosition+"."+ uri
-        if(isClassExist(path + "_" + configBean.locale)){
-            path = path + "_" + configBean.locale
+    protected def buildPath(uri){
+        def path =  beanContainer.getLayout().getViewPosition()+"."+ uri + "View"
+        def expectPath = path + "_" + beanContainer.getLocale()
+        if( isClassExist (expectPath) ){
+            path = expectPath
         }
         return path
     }
 
     private def isClassExist(String path){
         try{
-            targetView = Class.forName(path,false,this.getClass().getClassLoader()).newInstance()
+            Class.forName(path,false,this.getClass().getClassLoader()).newInstance()
         }catch(ClassNotFoundException ignore){
             return false
         }
         return true
     }
 
-    private def buildBean(){
-        def bean = new JBratBean()
-        bean.component = componentBean
+    protected def buildBean(bean){
+        if(bean==null){
+            bean = BeanFactory.create()
+        }
+        BeanContainer beanContainer = new BeanContainer(bean)
+        beanContainer.setComponent(componentBean)
         return bean
     }
 
-    private def buildInstanceCall(bean){
+    protected def buildInstanceCall(instance,bean){
         if(lastView!=null){
             lastView.exit()
         }
 
-        targetView.enter()
-        targetView.beforeRender()
-        targetView.render( bean )
-        targetView.afterRender()
+        instance.enter()
+        instance.beforeRender()
+        instance.render( bean )
+        instance.afterRender()
 
-        lastView = targetView
-    }
-
-    private static def clearBean(bean){
-        bean.component = null
-        bean.test = null
-        return bean
+        lastView = instance
     }
 }

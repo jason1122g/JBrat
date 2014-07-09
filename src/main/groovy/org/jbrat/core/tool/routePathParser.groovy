@@ -1,17 +1,18 @@
 package org.jbrat.core.tool
 
-import org.jbrat.core.data.JBratBean
+import org.jbrat.core.data.BeanFactory
 import org.jbrat.exceptions.IncorrectFormatException
 
 
 class routePathParser {
 
     private def path
-    private def params = new JBratBean()
+    private def params
     private String uri
 
     routePathParser(uri){
         this.uri = uri
+        this.params = BeanFactory.create()
         process();
     }
 

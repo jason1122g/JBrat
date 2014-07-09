@@ -1,6 +1,7 @@
-package org.jbrat.core
+package org.jbrat.core.localer
 
-import org.jbrat.core.localer.BasicLocaler
+import org.jbrat.core.data.Layout
+import org.jbrat.core.data.container.BeanContainer
 import org.jbrat.exceptions.IncorrectFormatException
 import spock.lang.Shared
 import spock.lang.Specification
@@ -9,13 +10,18 @@ import tools.ExpandableBean
 
 class BasicLocalerTest extends Specification {
 
-    @Shared def configBean
+    @Shared BeanContainer beanContainer
+
 
     def setupSpec(){
-        configBean = new ExpandableBean();
-        configBean.layout = new ExpandableBean()
-        configBean.layout.localesPosition = getPosition()
+
+        def configBean = new ExpandableBean();
+        configBean.layout = new Layout.Builder().setLocalesPosition(getPosition()).build()
         configBean.locale = "enUS"
+
+        def bean = new ExpandableBean();
+        bean.config = configBean
+        beanContainer = new BeanContainer(bean)
     }
 
     private static def getPosition(){
@@ -24,7 +30,7 @@ class BasicLocalerTest extends Specification {
 
     def "fetch locale text from locale setting 1"(){
         given:
-            def basicLocaler = new BasicLocaler(configBean);
+            def basicLocaler = new BasicLocaler(beanContainer);
         expect:
             basicLocaler.localeText("msg1") == "HelloWorld!"
             basicLocaler.localeText("msg2") == "You are good"
@@ -33,9 +39,9 @@ class BasicLocalerTest extends Specification {
 
     def "fetch locale text from locale setting 2"(){
         given:
-            def basicLocaler = new BasicLocaler(configBean);
+            def basicLocaler = new BasicLocaler(beanContainer);
         when:
-            configBean.locale = "zhTW"
+            beanContainer.setLocale("zhTW")
         then:
             basicLocaler.localeText("msg1") == "哈囉世界!"
             basicLocaler.localeText("msg2") == "你很好"
@@ -46,7 +52,7 @@ class BasicLocalerTest extends Specification {
         given:
             new File(getPosition()+"/noPreFix.properties").createNewFile()
         when:
-            new BasicLocaler(configBean);
+            new BasicLocaler(beanContainer);
         then:
             thrown(IncorrectFormatException)
         then:
@@ -60,7 +66,7 @@ class BasicLocalerTest extends Specification {
         and:
             file.setText("{'key':'I am === json'}")
         when:
-            new BasicLocaler(configBean);
+            new BasicLocaler(beanContainer);
         then:
             notThrown(Exception)
     }
