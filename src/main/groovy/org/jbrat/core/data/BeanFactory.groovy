@@ -1,7 +1,7 @@
 package org.jbrat.core.data
 
 
-class BeanFactory {  //TODO TEST THIS
+class BeanFactory {
     static def createEmpty(){
         return new Bean()
     }

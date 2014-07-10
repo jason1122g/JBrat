@@ -1,6 +1,6 @@
 package org.jbrat.core.data
 
-class BeanContainer { //TODO TEST THIS
+class BeanContainer {
 
     private def bean
 
@@ -13,7 +13,7 @@ class BeanContainer { //TODO TEST THIS
     }
 
     Bean getConfig(){
-        return bean.config
+        return bean?.config
     }
 
     void setComponent(bean){
@@ -21,33 +21,43 @@ class BeanContainer { //TODO TEST THIS
     }
 
     Bean getComponent(){
-        return bean.component
+        return bean?.component
     }
 
-    void setParam(bean){
-        this.bean.param = bean
+    void setParam(param){
+        this.bean.param = param
     }
 
     Bean getParam(){
-        return bean.param
+        return bean?.param
     }
 
-    void setLayout(bean){
-        this.bean.config.layout = bean
+    void setLayout(layout){
+        makeSureConfigExist { bean ->
+            bean.config.layout = layout
+        }
     }
 
     Layout getLayout(){
-        return bean.config.layout
+        return bean?.config?.layout
     }
 
-
     void setLocale(locale){
-        this.bean.config.locale = locale
+        makeSureConfigExist { bean ->
+            bean.config.locale = locale
+        }
     }
 
 
     String getLocale(){
-        return bean.config.locale
+        return bean?.config?.locale
+    }
+
+    private void makeSureConfigExist(Closure closure){
+        if( ! bean.config ){
+            this.bean.config = BeanFactory.createEmpty()
+        }
+        closure.call(bean)
     }
 
 }

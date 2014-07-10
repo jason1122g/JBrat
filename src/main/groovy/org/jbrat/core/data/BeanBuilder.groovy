@@ -1,7 +1,7 @@
 package org.jbrat.core.data
 
 
-class BeanBuilder { //TODO TEST THIS
+class BeanBuilder {
 
     private def bean
 

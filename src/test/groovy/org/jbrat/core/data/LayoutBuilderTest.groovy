@@ -4,6 +4,24 @@ import spock.lang.Specification
 
 class LayoutBuilderTest extends Specification {
 
+    def "default build"(){
+        given:
+            def layout = new Layout.Builder().build()
+        and:
+            def base = Layout.Builder.getResourceBase()
+        expect:
+            layout.getControllerPosition() == "app.controller"
+            layout.getModelPosition()      == "app.model"
+            layout.getViewPosition()       == "app.view"
+            layout.getHandlerPosition()    == "app.handler"
+            layout.getHelperPosition()     == "app.helper"
+            layout.getRoutesPosition()     == "${base}/config"
+            layout.getLocalesPosition()    == "${base}/config/locales"
+            layout.getLibPosition()        == "${base}/lib"
+            layout.getVenderPosition()     == "${base}/vender"
+            layout.getLogPosition()        == "${base}/log"
+    }
+
     def "build with full layout"(){
         given:
             def base = Layout.Builder.getResourceBase()
@@ -42,25 +60,6 @@ class LayoutBuilderTest extends Specification {
             layout.getLibPosition()        == lib
             layout.getVenderPosition()     == vender
             layout.getLogPosition()        == log
-    }
-
-
-    def "build with default layout"(){
-        given:
-            def layout = new Layout.Builder().build()
-        and:
-            def base = Layout.Builder.getResourceBase()
-        expect:
-            layout.getControllerPosition() == "app.controller"
-            layout.getModelPosition()      == "app.model"
-            layout.getViewPosition()       == "app.view"
-            layout.getHandlerPosition()    == "app.handler"
-            layout.getHelperPosition()     == "app.helper"
-            layout.getRoutesPosition()     == "${base}/config"
-            layout.getLocalesPosition()    == "${base}/config/locales"
-            layout.getLibPosition()        == "${base}/lib"
-            layout.getVenderPosition()     == "${base}/vender"
-            layout.getLogPosition()        == "${base}/log"
     }
 
     def "application.properties position cannot be changed"(){
