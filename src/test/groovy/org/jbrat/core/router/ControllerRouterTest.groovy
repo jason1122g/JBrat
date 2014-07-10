@@ -12,7 +12,7 @@ import tools.ExpandableBean
 @Title("target controller will invoke the method in bean.test")
 class ControllerRouterTest extends Specification {
 
-    @Shared def controllerRouter
+    @Shared ControllerRouter controllerRouter
     @Shared def testBean = new ExpandableBean()
 
     def setupSpec(){

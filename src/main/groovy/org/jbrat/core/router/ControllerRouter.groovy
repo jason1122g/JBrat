@@ -2,11 +2,11 @@ package org.jbrat.core.router
 
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
-import org.jbrat.core.router.abstracts.JBratRouter
-import org.jbrat.core.tool.routePathParser
+import org.jbrat.core.router.abstracts.ReflectRouterFilter
+import org.jbrat.core.tool.PathParser
 
 
-class ControllerRouter extends JBratRouter{
+class ControllerRouter extends ReflectRouterFilter{
 
     private def configBean
     private def paramsBean
@@ -20,7 +20,7 @@ class ControllerRouter extends JBratRouter{
 
     @Override
     protected def buildPath(uri){
-        def parser = new routePathParser(uri)
+        def parser = new PathParser(uri)
         def path   = parser.getPath()
         paramsBean = parser.getParams()
         beanContainer.getLayout().controllerPosition + "." + path + "Controller"
@@ -28,10 +28,6 @@ class ControllerRouter extends JBratRouter{
 
     @Override
     protected def buildBean(bean){
-        if(bean == null){
-            bean = BeanFactory.createEmpty()
-        }
-
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setConfig(configBean)
         beanContainer.setComponent(componentBean)

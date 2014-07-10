@@ -2,9 +2,9 @@ package org.jbrat.core.router
 
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
-import org.jbrat.core.router.abstracts.JBratRouter
+import org.jbrat.core.router.abstracts.ReflectRouterFilter
 
-class ViewRouter extends JBratRouter{
+class ViewRouter extends ReflectRouterFilter{
 
     private def lastView
     private def componentBean
@@ -34,9 +34,6 @@ class ViewRouter extends JBratRouter{
     }
 
     protected def buildBean(bean){
-        if(bean==null){
-            bean = BeanFactory.createEmpty()
-        }
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setComponent(componentBean)
         return bean
@@ -54,4 +51,5 @@ class ViewRouter extends JBratRouter{
 
         lastView = instance
     }
+
 }

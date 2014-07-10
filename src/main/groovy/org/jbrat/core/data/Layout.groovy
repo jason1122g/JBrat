@@ -7,13 +7,15 @@ class Layout {
     private def handlerPosition    = "app.handler"
     private def helperPosition     = "app.helper"
 
-    private def routesPosition     = "${Builder.getResourceBase()}/config"
-    private def localesPosition    = "${Builder.getResourceBase()}/config/locales"
-    private def applicationSettingPosition = "${Builder.getResourceBase()}/config"
+    private def base = Builder.getResourceBase()
 
-    private def libPosition        = "${Builder.getResourceBase()}/lib"
-    private def venderPosition     = "${Builder.getResourceBase()}/vender"
-    private def logPosition        = "${Builder.getResourceBase()}/log"
+    private def routesPosition     = "${base}/config"
+    private def localesPosition    = "${base}/config/locales"
+    private def applicationSettingPosition = "${base}/config"
+
+    private def libPosition        = "${base}/lib"
+    private def venderPosition     = "${base}/vender"
+    private def logPosition        = "${base}/log"
 
     public Layout(Builder builder){
         builder.map.each { key,value->

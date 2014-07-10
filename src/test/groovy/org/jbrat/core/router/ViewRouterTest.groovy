@@ -12,12 +12,12 @@ import tools.ExpandableBean
 class ViewRouterTest extends Specification {
 
     @Shared def testBean = new ExpandableBean()
-    @Shared def viewRouter
+    @Shared ViewRouter viewRouter
 
     def setupSpec(){
         def bean = new BeanBuilder().build()
         def beanContainer = new BeanContainer(bean)
-        viewRouter = new ViewRouter(beanContainer);
+        viewRouter = new ViewRouter(beanContainer)
     }
 
     def "init a view with no locale name"(){

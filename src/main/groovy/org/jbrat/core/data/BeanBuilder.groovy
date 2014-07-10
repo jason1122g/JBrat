@@ -3,22 +3,21 @@ package org.jbrat.core.data
 
 class BeanBuilder {
 
-    private def bean
+    private def bean = BeanFactory.createEmpty()
+    private def beanContainer = new BeanContainer(bean)
 
     BeanBuilder(){
-        bean        = BeanFactory.createEmpty()
-        bean.config = BeanFactory.createEmpty()
-        bean.config.layout = new  Layout.Builder().build()
-        bean.config.locale = "enUS"
+        beanContainer.setLayout(new  Layout.Builder().build())
+        beanContainer.setLocale("enUS")
     }
 
     def setLayout(layout){
-        bean.config.layout = layout
+        beanContainer.setLayout(layout)
         return this
     }
 
     def setLocale(locale){
-        bean.config.locale = locale
+        beanContainer.setLocale(locale)
         return this
     }
 

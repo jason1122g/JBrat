@@ -1,12 +1,8 @@
 package app.controller.other
 
-import org.jbrat.controllers.JBratController
+import app.controller.runTaskController
 
 
-class runTask2Controller extends JBratController{
-    @Override
-    void prepare(bean) {
-        bean?.test?.call(bean)
-        bean.className = this.getClass().getSimpleName()
-    }
+class runTask2Controller extends runTaskController{
+
 }

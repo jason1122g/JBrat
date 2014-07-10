@@ -1,23 +1,16 @@
 package org.jbrat.core.router.filter
 
-import org.jbrat.core.ability.TransferAbility
 import org.jbrat.core.data.BeanContainer
-import org.jbrat.core.router.abstracts.Router
+import org.jbrat.core.router.abstracts.RouterFilter
+import org.jbrat.core.router.data.RouteData
 
-
-class ControllerFilter extends TransferAbility implements Router{
+class ControllerFilter extends RouterFilter{
     @Override
-    def route(uri,otherBean) {
-
-        BeanContainer bean = new BeanContainer(otherBean)
-        bean.setConfig(null)
-        bean.setComponent(null)
-        bean.setParam(null)
-
-        if(nextTarget == null){
-            return otherBean
-        }else{
-            return nextTarget.route(uri,otherBean)
-        }
+    protected void filt(RouteData routeData) {
+        def bean = routeData.getBean()
+        BeanContainer container = new BeanContainer(bean)
+        container.setConfig(null)
+        container.setComponent(null)
+        container.setParam(null)
     }
 }

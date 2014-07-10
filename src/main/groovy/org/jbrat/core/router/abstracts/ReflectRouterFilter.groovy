@@ -1,34 +1,34 @@
 package org.jbrat.core.router.abstracts
 
-import org.jbrat.core.ability.TransferAbility
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.router.data.RouteData
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
 
-
-abstract class JBratRouter extends TransferAbility implements Router{
+abstract class ReflectRouterFilter extends RouterFilter{
 
     @Override
-    def route(uri,otherBean=null){
-
+    protected void filt(RouteData routeData) {
         def targetController
         try{
-            targetController = Class.forName((String) buildPath(uri) ).newInstance()
+            targetController = Class.forName((String) buildPath(routeData.getPath()) ).newInstance()
         }catch(Exception e){
             throw new RouteFailedException(e)
         }
 
-        def bean = buildBean(otherBean)
+        def bean = routeData.getBean()
+        if(bean == null){
+            bean = BeanFactory.createEmpty()
+        }
+
+        def resultBean = buildBean(bean)
         try{
-            buildInstanceCall(targetController,bean)
+            buildInstanceCall(targetController,resultBean)
         }catch(Exception e){
             throw new IncorrectFormatException(e)
         }
 
-        if(getNextTarget() == null){
-            return bean
-        }else{
-            return getNextTarget().route(uri,bean)
-        }
+        routeData.setBean(resultBean)
     }
 
     protected abstract def    buildPath(uri);
