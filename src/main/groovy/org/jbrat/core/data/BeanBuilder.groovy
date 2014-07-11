@@ -1,27 +1,30 @@
 package org.jbrat.core.data
 
+import groovy.transform.CompileStatic
 
+
+@CompileStatic
 class BeanBuilder {
 
-    private def bean = BeanFactory.createEmpty()
-    private def beanContainer = new BeanContainer(bean)
+    private Bean bean = BeanFactory.createEmpty()
+    private BeanContainer beanContainer = new BeanContainer(bean)
 
     BeanBuilder(){
         beanContainer.setLayout(new  Layout.Builder().build())
         beanContainer.setLocale("enUS")
     }
 
-    def setLayout(layout){
+    BeanBuilder setLayout(Layout layout){
         beanContainer.setLayout(layout)
         return this
     }
 
-    def setLocale(locale){
+    BeanBuilder setLocale(String locale){
         beanContainer.setLocale(locale)
         return this
     }
 
-    def build(){
+    Bean build(){
         return bean
     }
 

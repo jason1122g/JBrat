@@ -1,14 +1,18 @@
 package org.jbrat.core.tool
 
+import groovy.transform.CompileStatic
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.exceptions.IncorrectFormatException
 
+import java.util.regex.Matcher
 
+@CompileStatic
 class PathParser {
 
-    private def path
-    private def params
+    private String path
     private String uri
+    private Bean params
 
     PathParser(uri){
         this.uri = uri
@@ -18,13 +22,13 @@ class PathParser {
 
     private void process(){
 
-        def uriMatcher = uri =~ /^([-. a-zA-Z0-9_]+)\??((\w+=\w+)(,\w+=\w+)*)?$/
+        Matcher uriMatcher = uri =~ /^([-. a-zA-Z0-9_]+)\??((\w+=\w+)(,\w+=\w+)*)?$/
 
         if(uriMatcher.matches()){
             path = uriMatcher.group(1)
-            def args = uriMatcher.group(2)
-            args?.split(",")?.each { pair->
-                def data = pair.split("=")
+            String args = uriMatcher.group(2)
+            args?.split(",")?.each { String pair->
+                String[] data = pair.split("=")
                 params.setProperty(data[0],data[1])
             }
         }else{
@@ -33,11 +37,11 @@ class PathParser {
 
     }
 
-    def getParams(){
+    Bean getParams(){
         return params
     }
 
-    def getPath(){
+    String getPath(){
         return path
     }
 }

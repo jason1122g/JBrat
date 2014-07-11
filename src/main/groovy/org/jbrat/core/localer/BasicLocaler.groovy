@@ -1,45 +1,48 @@
 package org.jbrat.core.localer
 
 import groovy.io.FileType
+import groovy.transform.CompileStatic
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.tool.PropertiesBuilder
 import org.jbrat.exceptions.IncorrectFormatException
 
+import java.util.regex.Matcher
 
+@CompileStatic
 class BasicLocaler implements Localer{
 
-    private def langText
-
+    private Bean langText
     private BeanContainer beanContainer
 
-    def BasicLocaler( beanContainer){
+    def BasicLocaler(BeanContainer beanContainer){
         this.beanContainer = beanContainer
         this.langText = BeanFactory.createEmpty()
         this.readLocaleFiles()
     }
 
-    private def readLocaleFiles(){
-        new File(beanContainer.getLayout().localesPosition+"").eachFileRecurse(FileType.FILES) { file->
+    private void readLocaleFiles(){
+        new File(beanContainer.getLayout().localesPosition+"").eachFileRecurse(FileType.FILES) {File file->
             readFileForLocale(file)
         }
     }
 
-    private def readFileForLocale(File file){
-        def locale     = getLocaleFromString(file.getName())
-        def properties = new PropertiesBuilder().fromFile(file.getPath()).build()
+    private void readFileForLocale(File file){
+        String locale   = getLocaleFromString(file.getName())
+        Properties prop = new PropertiesBuilder().fromFile(file.getPath()).build()
 
-        if(langText."$locale" == null){
-            langText."$locale" = BeanFactory.createEmpty()
+        if(langText.getProperty(locale) == null){
+            langText.setProperty( locale, BeanFactory.createEmpty())
         }
 
-        properties.keys().each { key->
-            langText."$locale"."$key" = properties."$key"
+        prop.each { String key, String value->
+            ( (Bean) langText.getProperty(locale) ) .setProperty( key, value )
         }
     }
 
-    private static def getLocaleFromString(String s){
-        def matcher = s =~ /(\w+)_[0-9a-zA-Z_.]+/
+    private static String getLocaleFromString(String s){
+        Matcher matcher = s =~ /(\w+)_[0-9a-zA-Z_.]+/
         if(matcher.matches()){
             return  matcher.group(1)
         }else{
@@ -48,7 +51,7 @@ class BasicLocaler implements Localer{
     }
 
     @Override
-    def localeText(name){
-        langText."${beanContainer.getLocale()}"."$name"
+    String localeText(String name){
+        ((Bean)langText.getProperty(beanContainer.getLocale())).getProperty(name)
     }
 }

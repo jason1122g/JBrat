@@ -1,6 +1,7 @@
 package org.jbrat.core.router
 
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.data.BeanFactory
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
 import spock.lang.Shared
@@ -13,7 +14,7 @@ import tools.ExpandableBean
 class ControllerRouterTest extends Specification {
 
     @Shared ControllerRouter controllerRouter
-    @Shared def testBean = new ExpandableBean()
+    @Shared def testBean = BeanFactory.createEmpty()
 
     def setupSpec(){
         def bean = new BeanBuilder().build()

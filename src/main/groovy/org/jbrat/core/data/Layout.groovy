@@ -1,130 +1,133 @@
 package org.jbrat.core.data
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class Layout {
-    private def controllerPosition = "app.controller"
-    private def modelPosition      = "app.model"
-    private def viewPosition       = "app.view"
-    private def handlerPosition    = "app.handler"
-    private def helperPosition     = "app.helper"
+    private String controllerPosition = "app.controller"
+    private String modelPosition      = "app.model"
+    private String viewPosition       = "app.view"
+    private String handlerPosition    = "app.handler"
+    private String helperPosition     = "app.helper"
 
-    private def base = Builder.getResourceBase()
+    private String base = Builder.getResourceBase()
 
-    private def routesPosition     = "${base}/config"
-    private def localesPosition    = "${base}/config/locales"
-    private def applicationSettingPosition = "${base}/config"
+    private String routesPosition     = "${base}/config"
+    private String localesPosition    = "${base}/config/locales"
+    private String applicationSettingPosition = "${base}/config"
 
-    private def libPosition        = "${base}/lib"
-    private def venderPosition     = "${base}/vender"
-    private def logPosition        = "${base}/log"
+    private String libPosition        = "${base}/lib"
+    private String venderPosition     = "${base}/vender"
+    private String logPosition        = "${base}/log"
 
     public Layout(Builder builder){
-        builder.map.each { key,value->
-            this."$key" = value
+        builder.map.each {String key,String value->
+            this.setProperty(key,value)
         }
     }
 
-    def getControllerPosition() {
+    String getControllerPosition() {
         return controllerPosition
     }
 
-    def getModelPosition() {
+    String getModelPosition() {
         return modelPosition
     }
 
-    def getViewPosition() {
+    String getViewPosition() {
         return viewPosition
     }
 
-    def getHandlerPosition() {
+    String getHandlerPosition() {
         return handlerPosition
     }
 
-    def getHelperPosition() {
+    String getHelperPosition() {
         return helperPosition
     }
 
-    def getRoutesPosition() {
+    String getRoutesPosition() {
         return routesPosition
     }
 
-    def getLocalesPosition() {
+    String getLocalesPosition() {
         return localesPosition
     }
 
-    def getApplicationSettingPosition() {
+    String getApplicationSettingPosition() {
         return applicationSettingPosition
     }
 
-    def getLibPosition() {
+    String getLibPosition() {
         return libPosition
     }
 
-    def getVenderPosition() {
+    String getVenderPosition() {
         return venderPosition
     }
 
-    def getLogPosition() {
+    String getLogPosition() {
         return logPosition
     }
 
     public static class Builder{
 
-        private def map = [:]
+        private Map map = [:]
 
         Layout build(){
             return new Layout(this)
         }
 
-        def static getResourceBase(){
-            return new File(this.getClass().getResource("/jbrat").toURI()).toString()
+        static String getResourceBase(){
+            return new File(Builder.class.getResource("/jbrat").toURI()).toString()
         }
 
-        def setControllerPosition(controllerPosition) {
+        Builder setControllerPosition(String controllerPosition) {
             map["controllerPosition"] = controllerPosition
             return this
         }
 
-        def setModelPosition(modelPosition) {
+        Builder setModelPosition(String modelPosition) {
             map["modelPosition"] = modelPosition
             return this
         }
 
-        def setViewPosition(viewPosition) {
+        Builder setViewPosition(String viewPosition) {
             map["viewPosition"] = viewPosition
             return this
         }
 
-        def setHandlerPosition(handlerPosition) {
+        Builder setHandlerPosition(String handlerPosition) {
             map["handlerPosition"]  = handlerPosition
             return this
         }
 
-        def setHelperPosition(helperPosition) {
+        Builder setHelperPosition(String helperPosition) {
             map["helperPosition"] = helperPosition
             return this
         }
 
-        def setRoutesPosition(routesPosition) {
+        Builder setRoutesPosition(String routesPosition) {
             map["routesPosition"] = routesPosition
             return this
         }
 
-        def setLocalesPosition(localesPosition) {
+        Builder setLocalesPosition(String localesPosition) {
             map["localesPosition"] = localesPosition
             return this
         }
 
-        def setLibPosition(libPosition) {
+        Builder setLibPosition(String libPosition) {
             map["libPosition"] = libPosition
             return this
         }
 
-        def setVenderPosition(venderPosition) {
+        Builder setVenderPosition(String venderPosition) {
             map["venderPosition"] = venderPosition
             return this
         }
 
-        def setLogPosition(logPosition) {
+        Builder setLogPosition(String logPosition) {
             map["logPosition"] = logPosition
             return this
         }

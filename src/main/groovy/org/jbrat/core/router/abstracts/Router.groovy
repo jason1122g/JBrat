@@ -1,6 +1,8 @@
 package org.jbrat.core.router.abstracts
 
+import org.jbrat.core.data.Bean
+
 
 public interface Router {
-    def route(path,bean);
+    Bean route(String path, Bean bean);
 }

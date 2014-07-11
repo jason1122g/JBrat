@@ -1,18 +1,21 @@
 package org.jbrat.core.tool
 
+import groovy.transform.CompileStatic
 
+
+@CompileStatic
 class PropertiesBuilder {
 
     private Properties property = new Properties()
 
-    def  fromFile(String path,String encode="UTF-8"){
-        new File(path).withInputStream {
-            property.load(new InputStreamReader(it, encode))
+    PropertiesBuilder  fromFile(String path,String encode="UTF-8"){
+        new File(path).withInputStream { InputStream stream ->
+            property.load(new InputStreamReader(stream, encode))
         }
         return this
     }
 
-    def build(){
+    Properties build(){
         return property
     }
 }

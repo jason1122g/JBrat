@@ -1,11 +1,13 @@
 package org.jbrat.core.ability
 
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class TransferAbility {
 
-    def nextTarget
+    def Object nextTarget
 
-    def rightShift(target){
+    def rightShift(Object target){
         nextTarget = target
     }
 

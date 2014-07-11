@@ -1,61 +1,64 @@
 package org.jbrat.core.data
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class BeanContainer {
 
-    private def bean
+    private Bean bean
 
-    BeanContainer(bean){
+    BeanContainer(Bean bean){
         this.bean = bean
     }
 
-    void setConfig(bean){
-        this.bean.config = bean
+    void setConfig(Bean bean){
+        this.bean.setProperty("config",bean)
     }
 
     Bean getConfig(){
-        return bean?.config
+        return (Bean) bean.getProperty("config")
     }
 
-    void setComponent(bean){
-        this.bean.component = bean
+    void setComponent(Bean bean){
+        this.bean.setProperty("component",bean)
     }
 
     Bean getComponent(){
-        return bean?.component
+        return (Bean) bean.getProperty("component")
     }
 
-    void setParam(param){
-        this.bean.param = param
+    void setParam(Bean param){
+        this.bean.setProperty("param",param)
     }
 
     Bean getParam(){
-        return bean?.param
+        return (Bean) bean.getProperty("param")
     }
 
-    void setLayout(layout){
-        makeSureConfigExist { bean ->
-            bean.config.layout = layout
+    void setLayout(Layout layout){
+        makeSureConfigExist { Bean bean ->
+            ((Bean)bean.getProperty("config")).setProperty("layout",layout)
         }
     }
 
     Layout getLayout(){
-        return bean?.config?.layout
+        return (Layout) ((Bean)bean?.getProperty("config"))?.getProperty("layout")
     }
 
-    void setLocale(locale){
-        makeSureConfigExist { bean ->
-            bean.config.locale = locale
+    void setLocale(String locale){
+        makeSureConfigExist {Bean bean ->
+            ((Bean)bean.getProperty("config")).setProperty("locale",locale)
         }
     }
 
 
     String getLocale(){
-        return bean?.config?.locale
+        return (String) ((Bean)bean?.getProperty("config"))?.getProperty("locale")
     }
 
     private void makeSureConfigExist(Closure closure){
-        if( ! bean.config ){
-            this.bean.config = BeanFactory.createEmpty()
+        if( ! bean.getProperty("config") ){
+            this.bean.setProperty("config",BeanFactory.createEmpty())
         }
         closure.call(bean)
     }

@@ -2,5 +2,5 @@ package org.jbrat.core.localer
 
 
 public interface Localer {
-    def localeText(name);
+    String localeText(String name);
 }

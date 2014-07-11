@@ -1,23 +1,27 @@
 package org.jbrat.core.router
 
+import groovy.transform.CompileStatic
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
+import org.jbrat.views.JBratView
 
+@CompileStatic
 class ViewRouter extends ReflectRouterFilter{
 
-    private def lastView
-    private def componentBean
+    private JBratView lastView
+    private Bean componentBean
     private BeanContainer beanContainer
 
-    def ViewRouter(beanContainer){
+    def ViewRouter(BeanContainer beanContainer){
         this.beanContainer = beanContainer
         this.componentBean = BeanFactory.createEmpty()
     }
 
-    protected def buildPath(uri){
-        def path =  beanContainer.getLayout().getViewPosition()+"."+ uri + "View"
-        def expectPath = path + "_" + beanContainer.getLocale()
+    protected String buildPath(String uri){
+        String path =  beanContainer.getLayout().getViewPosition()+"."+ uri + "View"
+        String expectPath = path + "_" + beanContainer.getLocale()
         if( isClassExist (expectPath) ){
             path = expectPath
         }
@@ -33,23 +37,24 @@ class ViewRouter extends ReflectRouterFilter{
         return true
     }
 
-    protected def buildBean(bean){
+    protected Bean buildBean(Bean bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setComponent(componentBean)
         return bean
     }
 
-    protected def buildInstanceCall(instance,bean){
+    protected void buildInstanceCall(Object instance, Bean bean){
         if(lastView!=null){
             lastView.exit()
         }
 
-        instance.enter()
-        instance.beforeRender()
-        instance.render( bean )
-        instance.afterRender()
+        JBratView view = (JBratView) instance
+        view.enter()
+        view.beforeRender()
+        view.render( bean )
+        view.afterRender()
 
-        lastView = instance
+        lastView = view
     }
 
 }

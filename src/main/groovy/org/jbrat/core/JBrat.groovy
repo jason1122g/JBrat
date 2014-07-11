@@ -6,37 +6,52 @@ import org.jbrat.core.router.filter.ControllerFilter
 import org.jbrat.core.router.ControllerRouter
 import org.jbrat.core.router.ViewRouter
 import org.jbrat.core.localer.BasicLocaler
+import org.jbrat.core.router.filter.RedirectFilter
 
 
-class JBrat {
+class JBrat { //TODO TEST AND FINISH THIS
 
-    private static def bean = new BeanBuilder().build() //need to read application.properties
-    private static def beanContainer = new BeanContainer(bean)
+    private static def JBrat self
 
-    private static def localer       = new BasicLocaler    (beanContainer)
-    private static def viewRouter    = new ViewRouter      (beanContainer)
-    private static def controlRouter = new ControllerRouter(beanContainer)
+    private def localer
+    private def viewRouter
+    private def router
 
-    private static def router = controlRouter >> new ControllerFilter() >> viewRouter
+    private JBrat(){
 
-    static{
-        //read application.properties to set all config ready
-        //use default layout for the position which is not setted
+        //read application.properties and set to bean
+        //then init all components
+        def beanContainer = new BeanContainer(new BeanBuilder().build())
+        def redirector    = new RedirectFilter  (beanContainer)
+        def controlRouter = new ControllerRouter(beanContainer)
+        localer           = new BasicLocaler    (beanContainer)
+        viewRouter        = new ViewRouter      (beanContainer)
+
+        router = redirector >> controlRouter >> new ControllerFilter() >> viewRouter
+
     }
 
-    static void route(path){
+    void route(path){
         router.route(path)
     }
 
-    static void start(){
+    void start(){
         route("root")
     }
 
-    static void render(name,bean){
+    void render(name,bean){
         viewRouter.route(name,bean)
     }
 
-    static def localeText(name){
+    def localeText(name){
         return localer.localeText(name)
     }
+
+    static JBrat getInstance(){
+        if(self == null){
+            self = new JBrat()
+        }
+        return self
+    }
+
 }

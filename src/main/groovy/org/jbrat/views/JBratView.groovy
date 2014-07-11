@@ -1,6 +1,8 @@
 package org.jbrat.views
 
+import groovy.transform.CompileStatic
 
+@CompileStatic
 abstract class JBratView extends JBratViewHelper implements View{
     @Override
     void enter() {

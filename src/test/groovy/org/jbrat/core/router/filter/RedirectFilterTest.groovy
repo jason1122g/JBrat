@@ -1,5 +1,6 @@
 package org.jbrat.core.router.filter
 
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.RouterFilter
@@ -13,7 +14,8 @@ class RedirectFilterTest extends Specification {
     private class testFilter extends RouterFilter{
         @Override
         protected void filt(RouteData routeData) {
-            routeData.setBean(routeData.getPath())
+            Bean bean =  new BeanBuilder().setLocale(routeData.getPath()).build()
+            routeData.setBean(bean)
         }
     }
 
@@ -30,7 +32,7 @@ class RedirectFilterTest extends Specification {
         when:
             def result = redirectRouter.route("customRoute")
         then:
-            result == "incorrect"
+            result.config.locale == "incorrect"
     }
 
 }

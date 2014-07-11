@@ -1,44 +1,47 @@
 package org.jbrat.core.router
 
+import groovy.transform.CompileStatic
+import org.jbrat.controllers.JBratController
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
 import org.jbrat.core.tool.PathParser
 
-
+@CompileStatic
 class ControllerRouter extends ReflectRouterFilter{
 
-    private def configBean
-    private def paramsBean
-    private def componentBean
+    private Bean configBean
+    private Bean paramsBean
+    private Bean componentBean
     private BeanContainer beanContainer
 
-    def ControllerRouter(beanContainer){
+    def ControllerRouter(BeanContainer beanContainer){
         this.beanContainer = beanContainer
         this.componentBean = BeanFactory.createEmpty()
     }
 
     @Override
-    protected def buildPath(uri){
-        def parser = new PathParser(uri)
-        def path   = parser.getPath()
-        paramsBean = parser.getParams()
-        beanContainer.getLayout().controllerPosition + "." + path + "Controller"
+    protected String buildPath(String uri){
+        PathParser parser = new PathParser(uri)
+        String     path   = parser.getPath()
+        paramsBean        = parser.getParams()
+        beanContainer.getLayout().getControllerPosition() + "." + path + "Controller"
     }
 
     @Override
-    protected def buildBean(bean){
+    protected Bean buildBean(Bean bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setConfig(configBean)
         beanContainer.setComponent(componentBean)
         beanContainer.setParam(paramsBean)
-
         return bean
     }
 
     @Override
-    protected def buildInstanceCall(instance,bean){
-        instance.prepare( bean )
+    protected void buildInstanceCall(Object instance, Bean bean){
+        JBratController controller = (JBratController) instance
+        controller.prepare( bean )
     }
 
 }
