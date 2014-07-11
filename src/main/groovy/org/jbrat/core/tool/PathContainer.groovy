@@ -8,13 +8,13 @@ import org.jbrat.exceptions.IncorrectFormatException
 import java.util.regex.Matcher
 
 @CompileStatic
-class PathParser {
+class PathContainer {
 
     private String path
     private String uri
     private Bean params
 
-    PathParser(uri){
+    PathContainer(uri){
         this.uri = uri
         this.params = BeanFactory.createEmpty()
         process();

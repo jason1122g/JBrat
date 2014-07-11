@@ -1,9 +1,28 @@
 package app.view
 
-import org.jbrat.views.JBratView
+import org.jbrat.views.View
 
+class runTaskView implements View{
+    @Override
+    void enter() {
 
-class runTaskView extends JBratView{
+    }
+
+    @Override
+    void beforeRender() {
+
+    }
+
+    @Override
+    void afterRender() {
+
+    }
+
+    @Override
+    void exit() {
+
+    }
+
     @Override
     void render(Object bean) {
         bean?.test?.call(bean)

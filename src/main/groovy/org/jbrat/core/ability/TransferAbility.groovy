@@ -5,9 +5,9 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class TransferAbility {
 
-    def Object nextTarget
+    def TransferAbility nextTarget
 
-    def rightShift(Object target){
+    TransferAbility rightShift(TransferAbility target){
         nextTarget = target
     }
 

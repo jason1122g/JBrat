@@ -17,7 +17,7 @@ abstract class RouterFilter extends TransferAbility implements Router{
         if(nextTarget == null){
             return routeData.getBean()
         }else{
-            return ((Router) nextTarget).route(routeData.getPath(),routeData.getBean())
+            return ((Router) nextTarget).route( routeData.getPath() , routeData.getBean() )
         }
 
     }

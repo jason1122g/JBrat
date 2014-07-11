@@ -11,9 +11,11 @@ class ControllerFilter extends RouterFilter{
     @Override
     protected void filt(RouteData routeData) {
         Bean bean = routeData.getBean()
-        BeanContainer container = new BeanContainer(bean)
-        container.setConfig(null)
-        container.setComponent(null)
-        container.setParam(null)
+        if(bean != null){
+            BeanContainer container = new BeanContainer(bean)
+            container.setConfig(null)
+            container.setComponent(null)
+            container.setParam(null)
+        }
     }
 }

@@ -22,7 +22,9 @@ class Layout {
 
     public Layout(Builder builder){
         builder.map.each {String key,String value->
-            this.setProperty(key,value)
+            if(value != null){
+                this.setProperty(key,value)
+            }
         }
     }
 

@@ -8,7 +8,7 @@ class JBratControllerHelper {
 
     private static JBrat jBrat = JBrat.getInstance()
 
-    static void route(path) {
+    static void route(String path) {
         jBrat.route(path)
     }
 

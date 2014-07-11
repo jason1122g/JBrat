@@ -5,12 +5,12 @@ import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
-import org.jbrat.views.JBratView
+import org.jbrat.views.View
 
 @CompileStatic
 class ViewRouter extends ReflectRouterFilter{
 
-    private JBratView lastView
+    private View lastView
     private Bean componentBean
     private BeanContainer beanContainer
 
@@ -48,7 +48,7 @@ class ViewRouter extends ReflectRouterFilter{
             lastView.exit()
         }
 
-        JBratView view = (JBratView) instance
+        View view = (View) instance
         view.enter()
         view.beforeRender()
         view.render( bean )

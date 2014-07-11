@@ -3,8 +3,10 @@ package org.jbrat.core.router.filter
 import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.router.ViewRouter
 import org.jbrat.core.router.abstracts.RouterFilter
 import org.jbrat.core.router.data.RouteData
+import org.jbrat.core.tool.AppConfigReader
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -34,5 +36,6 @@ class RedirectFilterTest extends Specification {
         then:
             result.config.locale == "incorrect"
     }
+
 
 }
