@@ -16,7 +16,7 @@ class AppConfigReader {
 
     AppConfigReader(){
         Layout layout      = new Layout.Builder().build()
-        String appPosition = layout.getApplicationSettingPosition()
+        String appPosition = layout.getConfigLocation()
         appConfigPath = appPosition + "/application.properties"
         resourceBase  = Layout.Builder.getResourceBase()
     }

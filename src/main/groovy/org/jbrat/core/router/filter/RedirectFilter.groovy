@@ -19,7 +19,7 @@ class RedirectFilter extends RouterFilter{
     }
 
     private void readRouteFile(){
-        String path = beanContainer.getLayout().getRoutesPosition()+"/$routeFileName"
+        String path = beanContainer.getLayout().getRoutesLocation()+"/$routeFileName"
         Properties properties = new PropertiesBuilder().fromFile(path).build()
         properties.each { String key, String value->
             routeTable[key] = value

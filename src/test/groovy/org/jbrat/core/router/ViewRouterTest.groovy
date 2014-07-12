@@ -7,7 +7,6 @@ import org.jbrat.exceptions.RouteFailedException
 import spock.lang.Shared
 import spock.lang.Specification
 import org.jbrat.core.data.BeanBuilder
-import tools.ExpandableBean
 
 
 class ViewRouterTest extends Specification {

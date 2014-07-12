@@ -1,5 +1,6 @@
 package org.jbrat.core.router.filter
 
+import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanBuilder
 import spock.lang.Shared
 import spock.lang.Specification
@@ -7,7 +8,7 @@ import spock.lang.Specification
 class ControllerFilterTest extends Specification {
 
     @Shared ControllerFilter controllerFilter
-    @Shared def bean
+    @Shared Bean bean
 
     def setupSpec(){
         bean  = new BeanBuilder().build()

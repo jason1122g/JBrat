@@ -1,6 +1,11 @@
 package org.jbrat.core
 
 import groovy.transform.CompileStatic
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.core.LoggerContext
+import org.apache.logging.log4j.core.config.Configuration
+import org.apache.logging.log4j.core.config.ConfigurationSource
+import org.apache.logging.log4j.core.config.Configurator
 import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.localer.Localer
@@ -23,7 +28,19 @@ class JBrat {
 
     private JBrat(){
         BeanContainer beanContainer = new AppConfigReader().asBeanContainer()
+        configureLogger(beanContainer)
+        configureRouter(beanContainer)
+    }
 
+    private static void configureLogger(BeanContainer beanContainer){
+        System.setProperty("logLocation", beanContainer.getLayout().getLogLocation());
+
+        File file = new File(beanContainer.getLayout().getConfigLocation()+"/log4j2.xml")
+        ConfigurationSource source = new ConfigurationSource(new FileInputStream(file));
+        Configurator.initialize(null, source);
+    }
+
+    private void configureRouter(BeanContainer beanContainer){
         RouterFilter controlRouter  = new ControllerRouter(beanContainer)
         RouterFilter controllFilter = new ControllerFilter()
         router     = new RedirectFilter  (beanContainer)
@@ -33,8 +50,8 @@ class JBrat {
         router >> controlRouter >> controllFilter >> viewRouter
     }
 
-    Bean route(String path){
-        router.route(path,null)
+    Bean route(String path, Bean bean=null){
+        router.route(path,bean)
     }
 
     Bean render(String name, Bean bean){

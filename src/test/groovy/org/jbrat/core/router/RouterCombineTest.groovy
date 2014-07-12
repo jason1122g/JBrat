@@ -23,4 +23,5 @@ class RouterCombineTest extends Specification{
             resultContainer.getConfig() == null
             resultContainer.getParam()  == null
     }
+
 }

@@ -26,7 +26,7 @@ class ControllerRouter extends ReflectRouterFilter{
         PathContainer parser = new PathContainer(uri)
         String     path   = parser.getPath()
         paramsBean        = parser.getParams()
-        beanContainer.getLayout().getControllerPosition() + "." + path + "Controller"
+        beanContainer.getLayout().getControllerLocation() + "." + path + "Controller"
     }
 
     @Override

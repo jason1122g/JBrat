@@ -23,7 +23,7 @@ class BasicLocaler implements Localer{
     }
 
     private void readLocaleFiles(){
-        new File(beanContainer.getLayout().localesPosition+"").eachFileRecurse(FileType.FILES) {File file->
+        new File(beanContainer.getLayout().localesLocation+"").eachFileRecurse(FileType.FILES) {File file->
             readFileForLocale(file)
         }
     }

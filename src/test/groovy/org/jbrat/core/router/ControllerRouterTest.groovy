@@ -8,7 +8,6 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Title
 import org.jbrat.core.data.BeanBuilder
-import tools.ExpandableBean
 
 @Title("target controller will invoke the method in bean.test")
 class ControllerRouterTest extends Specification {
@@ -109,4 +108,5 @@ class ControllerRouterTest extends Specification {
         then:
             thrown(IncorrectFormatException)
     }
+
 }

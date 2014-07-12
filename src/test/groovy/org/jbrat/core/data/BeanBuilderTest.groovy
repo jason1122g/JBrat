@@ -16,22 +16,22 @@ class BeanBuilderTest extends Specification {
             container.getConfig() != null
             container.getLocale() == "enUS"
         and:
-            layout.getControllerPosition() == defaultLayout.getControllerPosition()
-            layout.getModelPosition()      == defaultLayout.getModelPosition()
-            layout.getViewPosition()       == defaultLayout.getViewPosition()
-            layout.getHandlerPosition()    == defaultLayout.getHandlerPosition()
-            layout.getHelperPosition()     == defaultLayout.getHelperPosition()
-            layout.getRoutesPosition()     == defaultLayout.getRoutesPosition()
-            layout.getLocalesPosition()    == defaultLayout.getLocalesPosition()
-            layout.getLibPosition()        == defaultLayout.getLibPosition()
-            layout.getVenderPosition()     == defaultLayout.getVenderPosition()
-            layout.getLogPosition()        == defaultLayout.getLogPosition()
+            layout.getControllerLocation() == defaultLayout.getControllerLocation()
+            layout.getModelLocation()      == defaultLayout.getModelLocation()
+            layout.getViewLocation()       == defaultLayout.getViewLocation()
+            layout.getHandlerLocation()    == defaultLayout.getHandlerLocation()
+            layout.getHelperLocation()     == defaultLayout.getHelperLocation()
+            layout.getRoutesLocation()     == defaultLayout.getRoutesLocation()
+            layout.getLocalesLocation()    == defaultLayout.getLocalesLocation()
+            layout.getLibLocation()        == defaultLayout.getLibLocation()
+            layout.getVenderLocation()     == defaultLayout.getVenderLocation()
+            layout.getLogLocation()        == defaultLayout.getLogLocation()
 
     }
 
     def "set some properties"(){
         given:
-            def layout = new Layout.Builder().setLibPosition("libbb").build()
+            def layout = new Layout.Builder().setLibLocation("libbb").build()
             def bean   = new BeanBuilder()
                       .setLocale("zhTW")
                       .setLayout(layout)
@@ -39,7 +39,7 @@ class BeanBuilderTest extends Specification {
             def container = new BeanContainer(bean)
         expect:
             container.getLocale() == "zhTW"
-            container.getLayout().getLibPosition() == "libbb"
+            container.getLayout().getLibLocation() == "libbb"
 
     }
 }

@@ -10,16 +10,16 @@ class LayoutBuilderTest extends Specification {
         and:
             def base = Layout.Builder.getResourceBase()
         expect:
-            layout.getControllerPosition() == "app.controller"
-            layout.getModelPosition()      == "app.model"
-            layout.getViewPosition()       == "app.view"
-            layout.getHandlerPosition()    == "app.handler"
-            layout.getHelperPosition()     == "app.helper"
-            layout.getRoutesPosition()     == "${base}/config"
-            layout.getLocalesPosition()    == "${base}/config/locales"
-            layout.getLibPosition()        == "${base}/lib"
-            layout.getVenderPosition()     == "${base}/vender"
-            layout.getLogPosition()        == "${base}/log"
+            layout.getControllerLocation() == "app.controller"
+            layout.getModelLocation()      == "app.model"
+            layout.getViewLocation()       == "app.view"
+            layout.getHandlerLocation()    == "app.handler"
+            layout.getHelperLocation()     == "app.helper"
+            layout.getRoutesLocation()     == "${base}/config"
+            layout.getLocalesLocation()    == "${base}/config/locales"
+            layout.getLibLocation()        == "${base}/lib"
+            layout.getVenderLocation()     == "${base}/vender"
+            layout.getLogLocation()        == "${base}/log"
     }
 
     def "build with full layout"(){
@@ -38,36 +38,36 @@ class LayoutBuilderTest extends Specification {
             def log        = "${base}/log"
         when:
             def layout = new Layout.Builder()
-                    .setControllerPosition(controller)
-                    .setModelPosition(model)
-                    .setViewPosition(view)
-                    .setHandlerPosition(handler)
-                    .setHelperPosition(helper)
-                    .setRoutesPosition(routes)
-                    .setLocalesPosition(locales)
-                    .setLibPosition(lib)
-                    .setVenderPosition(vender)
-                    .setLogPosition(log)
+                    .setControllerLocation(controller)
+                    .setModelLocation(model)
+                    .setViewLocation(view)
+                    .setHandlerLocation(handler)
+                    .setHelperLocation(helper)
+                    .setRoutesLocation(routes)
+                    .setLocalesLocation(locales)
+                    .setLibLocation(lib)
+                    .setVenderLocation(vender)
+                    .setLogLocation(log)
                     .build()
         then:
-            layout.getControllerPosition() == controller
-            layout.getModelPosition()      == model
-            layout.getViewPosition()       == view
-            layout.getHandlerPosition()    == handler
-            layout.getHelperPosition()     == helper
-            layout.getRoutesPosition()     == routes
-            layout.getLocalesPosition()    == locales
-            layout.getLibPosition()        == lib
-            layout.getVenderPosition()     == vender
-            layout.getLogPosition()        == log
+            layout.getControllerLocation() == controller
+            layout.getModelLocation()      == model
+            layout.getViewLocation()       == view
+            layout.getHandlerLocation()    == handler
+            layout.getHelperLocation()     == helper
+            layout.getRoutesLocation()     == routes
+            layout.getLocalesLocation()    == locales
+            layout.getLibLocation()        == lib
+            layout.getVenderLocation()     == vender
+            layout.getLogLocation()        == log
     }
 
-    def "application.properties position cannot be changed"(){
+    def "config position cannot be changed"(){
         given:
             def layout = new Layout.Builder().build()
         and:
             def base = Layout.Builder.getResourceBase()
         expect:
-            layout.getApplicationSettingPosition() == "${base}/config"
+            layout.getConfigLocation() == "${base}/config"
     }
 }

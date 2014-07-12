@@ -4,21 +4,21 @@ import groovy.transform.CompileStatic
 
 @CompileStatic
 class Layout {
-    private String controllerPosition = "app.controller"
-    private String modelPosition      = "app.model"
-    private String viewPosition       = "app.view"
-    private String handlerPosition    = "app.handler"
-    private String helperPosition     = "app.helper"
+    private String controllerLocation = "app.controller"
+    private String modelLocation = "app.model"
+    private String viewLocation = "app.view"
+    private String handlerLocation = "app.handler"
+    private String helperLocation = "app.helper"
 
     private String base = Builder.getResourceBase()
 
-    private String routesPosition     = "${base}/config"
-    private String localesPosition    = "${base}/config/locales"
-    private String applicationSettingPosition = "${base}/config"
+    private String routesLocation = "${base}/config"
+    private String localesLocation = "${base}/config/locales"
+    private String configLocation = "${base}/config"
 
-    private String libPosition        = "${base}/lib"
-    private String venderPosition     = "${base}/vender"
-    private String logPosition        = "${base}/log"
+    private String libLocation = "${base}/lib"
+    private String venderLocation = "${base}/vender"
+    private String logLocation = "${base}/log"
 
     public Layout(Builder builder){
         builder.map.each {String key,String value->
@@ -28,48 +28,48 @@ class Layout {
         }
     }
 
-    String getControllerPosition() {
-        return controllerPosition
+    String getControllerLocation() {
+        return controllerLocation
     }
 
-    String getModelPosition() {
-        return modelPosition
+    String getModelLocation() {
+        return modelLocation
     }
 
-    String getViewPosition() {
-        return viewPosition
+    String getViewLocation() {
+        return viewLocation
     }
 
-    String getHandlerPosition() {
-        return handlerPosition
+    String getHandlerLocation() {
+        return handlerLocation
     }
 
-    String getHelperPosition() {
-        return helperPosition
+    String getHelperLocation() {
+        return helperLocation
     }
 
-    String getRoutesPosition() {
-        return routesPosition
+    String getRoutesLocation() {
+        return routesLocation
     }
 
-    String getLocalesPosition() {
-        return localesPosition
+    String getLocalesLocation() {
+        return localesLocation
     }
 
-    String getApplicationSettingPosition() {
-        return applicationSettingPosition
+    String getConfigLocation() {
+        return configLocation
     }
 
-    String getLibPosition() {
-        return libPosition
+    String getLibLocation() {
+        return libLocation
     }
 
-    String getVenderPosition() {
-        return venderPosition
+    String getVenderLocation() {
+        return venderLocation
     }
 
-    String getLogPosition() {
-        return logPosition
+    String getLogLocation() {
+        return logLocation
     }
 
     public static class Builder{
@@ -84,53 +84,53 @@ class Layout {
             return new File(Builder.class.getResource("/jbrat").toURI()).toString()
         }
 
-        Builder setControllerPosition(String controllerPosition) {
-            map["controllerPosition"] = controllerPosition
+        Builder setControllerLocation(String controllerLocation) {
+            map["controllerLocation"] = controllerLocation
             return this
         }
 
-        Builder setModelPosition(String modelPosition) {
-            map["modelPosition"] = modelPosition
+        Builder setModelLocation(String modelLocation) {
+            map["modelLocation"] = modelLocation
             return this
         }
 
-        Builder setViewPosition(String viewPosition) {
-            map["viewPosition"] = viewPosition
+        Builder setViewLocation(String viewLocation) {
+            map["viewLocation"] = viewLocation
             return this
         }
 
-        Builder setHandlerPosition(String handlerPosition) {
-            map["handlerPosition"]  = handlerPosition
+        Builder setHandlerLocation(String handlerLocation) {
+            map["handlerLocation"]  = handlerLocation
             return this
         }
 
-        Builder setHelperPosition(String helperPosition) {
-            map["helperPosition"] = helperPosition
+        Builder setHelperLocation(String helperLocation) {
+            map["helperLocation"] = helperLocation
             return this
         }
 
-        Builder setRoutesPosition(String routesPosition) {
-            map["routesPosition"] = routesPosition
+        Builder setRoutesLocation(String routesLocation) {
+            map["routesLocation"] = routesLocation
             return this
         }
 
-        Builder setLocalesPosition(String localesPosition) {
-            map["localesPosition"] = localesPosition
+        Builder setLocalesLocation(String localesLocation) {
+            map["localesLocation"] = localesLocation
             return this
         }
 
-        Builder setLibPosition(String libPosition) {
-            map["libPosition"] = libPosition
+        Builder setLibLocation(String libLocation) {
+            map["libLocation"] = libLocation
             return this
         }
 
-        Builder setVenderPosition(String venderPosition) {
-            map["venderPosition"] = venderPosition
+        Builder setVenderLocation(String venderLocation) {
+            map["venderLocation"] = venderLocation
             return this
         }
 
-        Builder setLogPosition(String logPosition) {
-            map["logPosition"] = logPosition
+        Builder setLogLocation(String logLocation) {
+            map["logLocation"] = logLocation
             return this
         }
     }

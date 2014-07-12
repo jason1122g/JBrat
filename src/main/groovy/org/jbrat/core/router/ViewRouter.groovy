@@ -20,7 +20,7 @@ class ViewRouter extends ReflectRouterFilter{
     }
 
     protected String buildPath(String uri){
-        String path =  beanContainer.getLayout().getViewPosition()+"."+ uri + "View"
+        String path =  beanContainer.getLayout().getViewLocation()+"."+ uri + "View"
         String expectPath = path + "_" + beanContainer.getLocale()
         if( isClassExist (expectPath) ){
             path = expectPath

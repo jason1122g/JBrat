@@ -1,6 +1,15 @@
 package app.controller.inner
 
-import app.controller.runTaskController
+import org.jbrat.controllers.JBratController
+import org.jbrat.core.data.Bean
 
-class System1Controller extends runTaskController{
+class System1Controller extends JBratController{
+    @Override
+    void prepare(Bean bean) {
+        if(bean.className == null){
+            bean.className = this.getClass().getSimpleName()
+        }else{
+            bean.className += this.getClass().getSimpleName()
+        }
+    }
 }
