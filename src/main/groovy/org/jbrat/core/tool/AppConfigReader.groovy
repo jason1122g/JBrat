@@ -1,10 +1,10 @@
 package org.jbrat.core.tool
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.Layout
+import org.jbrat.core.data.abstracts.Bindable
 
 import java.util.regex.Matcher
 
@@ -15,10 +15,9 @@ class AppConfigReader {
     private String resourceBase
 
     AppConfigReader(){
-        Layout layout      = new Layout.Builder().build()
-        String appPosition = layout.getConfigLocation()
-        appConfigPath = appPosition + "/application.properties"
-        resourceBase  = Layout.Builder.getResourceBase()
+        String appPosition = Layout.getConfigLocation()
+        resourceBase       = Layout.getResourceBase()
+        appConfigPath      = appPosition + "/application.properties"
     }
 
     BeanContainer asBeanContainer(){
@@ -42,7 +41,7 @@ class AppConfigReader {
             }
         }
 
-        Bean bean = beanBuilder.setLayout(layoutBuilder.build()).build()
+        Bindable bean = beanBuilder.setLayout(layoutBuilder.build()).build()
         return new BeanContainer(bean)
 
     }

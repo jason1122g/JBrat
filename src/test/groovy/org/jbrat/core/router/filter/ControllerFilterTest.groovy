@@ -1,14 +1,14 @@
 package org.jbrat.core.router.filter
 
-import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanBuilder
+import org.jbrat.core.data.abstracts.Bindable
 import spock.lang.Shared
 import spock.lang.Specification
 
 class ControllerFilterTest extends Specification {
 
     @Shared ControllerFilter controllerFilter
-    @Shared Bean bean
+    @Shared Bindable bean
 
     def setupSpec(){
         bean  = new BeanBuilder().build()

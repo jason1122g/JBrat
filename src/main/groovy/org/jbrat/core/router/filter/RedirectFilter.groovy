@@ -9,9 +9,9 @@ import org.jbrat.core.tool.PropertiesBuilder
 @CompileStatic
 class RedirectFilter extends RouterFilter{
 
+    private Map           routeTable = [:]
     private BeanContainer beanContainer
-    private Map routeTable = [:]
-    private String routeFileName = "routes.properties"
+    private String        routeFileName = "routes.properties"
 
     RedirectFilter(BeanContainer beanContainer){
         this.beanContainer = beanContainer

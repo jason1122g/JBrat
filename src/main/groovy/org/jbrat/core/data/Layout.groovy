@@ -5,20 +5,20 @@ import groovy.transform.CompileStatic
 @CompileStatic
 class Layout {
     private String controllerLocation = "app.controller"
-    private String modelLocation = "app.model"
-    private String viewLocation = "app.view"
-    private String handlerLocation = "app.handler"
-    private String helperLocation = "app.helper"
+    private String modelLocation      = "app.model"
+    private String viewLocation       = "app.view"
+    private String handlerLocation    = "app.handler"
+    private String helperLocation     = "app.helper"
 
-    private String base = Builder.getResourceBase()
+    private static String base = new File(Builder.class.getResource("/jbrat").toURI()).toString()
+    private static String configLocation  = "${base}/config"
+    private String routesLocation         = "${base}/config"
+    private String localesLocation        = "${base}/config/locales"
 
-    private String routesLocation = "${base}/config"
-    private String localesLocation = "${base}/config/locales"
-    private String configLocation = "${base}/config"
+    private String libLocation        = "${base}/lib"
+    private String venderLocation     = "${base}/vender"
 
-    private String libLocation = "${base}/lib"
-    private String venderLocation = "${base}/vender"
-    private String logLocation = "${base}/log"
+    private String logLocation        = "logs"
 
     public Layout(Builder builder){
         builder.map.each {String key,String value->
@@ -26,6 +26,14 @@ class Layout {
                 this.setProperty(key,value)
             }
         }
+    }
+
+    static String getResourceBase(){
+        return base
+    }
+
+    static String getConfigLocation() {
+        return configLocation
     }
 
     String getControllerLocation() {
@@ -56,10 +64,6 @@ class Layout {
         return localesLocation
     }
 
-    String getConfigLocation() {
-        return configLocation
-    }
-
     String getLibLocation() {
         return libLocation
     }
@@ -78,10 +82,6 @@ class Layout {
 
         Layout build(){
             return new Layout(this)
-        }
-
-        static String getResourceBase(){
-            return new File(Builder.class.getResource("/jbrat").toURI()).toString()
         }
 
         Builder setControllerLocation(String controllerLocation) {

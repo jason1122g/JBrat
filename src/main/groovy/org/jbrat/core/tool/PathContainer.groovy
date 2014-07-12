@@ -1,8 +1,8 @@
 package org.jbrat.core.tool
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.exceptions.IncorrectFormatException
 
 import java.util.regex.Matcher
@@ -10,9 +10,9 @@ import java.util.regex.Matcher
 @CompileStatic
 class PathContainer {
 
-    private String path
-    private String uri
-    private Bean params
+    private String   path
+    private String   uri
+    private Bindable params
 
     PathContainer(uri){
         this.uri = uri
@@ -37,7 +37,7 @@ class PathContainer {
 
     }
 
-    Bean getParams(){
+    Bindable getParams(){
         return params
     }
 

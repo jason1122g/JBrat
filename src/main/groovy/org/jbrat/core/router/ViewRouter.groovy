@@ -1,9 +1,9 @@
 package org.jbrat.core.router
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
-import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
 import org.jbrat.views.View
 
@@ -11,7 +11,7 @@ import org.jbrat.views.View
 class ViewRouter extends ReflectRouterFilter{
 
     private View lastView
-    private Bean componentBean
+    private Bindable componentBean
     private BeanContainer beanContainer
 
     def ViewRouter(BeanContainer beanContainer){
@@ -37,13 +37,13 @@ class ViewRouter extends ReflectRouterFilter{
         return true
     }
 
-    protected Bean buildBean(Bean bean){
+    protected Bindable buildBean(Bindable bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setComponent(componentBean)
         return bean
     }
 
-    protected void buildInstanceCall(Object instance, Bean bean){
+    protected void buildInstanceCall(Object instance, Bindable bean){
         if(lastView!=null){
             lastView.exit()
         }

@@ -1,19 +1,16 @@
 package org.jbrat.core
 
 import groovy.transform.CompileStatic
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.core.LoggerContext
-import org.apache.logging.log4j.core.config.Configuration
 import org.apache.logging.log4j.core.config.ConfigurationSource
 import org.apache.logging.log4j.core.config.Configurator
-import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.localer.BasicLocaler
 import org.jbrat.core.localer.Localer
-import org.jbrat.core.router.abstracts.RouterFilter
-import org.jbrat.core.router.filter.ControllerFilter
 import org.jbrat.core.router.ControllerRouter
 import org.jbrat.core.router.ViewRouter
-import org.jbrat.core.localer.BasicLocaler
+import org.jbrat.core.router.abstracts.RouterFilter
+import org.jbrat.core.router.filter.ControllerFilter
 import org.jbrat.core.router.filter.RedirectFilter
 import org.jbrat.core.tool.AppConfigReader
 
@@ -50,11 +47,11 @@ class JBrat {
         router >> controlRouter >> controllFilter >> viewRouter
     }
 
-    Bean route(String path, Bean bean=null){
+    Bindable route(String path, Bindable bean=null){
         router.route(path,bean)
     }
 
-    Bean render(String name, Bean bean){
+    Bindable render(String name, Bindable bean){
         viewRouter.route(name,bean)
     }
 

@@ -1,9 +1,9 @@
 package org.jbrat.core.router.abstracts
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
+import org.jbrat.core.data.abstracts.Bindable
 
 @CompileStatic
 public interface Router {
-    Bean route(String path, Bean bean);
+    Bindable route(String path, Bindable bean);
 }

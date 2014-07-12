@@ -1,9 +1,9 @@
 package org.jbrat.controllers
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
+import org.jbrat.core.data.abstracts.Bindable
 
 @CompileStatic
 public interface Controller {
-    void prepare(Bean bean);
+    void prepare(Bindable bean);
 }

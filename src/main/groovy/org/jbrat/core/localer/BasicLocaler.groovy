@@ -2,9 +2,9 @@ package org.jbrat.core.localer
 
 import groovy.io.FileType
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
-import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.core.tool.PropertiesBuilder
 import org.jbrat.exceptions.IncorrectFormatException
 
@@ -13,12 +13,12 @@ import java.util.regex.Matcher
 @CompileStatic
 class BasicLocaler implements Localer{
 
-    private Bean langText
+    private Bindable langText
     private BeanContainer beanContainer
 
     def BasicLocaler(BeanContainer beanContainer){
         this.beanContainer = beanContainer
-        this.langText = BeanFactory.createEmpty()
+        this.langText      = BeanFactory.createEmpty()
         this.readLocaleFiles()
     }
 
@@ -37,7 +37,7 @@ class BasicLocaler implements Localer{
         }
 
         prop.each { String key, String value->
-            ( (Bean) langText.getProperty(locale) ) .setProperty( key, value )
+            ( (Bindable) langText.getProperty(locale) ) .setProperty( key, value )
         }
     }
 
@@ -52,6 +52,6 @@ class BasicLocaler implements Localer{
 
     @Override
     String localeText(String name){
-        ((Bean)langText.getProperty(beanContainer.getLocale())).getProperty(name)
+        ((Bindable)langText.getProperty(beanContainer.getLocale())).getProperty(name)
     }
 }

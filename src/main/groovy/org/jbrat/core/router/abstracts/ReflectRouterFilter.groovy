@@ -1,8 +1,8 @@
 package org.jbrat.core.router.abstracts
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.Bean
 import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.core.router.data.RouteData
 import org.jbrat.exceptions.IncorrectFormatException
 import org.jbrat.exceptions.RouteFailedException
@@ -19,12 +19,12 @@ abstract class ReflectRouterFilter extends RouterFilter{
             throw new RouteFailedException(e)
         }
 
-        Bean bean = routeData.getBean()
+        Bindable bean = routeData.getBean()
         if(bean == null){
             bean = BeanFactory.createEmpty()
         }
 
-        Bean resultBean = buildBean(bean)
+        Bindable resultBean = buildBean(bean)
         try{
             buildInstanceCall(targetController,resultBean)
         }catch(Exception e){
@@ -34,7 +34,7 @@ abstract class ReflectRouterFilter extends RouterFilter{
         routeData.setBean(resultBean)
     }
 
-    protected abstract String buildPath(String uri);
-    protected abstract Bean   buildBean(Bean bean);
-    protected abstract void   buildInstanceCall(Object instance, Bean bean);
+    protected abstract String   buildPath(String uri);
+    protected abstract Bindable buildBean(Bindable bean);
+    protected abstract void     buildInstanceCall(Object instance, Bindable bean);
 }

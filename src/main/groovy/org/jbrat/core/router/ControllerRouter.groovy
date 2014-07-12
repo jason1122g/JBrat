@@ -2,18 +2,18 @@ package org.jbrat.core.router
 
 import groovy.transform.CompileStatic
 import org.jbrat.controllers.Controller
-import org.jbrat.core.data.Bean
-import org.jbrat.core.data.BeanFactory
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.data.BeanFactory
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
 import org.jbrat.core.tool.PathContainer
 
 @CompileStatic
 class ControllerRouter extends ReflectRouterFilter{
 
-    private Bean configBean
-    private Bean paramsBean
-    private Bean componentBean
+    private Bindable configBean
+    private Bindable paramsBean
+    private Bindable componentBean
     private BeanContainer beanContainer
 
     def ControllerRouter(BeanContainer beanContainer){
@@ -30,7 +30,7 @@ class ControllerRouter extends ReflectRouterFilter{
     }
 
     @Override
-    protected Bean buildBean(Bean bean){
+    protected Bindable buildBean(Bindable bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setConfig(configBean)
         beanContainer.setComponent(componentBean)
@@ -39,7 +39,7 @@ class ControllerRouter extends ReflectRouterFilter{
     }
 
     @Override
-    protected void buildInstanceCall(Object instance, Bean bean){
+    protected void buildInstanceCall(Object instance, Bindable bean){
         Controller controller = (Controller) instance
         controller.prepare( bean )
     }

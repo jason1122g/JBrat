@@ -4,22 +4,33 @@ import org.jbrat.core.data.Layout
 import spock.lang.Specification
 
 class AppConfigReaderTest extends Specification {
+
     def "test configurator"(){
         given:
+            def configLocation= Layout.getConfigLocation() + "/application.properties"
+            def prop          = new PropertiesBuilder().fromFile(configLocation).build()
             def configurator  = new AppConfigReader()
-            def resourceBase  = Layout.Builder.getResourceBase()
+
         when:
             def beanContainer = configurator.asBeanContainer()
         then:
-            beanContainer.getLocale() == "zhTW"
-            beanContainer.getLayout().getControllerLocation() == "app.controller.inner"
-            beanContainer.getLayout().getModelLocation()      == "app.model.inner"
-            beanContainer.getLayout().getViewLocation()       == "app.view.inner"
-            beanContainer.getLayout().getHandlerLocation()    == "app.handler.inner"
-            beanContainer.getLayout().getHelperLocation()     == "app.helper.inner"
-            beanContainer.getLayout().getRoutesLocation()     == "$resourceBase/config/inner"
-            beanContainer.getLayout().getLocalesLocation()    == "$resourceBase/config/locales/inner"
-            beanContainer.getLayout().getLogLocation()        == "$resourceBase/log/inner"
+            beanContainer.getLocale() == prop."locale"
+            beanContainer.getLayout().getControllerLocation() == convert(prop."layout.controllerLocation")
+            beanContainer.getLayout().getModelLocation()      == convert(prop."layout.modelLocation")
+            beanContainer.getLayout().getViewLocation()       == convert(prop."layout.viewLocation")
+            beanContainer.getLayout().getHandlerLocation()    == convert(prop."layout.handlerLocation")
+            beanContainer.getLayout().getHelperLocation()     == convert(prop."layout.helperLocation")
+            beanContainer.getLayout().getRoutesLocation()     == convert(prop."layout.routesLocation")
+            beanContainer.getLayout().getLocalesLocation()    == convert(prop."layout.localesLocation")
+            beanContainer.getLayout().getLogLocation()        == convert(prop."layout.logLocation")
+    }
+
+    private static def convert(path){
+        def resourceBase  = Layout.getResourceBase()
+        if(path.contains(":resource")){
+            path = resourceBase + path.replaceFirst(/^:resource/,"")
+        }
+        return path
     }
 
 }

@@ -1,59 +1,60 @@
 package org.jbrat.core.data
 
 import groovy.transform.CompileStatic
+import org.jbrat.core.data.abstracts.Bindable
 
 @CompileStatic
 class BeanContainer {
 
-    private Bean bean
+    private Bindable bean
 
-    BeanContainer(Bean bean){
+    BeanContainer(Bindable bean){
         this.bean = bean
     }
 
-    void setConfig(Bean bean){
+    void setConfig(Bindable bean){
         this.bean.setProperty("config",bean)
     }
 
-    Bean getConfig(){
-        return (Bean) bean.getProperty("config")
+    Bindable getConfig(){
+        return (Bindable) bean.getProperty("config")
     }
 
-    void setComponent(Bean bean){
+    void setComponent(Bindable bean){
         this.bean.setProperty("component",bean)
     }
 
-    Bean getComponent(){
-        return (Bean) bean.getProperty("component")
+    Bindable getComponent(){
+        return (Bindable) bean.getProperty("component")
     }
 
-    void setParam(Bean param){
+    void setParam(Bindable param){
         this.bean.setProperty("param",param)
     }
 
-    Bean getParam(){
-        return (Bean) bean.getProperty("param")
+    Bindable getParam(){
+        return (Bindable) bean.getProperty("param")
     }
 
     void setLayout(Layout layout){
-        makeSureConfigExist { Bean bean ->
-            ((Bean)bean.getProperty("config")).setProperty("layout",layout)
+        makeSureConfigExist { Bindable bean ->
+            ((Bindable)bean.getProperty("config")).setProperty("layout",layout)
         }
     }
 
     Layout getLayout(){
-        return (Layout) ((Bean)bean?.getProperty("config"))?.getProperty("layout")
+        return (Layout) ((Bindable)bean?.getProperty("config"))?.getProperty("layout")
     }
 
     void setLocale(String locale){
-        makeSureConfigExist {Bean bean ->
-            ((Bean)bean.getProperty("config")).setProperty("locale",locale)
+        makeSureConfigExist {Bindable bean ->
+            ((Bindable)bean.getProperty("config")).setProperty("locale",locale)
         }
     }
 
 
     String getLocale(){
-        return (String) ((Bean)bean?.getProperty("config"))?.getProperty("locale")
+        return (String) ((Bindable)bean?.getProperty("config"))?.getProperty("locale")
     }
 
     private void makeSureConfigExist(Closure closure){

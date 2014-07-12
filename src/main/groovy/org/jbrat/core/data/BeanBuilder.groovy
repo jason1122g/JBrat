@@ -1,12 +1,13 @@
 package org.jbrat.core.data
 
 import groovy.transform.CompileStatic
+import org.jbrat.core.data.abstracts.Bindable
 
 
 @CompileStatic
 class BeanBuilder {
 
-    private Bean bean = BeanFactory.createEmpty()
+    private Bindable bean = BeanFactory.createEmpty()
     private BeanContainer beanContainer = new BeanContainer(bean)
 
     BeanBuilder(){
@@ -24,7 +25,7 @@ class BeanBuilder {
         return this
     }
 
-    Bean build(){
+    Bindable build(){
         return bean
     }
 

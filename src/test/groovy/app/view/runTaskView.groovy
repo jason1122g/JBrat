@@ -1,6 +1,6 @@
 package app.view
 
-import org.jbrat.core.data.Bean
+import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.views.View
 
 class runTaskView implements View{
@@ -25,7 +25,7 @@ class runTaskView implements View{
     }
 
     @Override
-    void render(Bean bean) {
+    void render(Bindable bean) {
         bean?.test?.call(bean)
         bean.className = this.getClass().getSimpleName()
     }

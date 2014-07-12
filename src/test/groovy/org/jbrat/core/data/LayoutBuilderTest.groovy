@@ -8,7 +8,7 @@ class LayoutBuilderTest extends Specification {
         given:
             def layout = new Layout.Builder().build()
         and:
-            def base = Layout.Builder.getResourceBase()
+            def base = Layout.getResourceBase()
         expect:
             layout.getControllerLocation() == "app.controller"
             layout.getModelLocation()      == "app.model"
@@ -19,12 +19,12 @@ class LayoutBuilderTest extends Specification {
             layout.getLocalesLocation()    == "${base}/config/locales"
             layout.getLibLocation()        == "${base}/lib"
             layout.getVenderLocation()     == "${base}/vender"
-            layout.getLogLocation()        == "${base}/log"
+            layout.getLogLocation()        == "logs"
     }
 
     def "build with full layout"(){
         given:
-            def base = Layout.Builder.getResourceBase()
+            def base = Layout.getResourceBase()
         and:
             def controller = "controller"
             def model      = "model"
@@ -35,7 +35,7 @@ class LayoutBuilderTest extends Specification {
             def locales    = "${base}/locales"
             def lib        = "${base}/lib"
             def vender     = "${base}/lib"
-            def log        = "${base}/log"
+            def log        = "logss"
         when:
             def layout = new Layout.Builder()
                     .setControllerLocation(controller)
@@ -62,12 +62,4 @@ class LayoutBuilderTest extends Specification {
             layout.getLogLocation()        == log
     }
 
-    def "config position cannot be changed"(){
-        given:
-            def layout = new Layout.Builder().build()
-        and:
-            def base = Layout.Builder.getResourceBase()
-        expect:
-            layout.getConfigLocation() == "${base}/config"
-    }
 }
