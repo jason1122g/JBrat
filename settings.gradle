@@ -1,0 +1,4 @@
+include 'jbrat-core'
+include 'jbrat-generator'
+
+rootProject.name = "jbrat"

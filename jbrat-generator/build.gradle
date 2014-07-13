@@ -1,0 +1,8 @@
+
+description = "JBrat-Generator module for generate the structure of project and other components"
+
+version = '1.0.0'
+
+dependencies {
+    project(":jbrat-core")
+}
