@@ -27,8 +27,8 @@ class AppConfigReaderTest extends Specification {
 
     private static def convert(path){
         def resourceBase  = Layout.getResourceBase()
-        if(path.contains(":resource")){
-            path = resourceBase + path.replaceFirst(/^:resource/,"")
+        if(path.contains("\${resource}")){
+            path = resourceBase + path.replace("\${resource}","")
         }
         return path
     }

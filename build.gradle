@@ -6,6 +6,7 @@ allprojects{
 }
 
 subprojects{
+
     apply plugin: "groovy"
     sourceCompatibility = 1.7
 

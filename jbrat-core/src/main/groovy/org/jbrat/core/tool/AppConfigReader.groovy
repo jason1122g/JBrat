@@ -33,8 +33,8 @@ class AppConfigReader {
                     break
                 case ~/^layout\.(\w+)/:
                     String positionName = Matcher.lastMatcher.group(1)
-                    if(value.contains(":resource")){
-                        value = resourceBase + value.replaceFirst(/^:resource/,"")
+                    if(value.contains("\${resource}")){
+                        value = resourceBase + value.replaceFirst(/\$\{resource}/,"")
                     }
                     layoutBuilder.setProperty(positionName,value)
                     break
