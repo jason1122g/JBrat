@@ -8,14 +8,6 @@ class JBratTemplateTest extends Specification {
     @Shared def name   = "Hello"
     @Shared def files  = ["/Hello_View.txt","/Hello_Controller.txt","/Hello_Helper.txt"]
 
-    def setupSpec(){
-        FileTool.recursiveCopy("src/source/templates","templates")
-    }
-
-    def cleanupSpec(){
-        new File("templates").deleteDir()
-    }
-
     def "view template test"(){
         given:
             def source = new JBratTemplate(name,JBratTemplate.VIEW).toString()

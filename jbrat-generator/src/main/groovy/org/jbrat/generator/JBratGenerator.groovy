@@ -37,9 +37,9 @@ class JBratGenerator {
         }
     }
 
-    private static void generateProject(String name){
+    private static void generateProject(String name){ //TODO NEED TEST
         def targetDir = new File(name)
-        def sourceDir = new File("demo")
+        def sourceDir = new File(this.class.getResource("/demo").toURI())
         if(targetDir.exists()){
             throw new IOException("File Already Exists"+targetDir.getAbsolutePath())
         }else{

@@ -1,6 +1,6 @@
 package app.view
 
-import demo.src.main.groovy.app.helper.LaunchHelper
+import app.helper.LaunchHelper
 import org.jbrat.core.data.abstracts.Bindable
 import org.jbrat.views.JBratView
 

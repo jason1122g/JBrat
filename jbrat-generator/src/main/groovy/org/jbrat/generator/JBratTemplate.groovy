@@ -22,13 +22,13 @@ class JBratTemplate {
     }
 
     private  StringTemplate generateTemplate(){
-        StringTemplate template = getTemplate("templates/${type.toLowerCase()}.txt")
+        StringTemplate template = getTemplate("/templates/${type.toLowerCase()}.txt")
         template.setProperty( "name", name)
         return template
     }
 
     private static StringTemplate getTemplate(String path){
-        new StringTemplate(new File(path))
+        new StringTemplate(new File(this.class.getResource(path).toURI()))
     }
 
 }
