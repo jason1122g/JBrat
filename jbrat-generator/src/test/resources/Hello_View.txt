@@ -1,0 +1,13 @@
+package app.view
+
+import app.helper.HelloHelper
+import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.views.JBratView
+
+@Mixin(HelloHelper)
+class HelloView extends JBratView{
+    @Override
+    void render(Bindable bean) {
+
+    }
+}

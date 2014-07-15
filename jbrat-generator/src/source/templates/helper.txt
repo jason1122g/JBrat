@@ -1,0 +1,5 @@
+package app.helper
+
+class ${name}Helper{${note}
+
+}

@@ -21,9 +21,9 @@ class StringTemplate {
     }
 
     String toString(){
-        template.replaceAll(/\$\{(.+)}/) { String all, String key->
+        template.replaceAll (/\$\{(.+?)}/, { String all, String key->
             words[key] == null ? "" : words[key]
-        }
+        })
     }
 
 }

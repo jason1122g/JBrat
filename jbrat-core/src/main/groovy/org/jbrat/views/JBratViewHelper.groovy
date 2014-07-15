@@ -13,11 +13,11 @@ class JBratViewHelper {
         jBrat.render(name,bean)
     }
 
-    static void localeText(String name){
+    static String localeText(String name){
         jBrat.localeText(name)
     }
 
-    static void t(String name){
+    static String t(String name){
         localeText(name)
     }
 

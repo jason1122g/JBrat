@@ -1,8 +1,27 @@
-
 description = "JBrat-Generator module for generate the structure of project and other components"
 
 version = '1.0.0'
 
+apply plugin:'application'
+mainClassName = 'org.jbrat.generator.JBratGenerator'
+
+task createDocs {
+    def docs = file("$buildDir/docs")
+    outputs.dir docs
+    doLast {
+        docs.mkdirs()
+        new File(docs, "readme.txt").write("Read me!")
+    }
+}
+
+applicationDistribution.from(createDocs) {
+    into "docs"
+}
+
+applicationDistribution.from("src/source") {
+    into "bin"
+}
+
 dependencies {
-    project(":jbrat-core")
+//    compile project(":jbrat-core")
 }

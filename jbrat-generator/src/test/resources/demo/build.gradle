@@ -1,0 +1,24 @@
+package demo
+
+
+apply plugin: "groovy"
+
+description = "JBrat Demo"
+version     = "1.0.0-SNAPSHOT"
+
+sourceCompatibility = 1.7
+
+repositories  {
+    mavenCentral()
+    maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+    flatDir{
+        dirs "src/main/resources/jbrat/vender"
+    }
+}
+
+dependencies {
+    groovy      "org.codehaus.groovy:groovy-all:2.1.5"
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.0-SNAPSHOT"
+
+    compile name: "jbrat-core-2.0.0"
+}

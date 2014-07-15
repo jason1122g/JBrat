@@ -1,0 +1,11 @@
+package app.controller
+
+import org.jbrat.controllers.JBratController
+import org.jbrat.core.data.abstracts.Bindable
+
+class HelloController extends JBratController{
+    @Override
+    void prepare(Bindable bean) {
+
+    }
+}
