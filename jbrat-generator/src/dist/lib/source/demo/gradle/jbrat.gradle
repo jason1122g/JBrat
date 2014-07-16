@@ -1,0 +1,26 @@
+
+apply plugin:'application'
+
+mainClassName = 'app.Launcher'
+
+startScripts {
+    classpath += files('src/dist/lib/source')
+}
+
+test {
+    classpath += files("src/dist/lib/source")
+}
+
+run{
+    classpath += files("src/dist/lib/source")
+}
+
+repositories  {
+    flatDir{
+        dirs "src/dist/lib/source/jbrat/vender"
+    }
+}
+
+dependencies {
+    compile name: "jbrat-core-2.0.0"
+}

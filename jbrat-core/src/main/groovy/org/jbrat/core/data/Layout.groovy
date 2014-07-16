@@ -11,7 +11,7 @@ class Layout {
     private String handlerLocation    = "app.handler"
     private String helperLocation     = "app.helper"
 
-    private static String base = new File(Builder.class.getResource("/jbrat").toURI()).toString()
+    private static String base            = "/jbrat"
     private static String configLocation  = "${base}/config"
     private String routesLocation         = "${base}/config"
     private String localesLocation        = "${base}/config/locales"

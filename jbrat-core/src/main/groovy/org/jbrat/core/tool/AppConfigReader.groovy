@@ -25,7 +25,7 @@ class AppConfigReader {
         BeanBuilder    beanBuilder   = new BeanBuilder()
         Layout.Builder layoutBuilder = new Layout.Builder()
 
-        Properties properties = new PropertiesBuilder().fromFilePath(appConfigPath).build()
+        Properties properties = new PropertiesBuilder().fromResource(appConfigPath).build()
         properties.each { String key, String value->
             switch(key){
                 case ~/^locale$/:

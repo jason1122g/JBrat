@@ -1,22 +1,15 @@
 
-
-
-apply plugin: "groovy"
+apply plugin:'groovy'
+apply from:   script("jbrat")
 
 description = "JBrat Demo"
 version     = "1.0.0-SNAPSHOT"
 
 sourceCompatibility = 1.7
 
-apply plugin:'application'
-mainClassName = 'app.Launcher'
-
 repositories  {
     mavenCentral()
     maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
-    flatDir{
-        dirs "src/main/resources/jbrat/vender"
-    }
 }
 
 dependencies {
@@ -25,6 +18,8 @@ dependencies {
 
     compile 'org.apache.logging.log4j:log4j-api:2.0-rc2'
     compile 'org.apache.logging.log4j:log4j-core:2.0-rc2'
+}
 
-    compile name: "jbrat-core-2.0.0"
+File script(String name) {
+    project.file("gradle/${name}.gradle")
 }

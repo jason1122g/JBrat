@@ -21,14 +21,16 @@ class BasicLocaler implements Localer{
     }
 
     private void readLocaleFiles(){
-        new File(beanContainer.getLayout().localesLocation+"").eachFileRecurse(FileType.FILES) {File file->
+        def location = this.getClass().getResource(beanContainer.getLayout().getLocalesLocation()).toURI()
+        new File(location).eachFileRecurse(FileType.FILES) { File file->
             readFileForLocale(file)
         }
     }
 
     private void readFileForLocale(File file){
         String     locale = getLocaleFromString( file.getName() )
-        Properties prop   = new PropertiesBuilder().fromFilePath(file.getPath()).build()
+        String     path   = getResourcePathFromString( file.getPath() )
+        Properties prop   = new PropertiesBuilder().fromResource(path).build()
 
         if( langMap[locale] == null ){
             langMap[locale] = new HashMap<>()
@@ -46,6 +48,15 @@ class BasicLocaler implements Localer{
         }else{
             throw new IncorrectFormatException("Locale file doesn't specify the locale:"+s)
         }
+    }
+
+    private String getResourcePathFromString(String s){
+        def index = s.lastIndexOf(beanContainer.getLayout().getLocalesLocation())
+        if(index == -1){
+            index = s.lastIndexOf(beanContainer.getLayout().getLocalesLocation().replace('/','\\'))
+        }
+        def result = s.substring(index)
+        return result.replace('\\','/')
     }
 
     @Override

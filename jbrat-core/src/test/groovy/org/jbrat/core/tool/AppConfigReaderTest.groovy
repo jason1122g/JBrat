@@ -8,7 +8,7 @@ class AppConfigReaderTest extends Specification {
     def "test configurator"(){
         given:
             def configLocation= Layout.getConfigLocation() + "/application.properties"
-            def prop          = new PropertiesBuilder().fromFilePath(configLocation).build()
+            def prop          = new PropertiesBuilder().fromResource(configLocation).build()
             def configurator  = new AppConfigReader()
 
         when:

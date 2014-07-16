@@ -1,9 +1,6 @@
 package org.jbrat.generator
 
 class FileTool {
-    static void recursiveCopy(String source, String target){
-        recursiveCopy(new File(source),new File(target))
-    }
 
     static void recursiveCopy(File fSource, File fDest) {
         if (fSource.isDirectory()) {

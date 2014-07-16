@@ -32,7 +32,8 @@ class JBrat {
     private static void configureLogger(BeanContainer beanContainer){
         System.setProperty("logLocation", beanContainer.getLayout().getLogLocation());
 
-        File file = new File(beanContainer.getLayout().getConfigLocation()+"/log4j2.xml")
+        String path = beanContainer.getLayout().getConfigLocation()+"/log4j2.xml"
+        File file = new File(this.class.getResource(path).toURI())
         ConfigurationSource source = new ConfigurationSource(new FileInputStream(file));
         Configurator.initialize(null, source);
     }

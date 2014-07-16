@@ -12,7 +12,7 @@ class BasicLocalerTest extends Specification {
     @Shared BeanContainer beanContainer
 
     def setupSpec(){
-        def layout = new Layout.Builder().setLocalesLocation(getPosition()).build()
+        def layout = new Layout.Builder().setLocalesLocation("/jbrat/config/locales").build()
         def bean   = new BeanBuilder().setLayout(layout).build()
         beanContainer = new BeanContainer(bean)
     }

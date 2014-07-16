@@ -8,8 +8,9 @@ class PropertiesBuilder {
 
     private Properties property = new Properties()
 
-    PropertiesBuilder fromFilePath(String path,String encode="UTF-8"){
-        new File(path).withInputStream { InputStream stream ->
+    PropertiesBuilder fromResource(String path,String encode="UTF-8"){
+        def uri = this.getClass().getResource(path).toURI()
+        new File(uri).withInputStream { InputStream stream ->
             property.load(new InputStreamReader(stream, encode))
         }
         return this

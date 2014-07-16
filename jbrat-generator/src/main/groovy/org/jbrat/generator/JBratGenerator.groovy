@@ -13,17 +13,19 @@ class JBratGenerator {
                 case "view":
                     generateView(name)
                     break
-                case "init":
-                    generateProject(name)
-                    break
             }
         }
     }
 
     private static void generateView(String name){
-        writeTemplate(new JBratTemplate(name,JBratTemplate.CONTROLLER).toString(), name, "Controller")
-        writeTemplate(new JBratTemplate(name,JBratTemplate.VIEW      ).toString(), name, "View")
-        writeTemplate(new JBratTemplate(name,JBratTemplate.HELPER    ).toString(), name, "Helper")
+        def dir = new File("src/main/groovy/app")
+        if(dir.exists()){
+            writeTemplate(new JBratTemplate(name,JBratTemplate.CONTROLLER).toString(), name, "Controller")
+            writeTemplate(new JBratTemplate(name,JBratTemplate.VIEW      ).toString(), name, "View")
+            writeTemplate(new JBratTemplate(name,JBratTemplate.HELPER    ).toString(), name, "Helper")
+        }else{
+            System.out.println("Cannot find src/main/groovy/app")
+        }
     }
 
     private static void writeTemplate(String template,String name,String type){
@@ -34,17 +36,6 @@ class JBratGenerator {
         }else{
             file.write(template)
             System.out.println("Genarate:${filePath}")
-        }
-    }
-
-    private static void generateProject(String name){ //TODO NEED TEST
-        def targetDir = new File(name)
-        def sourceDir = new File(this.class.getResource("/demo").toURI())
-        if(targetDir.exists()){
-            throw new IOException("File Already Exists"+targetDir.getAbsolutePath())
-        }else{
-            targetDir.mkdir()
-            FileTool.recursiveCopy(sourceDir,targetDir)
         }
     }
 
