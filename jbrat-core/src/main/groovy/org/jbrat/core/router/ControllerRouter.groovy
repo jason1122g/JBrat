@@ -2,18 +2,18 @@ package org.jbrat.core.router
 
 import groovy.transform.CompileStatic
 import org.jbrat.controllers.Controller
+import org.jbrat.core.data.Address
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
-import org.jbrat.core.tool.PathContainer
 
 @CompileStatic
 class ControllerRouter extends ReflectRouterFilter{
 
-    private Bindable configBean
-    private Bindable paramsBean
-    private Bindable componentBean
+    private Bean configBean
+    private Bean paramsBean
+    private Bean componentBean
     private BeanContainer beanContainer
 
     def ControllerRouter(BeanContainer beanContainer){
@@ -22,15 +22,15 @@ class ControllerRouter extends ReflectRouterFilter{
     }
 
     @Override
-    protected String buildPath(String uri){
-        PathContainer parser = new PathContainer(uri)
-        String     path   = parser.getPath()
-        paramsBean        = parser.getParams()
-        beanContainer.getLayout().getControllerLocation() + "." + path + "Controller"
+    protected String buildPath(String addr){
+        Address address = new Address(addr)
+        String path = address.getPath()
+        paramsBean  = address.getParams()
+        return beanContainer.getLayout().getControllerLocation() + "." + path + "Controller"
     }
 
     @Override
-    protected Bindable buildBean(Bindable bean){
+    protected Bean buildBean(Bean bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setConfig(configBean)
         beanContainer.setComponent(componentBean)
@@ -39,7 +39,7 @@ class ControllerRouter extends ReflectRouterFilter{
     }
 
     @Override
-    protected void buildInstanceCall(Object instance, Bindable bean){
+    protected void buildInstanceCall(Object instance, Bean bean){
         Controller controller = (Controller) instance
         controller.prepare( bean )
     }

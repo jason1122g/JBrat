@@ -1,7 +1,7 @@
 package app.view
 
 import app.helper.LaunchHelper
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.views.JBratView
 
 import javax.swing.*
@@ -10,12 +10,12 @@ import java.awt.*
 @Mixin(LaunchHelper)
 class LaunchView extends JBratView{
 
-    private Bindable bean
+    private Bean bean
     private JFrame   frame
     private JPanel   panel
 
     @Override
-    void render(Bindable bean) {
+    void render(Bean bean) {
         this.bean = bean
         initFrame()
         initPanel()

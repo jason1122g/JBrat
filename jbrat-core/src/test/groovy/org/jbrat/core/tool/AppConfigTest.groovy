@@ -1,15 +1,16 @@
 package org.jbrat.core.tool
 
+import org.jbrat.core.config.AppConfig
 import org.jbrat.core.data.Layout
 import spock.lang.Specification
 
-class AppConfigReaderTest extends Specification {
+class AppConfigTest extends Specification {
 
     def "test configurator"(){
         given:
             def configLocation= Layout.getConfigLocation() + "/application.properties"
             def prop          = new PropertiesBuilder().fromResource(configLocation).build()
-            def configurator  = new AppConfigReader()
+            def configurator  = new AppConfig()
 
         when:
             def beanContainer = configurator.asBeanContainer()

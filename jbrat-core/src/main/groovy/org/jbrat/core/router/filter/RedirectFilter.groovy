@@ -11,7 +11,7 @@ class RedirectFilter extends RouterFilter{
 
     private BeanContainer      beanContainer
     private Map<String,String> routeTable    = [:]
-    private String             routeFileName = "routes.properties"
+    private String             routeFileName = "/routes.properties"
 
     RedirectFilter(BeanContainer beanContainer){
         this.beanContainer = beanContainer
@@ -19,16 +19,16 @@ class RedirectFilter extends RouterFilter{
     }
 
     private void readRouteFile(){
-        String path = beanContainer.getLayout().getRoutesLocation()+"/$routeFileName"
+        def path = beanContainer.getLayout().getRoutesLocation() + routeFileName
         Properties properties = new PropertiesBuilder().fromResource(path).build()
-        properties.each { String key, String value->
-            routeTable[key] = value
+        properties.each { String from, String to->
+            routeTable[from] = to
         }
     }
 
     @Override
     protected void filt(RouteData routeData) {
-        String path = routeData.getPath()
+        def path = routeData.getPath()
         if(routeTable.containsKey(path)){
             routeData.setPath( routeTable[path] )
         }

@@ -1,18 +1,20 @@
 package org.jbrat.core.data
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 
 @CompileStatic
 class BeanBuilder {
 
-    private Bindable      bean = BeanFactory.createEmpty()
+    private Bean bean = BeanFactory.createEmpty()
     private BeanContainer beanContainer = new BeanContainer(bean)
 
     BeanBuilder(){
-        beanContainer.setLayout(new  Layout.Builder().build())
-        beanContainer.setLocale("enUS")
+        def defaultLayout = new  Layout.Builder().build()
+        def defaultLocale = "enUS"
+        beanContainer.setLayout(defaultLayout)
+        beanContainer.setLocale(defaultLocale)
     }
 
     BeanBuilder setLayout(Layout layout){
@@ -25,7 +27,7 @@ class BeanBuilder {
         return this
     }
 
-    Bindable build(){
+    Bean build(){
         return bean
     }
 

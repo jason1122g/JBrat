@@ -3,8 +3,8 @@ package org.jbrat.core.router
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.exceptions.IncorrectFormatException
-import org.jbrat.exceptions.RouteFailedException
+import org.jbrat.exceptions.IncorrectFormatError
+import org.jbrat.exceptions.RouteFailedError
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -60,13 +60,13 @@ class ViewRouterTest extends Specification {
         when:
             viewRouter.route("viewNotExist")
         then:
-            thrown(RouteFailedException)
+            thrown(RouteFailedError)
     }
 
     def "init a wrong implemented view will throw Exception"(){
         when:
             viewRouter.route("incorrect")
         then:
-            thrown(IncorrectFormatException)
+            thrown(IncorrectFormatError)
     }
 }

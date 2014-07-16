@@ -2,13 +2,13 @@ package org.jbrat.core.router.abstracts
 
 import groovy.transform.CompileStatic
 import org.jbrat.core.ability.TransferAbility
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.router.data.RouteData
 
 @CompileStatic
 abstract class RouterFilter extends TransferAbility implements Router{
     @Override
-    Bindable route(String path, Bindable bean=null) {
+    Bean route(String path, Bean bean=null) {
 
         RouteData routeData  = new RouteData(path: path,bean: bean)
 

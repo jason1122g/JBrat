@@ -2,7 +2,7 @@ package org.jbrat.core.router.filter
 
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.router.abstracts.RouterFilter
 import org.jbrat.core.router.data.RouteData
 import spock.lang.Shared
@@ -14,7 +14,7 @@ class RedirectFilterTest extends Specification {
     private class testFilter extends RouterFilter{
         @Override
         protected void filt(RouteData routeData) {
-            Bindable bean =  new BeanBuilder().setLocale(routeData.getPath()).build()
+            Bean bean =  new BeanBuilder().setLocale(routeData.getPath()).build()
             routeData.setBean(bean)
         }
     }

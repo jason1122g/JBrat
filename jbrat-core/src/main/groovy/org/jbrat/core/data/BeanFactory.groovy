@@ -1,11 +1,11 @@
 package org.jbrat.core.data
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 @CompileStatic
 class BeanFactory {
-    static Bindable createEmpty(){
-        return new Bean()
+    static Bean createEmpty(){
+        return new BasicBean()
     }
 }

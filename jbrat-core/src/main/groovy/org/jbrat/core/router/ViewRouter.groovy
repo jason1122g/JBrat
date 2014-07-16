@@ -3,15 +3,16 @@ package org.jbrat.core.router
 import groovy.transform.CompileStatic
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.BeanFactory
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.router.abstracts.ReflectRouterFilter
+import org.jbrat.core.tool.Classer
 import org.jbrat.views.View
 
 @CompileStatic
 class ViewRouter extends ReflectRouterFilter{
 
     private View lastView
-    private Bindable componentBean
+    private Bean componentBean
     private BeanContainer beanContainer
 
     def ViewRouter(BeanContainer beanContainer){
@@ -20,31 +21,22 @@ class ViewRouter extends ReflectRouterFilter{
     }
 
     protected String buildPath(String uri){
-        String path =  beanContainer.getLayout().getViewLocation()+"."+ uri + "View"
-        String expectPath = path + "_" + beanContainer.getLocale()
-        if( isClassExist (expectPath) ){
-            path = expectPath
+        String target       = beanContainer.getLayout().getViewLocation()+ "." + uri + "View"
+        String expectTarget = target + "_" + beanContainer.getLocale()
+        if( Classer.classExists (expectTarget) ){
+            target = expectTarget
         }
-        return path
+        return target
     }
 
-    private def isClassExist(String path){
-        try{
-            Class.forName(path,false,this.getClass().getClassLoader()).newInstance()
-        }catch(ClassNotFoundException ignore){
-            return false
-        }
-        return true
-    }
-
-    protected Bindable buildBean(Bindable bean){
+    protected Bean buildBean(Bean bean){
         BeanContainer beanContainer = new BeanContainer(bean)
         beanContainer.setComponent(componentBean)
         return bean
     }
 
-    protected void buildInstanceCall(Object instance, Bindable bean){
-        if(lastView!=null){
+    protected void buildInstanceCall(Object instance, Bean bean){
+        if( lastView != null ){
             lastView.exit()
         }
 

@@ -1,7 +1,7 @@
 package org.jbrat.views
 
 import groovy.transform.CompileStatic
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 @CompileStatic
 abstract class JBratView extends JBratViewHelper implements View{
@@ -16,7 +16,7 @@ abstract class JBratView extends JBratViewHelper implements View{
     }
 
     @Override
-    abstract void render(Bindable bean);
+    abstract void render(Bean bean);
 
     @Override
     void afterRender() {

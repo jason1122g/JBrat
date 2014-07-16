@@ -1,12 +1,12 @@
 package org.jbrat.core.data
 
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 
-class Bean implements Bindable{
+class BasicBean implements Bean {
 
-    private def storage = [:]
-    private def events  = [:]
+    private Map<String,Object> storage = [:]
+    private Map<String,List>   events  = [:]
 
     @Override
     def getProperty(String name) {
@@ -24,7 +24,7 @@ class Bean implements Bindable{
 
     @Override
     void bind(String name, Closure event) {
-        if(events[name]==null){
+        if(events[name] == null){
             events[name] = []
         }
         events[name] << event
@@ -32,9 +32,10 @@ class Bean implements Bindable{
 
     @Override
     void unbind(String name, Closure event) {
-        if(events[name] != null){
-            events[name].remove(event)
-            if(events[name].size() == 0){
+        def eventList = events[name]
+        if( eventList != null){
+            eventList.remove(event)
+            if(eventList.size() == 0){
                 events[name] = null
             }
         }

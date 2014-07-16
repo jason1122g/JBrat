@@ -2,14 +2,14 @@ package org.jbrat.views
 
 import groovy.transform.CompileStatic
 import org.jbrat.core.JBrat
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 @CompileStatic
 class JBratViewHelper {
 
     private static JBrat jBrat = JBrat.getInstance()
 
-    static void render(String name,Bindable bean) {
+    static void render(String name,Bean bean) {
         jBrat.render(name,bean)
     }
 

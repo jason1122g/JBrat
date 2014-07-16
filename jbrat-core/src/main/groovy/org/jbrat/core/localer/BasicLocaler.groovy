@@ -4,7 +4,7 @@ import groovy.io.FileType
 import groovy.transform.CompileStatic
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.tool.PropertiesBuilder
-import org.jbrat.exceptions.IncorrectFormatException
+import org.jbrat.exceptions.IncorrectFormatError
 
 import java.util.regex.Matcher
 
@@ -46,7 +46,7 @@ class BasicLocaler implements Localer{
         if(matcher.matches()){
             return  matcher.group(1)
         }else{
-            throw new IncorrectFormatException("Locale file doesn't specify the locale:"+s)
+            throw new IncorrectFormatError("Locale file doesn't specify the locale:"+s)
         }
     }
 

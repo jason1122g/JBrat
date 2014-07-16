@@ -1,41 +1,35 @@
 package org.jbrat.core
 
 import groovy.transform.CompileStatic
-import org.apache.logging.log4j.core.config.ConfigurationSource
-import org.apache.logging.log4j.core.config.Configurator
+import org.jbrat.core.config.AppConfig
 import org.jbrat.core.data.BeanContainer
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.localer.BasicLocaler
 import org.jbrat.core.localer.Localer
+import org.jbrat.core.logger.LogConfigurator
 import org.jbrat.core.router.ControllerRouter
 import org.jbrat.core.router.ViewRouter
 import org.jbrat.core.router.abstracts.RouterFilter
 import org.jbrat.core.router.filter.ControllerFilter
 import org.jbrat.core.router.filter.RedirectFilter
-import org.jbrat.core.tool.AppConfigReader
 
 @CompileStatic
 class JBrat {
 
     private static def JBrat self
 
-    private Localer localer
+    private Localer      localer
     private RouterFilter viewRouter
     private RouterFilter router
 
     private JBrat(){
-        BeanContainer beanContainer = new AppConfigReader().asBeanContainer()
+        BeanContainer beanContainer = new AppConfig().asBeanContainer()
         configureLogger(beanContainer)
         configureRouter(beanContainer)
     }
 
     private static void configureLogger(BeanContainer beanContainer){
-        System.setProperty("logLocation", beanContainer.getLayout().getLogLocation());
-
-        String path = beanContainer.getLayout().getConfigLocation()+"/log4j2.xml"
-        File file = new File(this.class.getResource(path).toURI())
-        ConfigurationSource source = new ConfigurationSource(new FileInputStream(file));
-        Configurator.initialize(null, source);
+        LogConfigurator.configure(beanContainer)
     }
 
     private void configureRouter(BeanContainer beanContainer){
@@ -48,11 +42,11 @@ class JBrat {
         router >> controlRouter >> controllFilter >> viewRouter
     }
 
-    Bindable route(String path, Bindable bean=null){
+    Bean route(String path, Bean bean=null){
         router.route(path,bean)
     }
 
-    Bindable render(String name, Bindable bean){
+    Bean render(String name, Bean bean){
         viewRouter.route(name,bean)
     }
 

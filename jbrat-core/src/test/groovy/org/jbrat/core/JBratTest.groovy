@@ -1,6 +1,7 @@
 package org.jbrat.core
 
 import org.jbrat.core.data.Layout
+import org.jbrat.core.logger.LogTest
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -36,9 +37,9 @@ class JBratTest extends Specification {
 
     def "logger test"(){
         given:
-            String logPath = new Layout.Builder().build().getLogLocation()
-            String path = logPath + "/jbrat.log" //TODO MORE INDEPENDANT
-            File   file = new File( path )
+            def logPath = new Layout.Builder().build().getLogLocation()
+            def path = logPath + LogTest.logFileName
+            def file = new File( path )
         when:
             jBrat.route("Logger1")
         then:

@@ -2,11 +2,11 @@ package org.jbrat.core.data
 
 import spock.lang.Specification
 
-class BeanTest extends Specification {
+class BasicBeanTest extends Specification {
 
     def "bind test"(){
         given:
-            def bean = new Bean()
+            def bean = new BasicBean()
             def var1 = 0
         when:
             bean.bind "test", { value->
@@ -20,7 +20,7 @@ class BeanTest extends Specification {
 
     def "unbind test"(){
         given:
-            def bean = new Bean()
+            def bean = new BasicBean()
         when:
             bean.unbind("test",null)
         then:
@@ -29,7 +29,7 @@ class BeanTest extends Specification {
 
     def "bind/unbind test1"(){
         given:
-            def bean = new Bean()
+            def bean = new BasicBean()
             def var1 = 0
             def event = { value->
                 var1 = value
@@ -46,7 +46,7 @@ class BeanTest extends Specification {
 
     def "bind/unbind test2"(){
         given:
-            def bean = new Bean()
+            def bean = new BasicBean()
             def var1 = 0
             def event = { value->
                 var1 = value

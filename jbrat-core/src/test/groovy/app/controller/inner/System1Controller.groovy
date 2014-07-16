@@ -1,11 +1,11 @@
 package app.controller.inner
 
 import org.jbrat.controllers.JBratController
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.core.data.abstracts.Bean
 
 class System1Controller extends JBratController{
     @Override
-    void prepare(Bindable bean) {
+    void prepare(Bean bean) {
         if(bean.className == null){
             bean.className = this.getClass().getSimpleName()
         }else{

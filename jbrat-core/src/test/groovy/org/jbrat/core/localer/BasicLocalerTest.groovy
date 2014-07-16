@@ -3,7 +3,7 @@ package org.jbrat.core.localer
 import org.jbrat.core.data.BeanBuilder
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.Layout
-import org.jbrat.exceptions.IncorrectFormatException
+import org.jbrat.exceptions.IncorrectFormatError
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -43,7 +43,7 @@ class BasicLocalerTest extends Specification {
         when:
             new BasicLocaler(beanContainer);
         then:
-            thrown(IncorrectFormatException)
+            thrown(IncorrectFormatError)
         then:
             new File(getPosition()+"/noPreFix.properties").delete()
     }
