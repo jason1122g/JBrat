@@ -4,6 +4,7 @@ import groovy.transform.CompileStatic
 import org.apache.logging.log4j.core.config.ConfigurationSource
 import org.apache.logging.log4j.core.config.Configurator
 import org.jbrat.core.data.BeanContainer
+import org.jbrat.core.tool.Resourcer
 
 @CompileStatic
 class Log4jConfigurator {
@@ -20,7 +21,7 @@ class Log4jConfigurator {
     private static File getConfigurationFile(BeanContainer beanContainer){
         def configPath = beanContainer.getLayout().getConfigLocation()
         def log4jPath  = configPath + "/log4j2.xml"
-        return new File(this.class.getResource(log4jPath).toURI())
+        return new File(Resourcer.getResourceURI(log4jPath))
     }
 
     private static void configureLog4j(File configFile){

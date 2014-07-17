@@ -1,7 +1,7 @@
-package org.jbrat.core.tool
+package org.jbrat.core.config
 
-import org.jbrat.core.config.AppConfig
 import org.jbrat.core.data.Layout
+import org.jbrat.core.tool.PropertiesBuilder
 import spock.lang.Specification
 
 class AppConfigTest extends Specification {

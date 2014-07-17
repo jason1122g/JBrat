@@ -10,7 +10,11 @@ class JBratError extends Error{
         super(msg)
     }
 
-    JBratError(Exception e){
-        super(e)
+    JBratError(Throwable cause){
+        super(cause)
+    }
+
+    JBratError(String msg,Throwable cause){
+        super(msg,cause)
     }
 }

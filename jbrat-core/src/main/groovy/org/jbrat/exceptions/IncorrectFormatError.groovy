@@ -9,4 +9,8 @@ class IncorrectFormatError extends JBratError{
     IncorrectFormatError(Exception e){
         super(e)
     }
+
+    IncorrectFormatError(String msg, Throwable cause){
+        super(msg,cause)
+    }
 }

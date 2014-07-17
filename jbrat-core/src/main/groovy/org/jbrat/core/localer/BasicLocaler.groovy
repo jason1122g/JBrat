@@ -4,6 +4,7 @@ import groovy.io.FileType
 import groovy.transform.CompileStatic
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.tool.PropertiesBuilder
+import org.jbrat.core.tool.Resourcer
 import org.jbrat.exceptions.IncorrectFormatError
 
 import java.util.regex.Matcher
@@ -21,11 +22,12 @@ class BasicLocaler implements Localer{
     }
 
     private void readLocaleFiles(){
-        def location = this.getClass().getResource(beanContainer.getLayout().getLocalesLocation()).toURI()
-        new File(location).eachFileRecurse(FileType.FILES) { File file->
+        def uri = Resourcer.getResourceURI(beanContainer.getLayout().getLocalesLocation())
+        new File(uri).eachFileRecurse(FileType.FILES) { File file->
             readFileForLocale(file)
         }
     }
+
 
     private void readFileForLocale(File file){
         String     locale = getLocaleFromString( file.getName() )

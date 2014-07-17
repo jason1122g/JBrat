@@ -6,7 +6,11 @@ class RouteFailedError extends JBratError{
         super(msg)
     }
 
-    RouteFailedError(Exception e){
-        super(e)
+    RouteFailedError(Throwable cause){
+        super(cause)
+    }
+
+    RouteFailedError(String msg, Throwable cause){
+        super(msg,cause)
     }
 }

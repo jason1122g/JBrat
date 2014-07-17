@@ -12,11 +12,13 @@ abstract class ReflectRouterFilter extends RouterFilter{
 
     @Override
     protected void filt(RouteData routeData) {
+
         def targetController
+        def targetClassName = buildPath(routeData.getPath())
         try{
-            targetController = Class.forName( buildPath(routeData.getPath()) ).newInstance()
+            targetController = Class.forName( targetClassName ).newInstance()
         }catch(Exception e){
-            throw new RouteFailedError(e)
+            throw new RouteFailedError(targetClassName,e)
         }
 
         Bean bean = routeData.getBean()
@@ -28,7 +30,7 @@ abstract class ReflectRouterFilter extends RouterFilter{
         try{
             buildInstanceCall(targetController,resultBean)
         }catch(Exception e){
-            throw new IncorrectFormatError(e)
+                throw new IncorrectFormatError("Not implemented by JBrat Component",e)
         }
 
         routeData.setBean(resultBean)
