@@ -1,13 +1,13 @@
-package app.view
+package app.view${package}
 
 import app.helper.${name}Helper
-import org.jbrat.core.data.abstracts.Bindable
-import org.jbrat.views.JBratView
+import org.jbrat.core.data.abstracts.Bean
+import org.jbrat.views.ApplicationView
 
 @Mixin(${name}Helper)
-class ${name}View extends JBratView{${note}
+class ${name}View extends ApplicationView{${note}
     @Override
-    void render(Bindable bean) {
+    void render(Bean bean) {
 
     }
 }

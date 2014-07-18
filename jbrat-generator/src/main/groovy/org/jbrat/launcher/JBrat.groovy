@@ -1,4 +1,6 @@
-package org.jbrat.generator
+package org.jbrat.launcher
+
+import org.jbrat.tool.FileTool
 
 /** TODO TEST AND FINISH THIS*/
 class JBrat {

@@ -2,13 +2,12 @@ package app.view
 
 import app.helper.LaunchHelper
 import org.jbrat.core.data.abstracts.Bean
-import org.jbrat.views.JBratView
 
 import javax.swing.*
 import java.awt.*
 
 @Mixin(LaunchHelper)
-class LaunchView extends JBratView{
+class LaunchView extends ApplicationView{
 
     private Bean bean
     private JFrame   frame
@@ -25,7 +24,7 @@ class LaunchView extends JBratView{
 
     private void initFrame(){
         frame = new JFrame(t("title"))
-        frame.setSize(300,400)
+        frame.setSize(300,200)
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
         frame.setVisible(true)
     }

@@ -1,4 +1,4 @@
-package org.jbrat.generator
+package org.jbrat.tool
 
 class FileTool {
 

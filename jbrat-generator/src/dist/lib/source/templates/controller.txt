@@ -1,11 +1,11 @@
-package app.controller
+package app.controller${package}
 
-import org.jbrat.controllers.JBratController
-import org.jbrat.core.data.abstracts.Bindable
+import org.jbrat.controllers.ApplicationController
+import org.jbrat.core.data.abstracts.Bean
 
-class ${name}Controller extends JBratController{${note}
+class ${name}Controller extends ApplicationController{${note}
     @Override
-    void prepare(Bindable bean) {
+    void prepare(Bean bean) {
 
     }
 }

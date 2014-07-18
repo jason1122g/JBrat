@@ -11,13 +11,14 @@ class Layout {
     private String handlerLocation    = "app.handler"
     private String helperLocation     = "app.helper"
 
-    private static String base            = "/jbrat"
-    private static String configLocation  = "${base}/config"
-    private String routesLocation         = "${base}/config"
-    private String localesLocation        = "${base}/config/locales"
+    static final String sourceLocation = "src/main/groovy"
+    static final String resourceBase   = "/jbrat"
+    static final String configLocation = "${resourceBase}/config"
+    private String routesLocation      = "${resourceBase}/config"
+    private String localesLocation     = "${resourceBase}/config/locales"
 
-    private String libLocation        = "${base}/lib"
-    private String venderLocation     = "${base}/vender"
+    private String libLocation        = "${resourceBase}/lib"
+    private String venderLocation     = "${resourceBase}/vender"
     private String logLocation        = "logs"
 
     public Layout(Builder builder){
@@ -29,11 +30,7 @@ class Layout {
     }
 
     static String getResourceBase(){
-        return base
-    }
-
-    static String getConfigLocation() {
-        return configLocation
+        return resourceBase
     }
 
     String getControllerLocation() {

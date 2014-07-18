@@ -1,6 +1,6 @@
 package app
 
-import org.jbrat.core.JBrat
+import org.jbrat.launcher.JBrat
 
 
 class Launcher {
