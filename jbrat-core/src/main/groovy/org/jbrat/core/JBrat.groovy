@@ -2,6 +2,7 @@ package org.jbrat.core
 
 import groovy.transform.CompileStatic
 import org.jbrat.core.config.AppConfig
+import org.jbrat.core.config.ResourceConfigReader
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.core.data.abstracts.Bean
 import org.jbrat.core.localer.BasicLocaler
@@ -23,7 +24,7 @@ class JBrat {
     private RouterFilter router
 
     private JBrat(){
-        BeanContainer beanContainer = new AppConfig().asBeanContainer()
+        BeanContainer beanContainer = new AppConfig(new ResourceConfigReader()).asBeanContainer()
         configureLogger(beanContainer)
         configureRouter(beanContainer)
     }

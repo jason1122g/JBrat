@@ -1,9 +1,9 @@
-package app.controller${package}
+package app.controller
 
 import app.controller.ApplicationController
 import org.jbrat.core.data.abstracts.Bean
 
-class ${name}Controller extends ApplicationController{${note}
+class MellowController extends ApplicationController{
     @Override
     void prepare(Bean bean) {
 

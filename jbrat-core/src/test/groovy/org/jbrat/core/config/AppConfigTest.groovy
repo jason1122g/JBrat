@@ -10,8 +10,7 @@ class AppConfigTest extends Specification {
         given:
             def configLocation= Layout.getConfigLocation() + "/application.properties"
             def prop          = new PropertiesBuilder().fromResource(configLocation).build()
-            def configurator  = new AppConfig()
-
+            def configurator  = new AppConfig(reader)
         when:
             def beanContainer = configurator.asBeanContainer()
         then:
@@ -24,6 +23,8 @@ class AppConfigTest extends Specification {
             beanContainer.getLayout().getRoutesLocation()     == convert(prop."layout.routesLocation")
             beanContainer.getLayout().getLocalesLocation()    == convert(prop."layout.localesLocation")
             beanContainer.getLayout().getLogLocation()        == convert(prop."layout.logLocation")
+        where:
+            reader << [new ResourceConfigReader(),new FileConfigReader()]
     }
 
     private static def convert(path){

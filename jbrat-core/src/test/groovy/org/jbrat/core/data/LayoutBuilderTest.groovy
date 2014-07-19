@@ -25,7 +25,8 @@ class LayoutBuilderTest extends Specification {
     def "some values are static"(){
         expect:
             Layout.getResourceBase()   == "/jbrat"
-            Layout.getSourceLocation() == "src/main/groovy"
+            Layout.getSourceBase()     == "src/main/groovy"
+            Layout.getDistBase()       == "src/dist/lib/source"
             Layout.getConfigLocation() == "${Layout.resourceBase}/config"
     }
 

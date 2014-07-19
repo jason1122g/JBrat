@@ -1,7 +1,6 @@
-package org.jbrat.generator
+package org.jbrat.tool
 
 import groovy.transform.CompileStatic
-import org.jbrat.tool.StringTemplate
 
 @CompileStatic
 class JBratTemplate {

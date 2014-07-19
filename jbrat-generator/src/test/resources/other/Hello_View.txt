@@ -2,7 +2,7 @@ package app.view.other
 
 import app.helper.HelloHelper
 import org.jbrat.core.data.abstracts.Bean
-import org.jbrat.views.ApplicationView
+import app.view.ApplicationView
 
 @Mixin(HelloHelper)
 class HelloView extends ApplicationView{

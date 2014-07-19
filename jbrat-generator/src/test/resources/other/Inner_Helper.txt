@@ -1,0 +1,5 @@
+package app.helper.other
+
+class InnerHelper{
+
+}

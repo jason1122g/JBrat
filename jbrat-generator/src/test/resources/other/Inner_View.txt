@@ -1,0 +1,13 @@
+package app.view.other
+
+import app.helper.InnerHelper
+import org.jbrat.core.data.abstracts.Bean
+import app.view.ApplicationView
+
+@Mixin(InnerHelper)
+class InnerView extends ApplicationView{
+    @Override
+    void render(Bean bean) {
+
+    }
+}

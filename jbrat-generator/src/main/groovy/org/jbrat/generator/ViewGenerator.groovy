@@ -1,9 +1,13 @@
 package org.jbrat.generator
 
+import groovy.transform.CompileStatic
 import org.jbrat.core.data.BeanContainer
 import org.jbrat.generator.abstracts.BasicGenerator
+import org.jbrat.tool.JBratTemplate
 import org.jbrat.tool.StringTemplate
 
+
+@CompileStatic
 class ViewGenerator extends BasicGenerator{
 
     private BeanContainer beanContainer

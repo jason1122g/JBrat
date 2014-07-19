@@ -1,9 +1,11 @@
 package org.jbrat.launcher
 
+import groovy.transform.CompileStatic
 import org.jbrat.tool.FileTool
 
 /** TODO TEST AND FINISH THIS*/
-class JBrat {
+@CompileStatic
+class JBratInvoker {
     static void main(String[] args){
         if(args.length >= 2){
             switch (args[0]){

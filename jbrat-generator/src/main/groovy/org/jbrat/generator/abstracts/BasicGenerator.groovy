@@ -1,10 +1,12 @@
 package org.jbrat.generator.abstracts
 
+import groovy.transform.CompileStatic
 import org.jbrat.core.data.Layout
 import org.jbrat.tool.StringTemplate
 
 import java.util.regex.Matcher
 
+@CompileStatic
 abstract class BasicGenerator implements Generator{
 
     @Override
@@ -22,11 +24,12 @@ abstract class BasicGenerator implements Generator{
 
     private void prepareTemplate(String categoryPath, String fileName){
         def directoryPath = getComponentPackage() + "/" + categoryPath
-        def packagePath   = Layout.sourceLocation + "/" + directoryPath.replace('.','/')
-        def filePath = packagePath + fileName + getFileNameSuffix()
-        def template = getStringTemplate (fileName)
+        def packagePath   = Layout.sourceBase + "/" + directoryPath.replace('.','/')
+        def filePath      = packagePath + fileName + getFileNameSuffix()
+        def template      = getStringTemplate (fileName)
 
         def packageSuffix = categoryPath=="" ? "" : "."+categoryPath.substring(0,categoryPath.length()-1)
+
         template.setProperty("name",fileName)
         template.setProperty("package",packageSuffix)
 

@@ -1,5 +1,9 @@
 package org.jbrat.tool
 
+import groovy.transform.CompileStatic
+
+
+@CompileStatic
 class FileTool {
 
     static void recursiveCopy(File fSource, File fDest) {

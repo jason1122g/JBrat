@@ -26,8 +26,4 @@ class JBratGeneratorTest extends Specification {
             new File("src/main/groovy/app/helper/other/GundamHelper.groovy").exists()
     }
 
-    def "throw exception if application.properties is not in class path"(){
-        //TODO TOO HARD TO TEST
-    }
-
 }

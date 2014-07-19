@@ -1,6 +1,6 @@
 package app.controller.other
 
-import org.jbrat.controllers.ApplicationController
+import app.controller.ApplicationController
 import org.jbrat.core.data.abstracts.Bean
 
 class HelloController extends ApplicationController{

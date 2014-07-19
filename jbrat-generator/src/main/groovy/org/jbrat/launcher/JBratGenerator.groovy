@@ -2,6 +2,8 @@ package org.jbrat.launcher
 
 import groovy.transform.CompileStatic
 import org.jbrat.core.config.AppConfig
+import org.jbrat.core.config.FileConfigReader
+import org.jbrat.exceptions.ResourceNotFoundError
 import org.jbrat.generator.ControllerGenerator
 import org.jbrat.generator.HelperGenerator
 import org.jbrat.generator.ViewGenerator
@@ -22,10 +24,14 @@ class JBratGenerator {
     }
 
     private static void generateView(String name){
-        def beanContainer = new AppConfig().asBeanContainer()
-        new ControllerGenerator(beanContainer).generate(name)
-        new ViewGenerator      (beanContainer).generate(name)
-        new HelperGenerator    (beanContainer).generate(name)
+        try{
+            def beanContainer = new AppConfig(new FileConfigReader()).asBeanContainer()
+            new ControllerGenerator(beanContainer).generate(name)
+            new ViewGenerator      (beanContainer).generate(name)
+            new HelperGenerator    (beanContainer).generate(name)
+        }catch (ResourceNotFoundError e){
+            System.out.println(e.getMessage())
+        }
     }
 
 }

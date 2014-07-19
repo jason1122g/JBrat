@@ -11,7 +11,8 @@ class Layout {
     private String handlerLocation    = "app.handler"
     private String helperLocation     = "app.helper"
 
-    static final String sourceLocation = "src/main/groovy"
+    static final String sourceBase = "src/main/groovy"
+    static final String distBase = "src/dist/lib/source"
     static final String resourceBase   = "/jbrat"
     static final String configLocation = "${resourceBase}/config"
     private String routesLocation      = "${resourceBase}/config"
@@ -27,10 +28,6 @@ class Layout {
                 this.setProperty(key,value)
             }
         }
-    }
-
-    static String getResourceBase(){
-        return resourceBase
     }
 
     String getControllerLocation() {

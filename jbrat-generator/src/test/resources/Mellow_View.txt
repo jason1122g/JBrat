@@ -1,0 +1,13 @@
+package app.view
+
+import app.helper.MellowHelper
+import org.jbrat.core.data.abstracts.Bean
+import app.view.ApplicationView
+
+@Mixin(MellowHelper)
+class MellowView extends ApplicationView{
+    @Override
+    void render(Bean bean) {
+
+    }
+}
