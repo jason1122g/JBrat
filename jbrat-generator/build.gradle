@@ -3,7 +3,8 @@ description = "JBrat-Generator module for generate the structure of project and 
 version = '1.0.0'
 
 apply plugin:'application'
-mainClassName = 'org.jbrat.launcher.JBratInvoker'
+mainClassName   = 'org.jbrat.launcher.JBratInvoker'
+applicationName = "jbrat"
 
 startScripts {
     classpath += files('src/dist/lib/source')

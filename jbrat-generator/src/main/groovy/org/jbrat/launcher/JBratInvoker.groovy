@@ -3,7 +3,7 @@ package org.jbrat.launcher
 import groovy.transform.CompileStatic
 import org.jbrat.tool.FileTool
 
-/** TODO TEST AND FINISH THIS*/
+/** TODO TEST THIS*/
 @CompileStatic
 class JBratInvoker {
     static void main(String[] args){
