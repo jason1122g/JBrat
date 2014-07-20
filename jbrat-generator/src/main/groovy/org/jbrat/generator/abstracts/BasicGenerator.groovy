@@ -31,7 +31,7 @@ abstract class BasicGenerator implements Generator{
         def packageSuffix = categoryPath=="" ? "" : "."+categoryPath.substring(0,categoryPath.length()-1)
 
         template.setProperty("name",fileName)
-        template.setProperty("package",packageSuffix)
+        template.setProperty("package",packageSuffix)//TODO SMART INJECT: IMPORT
 
         new File(packagePath).mkdirs()
         generateFile(filePath,template.toString())

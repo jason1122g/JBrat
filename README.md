@@ -3,15 +3,13 @@
 - jbrat-generator : include the generator of components and project
 
 ### Install
-1. Download the zip and extract
-2. Change directory into it
-3. Execute command ``` gradlew distZip ```
-4. Change directory into jbrat-generator/build/distributions
-5. Extract the zip file and then copy them to somewhere else
-6. Add the path of 'jbrat-x.x.x/bin' folder  into environment variable
+1. [Download](https://drive.google.com/folderview?id=0B92Rrc9PHPK9akpHOWVDaEtud3M&usp=sharing) the zip and extract
+2. Copy the directory ``` jbrat-x.x.x ``` to somewhere else you like
+3. Add the path of ``` jbrat-x.x.x/bin ``` into environment variable
 
 ### Init a project
 - Execute command ``` jbrat init [project name] ```
 
 ### Init a view
 - Execute command ``` jbrat g view [view name] ```
+- Execute command ``` jbrat generate view [view name] ```

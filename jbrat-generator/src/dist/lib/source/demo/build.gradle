@@ -13,11 +13,12 @@ repositories  {
 }
 
 dependencies {
-    groovy      "org.codehaus.groovy:groovy-all:2.1.5"
-    testCompile "org.spockframework:spock-core:1.0-groovy-2.0-SNAPSHOT"
+    groovy      "org.codehaus.groovy:groovy-all:2.1.5"                   //for test
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.0-SNAPSHOT"  //for test
 
-    compile 'org.apache.logging.log4j:log4j-api:2.0-rc2'
-    compile 'org.apache.logging.log4j:log4j-core:2.0-rc2'
+//    compile 'org.apache.logging.log4j:log4j-api:2.0-rc2'  //for logger
+//    compile 'org.apache.logging.log4j:log4j-core:2.0-rc2' //for logger
+
 }
 
 File script(String name) {

@@ -13,6 +13,7 @@ class JBratInvoker {
                     generateProject(args[1])
                     break
                 case "g":
+                case "generate":
                     JBratGenerator.main([args[1],args[2]] as String[])
                     break
             }
